@@ -1,0 +1,3 @@
+.envrc
+files/binary/*.tar.gz
+files/log/*.log

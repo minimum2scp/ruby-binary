@@ -1,0 +1,11 @@
+machine:
+  timezone:
+    Asia/Tokyo
+  ruby:
+    version: 2.1.5
+
+test:
+  override:
+    - rake
+    - cp -a files/binary files/log ${CIRCLE_ARTIFACTS}
+
