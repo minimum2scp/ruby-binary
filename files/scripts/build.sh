@@ -2,7 +2,7 @@
 set -x
 set -e
 
-sed -i -e 's@http.debian.net@ftp.jp.debian.org@' /etc/apt/sources.list
+#sed -i -e 's@http.debian.net@ftp.jp.debian.org@' /etc/apt/sources.list
 
 apt-get update
 apt-get install -y --no-install-recommends pigz
