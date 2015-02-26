@@ -11,3 +11,9 @@ test:
     - rake
     - cp -a files/binary files/log ${CIRCLE_ARTIFACTS}
 
+deployment:
+  production:
+    branch: master
+    commands:
+      - go get github.com/tcnksm/ghr
+      - rake release[v0.0.1]
