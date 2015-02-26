@@ -3,6 +3,8 @@ machine:
     Asia/Tokyo
   ruby:
     version: 2.1.5
+  services:
+    - docker
 
 test:
   override:
