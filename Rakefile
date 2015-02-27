@@ -69,8 +69,3 @@ namespace :build do
   end
 end
 
-desc "release to github"
-task :release, :tag do |t,args|
-  sh "ghr -u minimum2scp -r ruby-binary --draft --replace #{args[:tag]} files/binary/*.tar.gz"
-end
-

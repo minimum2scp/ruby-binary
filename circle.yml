@@ -9,11 +9,13 @@ machine:
 test:
   override:
     - rake
-    - cp -a files/binary files/log ${CIRCLE_ARTIFACTS}
+    - mkdir -p ${CIRCLE_ARTIFACTS}/binary ${CIRCLE_ARTIFACTS}/log
+    - cp -a files/binary/*.tar.gz ${CIRCLE_ARTIFACTS}/binary
+    - cp -a files/log/*.log ${CIRCLE_ARTIFACTS}/log
 
 deployment:
   production:
     branch: master
     commands:
       - go get github.com/tcnksm/ghr
-      - rake release[v0.0.1]
+      - ghr -u minimum2scp -r ruby-binary --draft --replace v0.0.1 ${CIRCLE_ARTIFACTS}/binary/
