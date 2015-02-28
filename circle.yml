@@ -18,4 +18,4 @@ deployment:
     branch: release
     commands:
       - go get github.com/tcnksm/ghr
-      - ghr -u minimum2scp -r ruby-binary --draft v0.0.2 ${CIRCLE_ARTIFACTS}/binary/
+      - ghr -u minimum2scp -r ruby-binary --draft v0.0.3 ${CIRCLE_ARTIFACTS}/binary/
