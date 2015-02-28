@@ -117,8 +117,7 @@ namespace :install do
               abort "/opt/rbenv/versions/#{args.version} already exist (set env var RUBY_BINARY_INSTALL_FORCE to force install)"
             end
           end
-          sh "sudo mkdir -p /opt/rbenv/versions/#{args.version}"
-          sh "sudo tar xf #{name} -C /opt/rbenv/versions/#{args.version}"
+          sh "sudo tar xf #{name} -C /opt/rbenv/versions"
           sh "sudo bash -l -c 'rbenv rehash'"
         end
       end
