@@ -1,5 +1,9 @@
 require 'rake/clean'
 require 'etc'
+require 'tmpdir'
+require 'open-uri'
+require 'uri'
+require 'json'
 
 TARBALLS = FileList["files/binary/*.tar.gz", "files/log/*.log"]
 
@@ -69,3 +73,64 @@ namespace :build do
   end
 end
 
+def get_github_release(user, repos, tag, prerelease=false)
+  if prerelease
+    releases = JSON.parse open("https://api.github.com/repos/#{user}/#{repos}/releases").read
+    releases.sort_by{|rel| rel['published_at']}.last
+  elsif tag
+    JSON.parse open("https://api.github.com/repos/#{user}/#{repos}/releases/tags/#{tag}").read
+  else
+    JSON.parse open("https://api.github.com/repos/#{user}/#{repos}/releases/latest").read
+  end
+end
+
+namespace :install do
+  namespace :github_release do
+    desc "list releases on github"
+    task :list_relases do
+      releases = JSON.parse open('https://api.github.com/repos/minimum2scp/ruby-binary/releases').read
+      releases.each do |rel|
+        puts "%s (%s) assets: %s" % [
+          rel['tag_name'], rel['published_at'],
+          rel['assets'].map{|a| a['name']}.join(', ')
+        ]
+      end
+    end
+
+    desc "list assets url in a release with tag (or latest release if tag is omitted)"
+    task :list_assets, [:tag] do |t, args|
+      get_github_release('minimum2scp', 'ruby-binary', args.tag)['assets'].each do |asset|
+        puts asset['browser_download_url']
+      end
+    end
+
+    desc "install github released binary with a version"
+    task :install, [:version, :url] do |t, args|
+      name = File.basename(URI.parse(args.url).path)
+      Dir.mktmpdir do |dir|
+        cd dir, :verbose => true do
+          sh "curl -L -o #{name} #{args.url}"
+          if File.directory?("/opt/rbenv/versions/#{args.version}")
+            if ENV['RUBY_BINARY_INSTALL_FORCE'] =~ /^(1|on|true|yes)$/
+              sh "sudo rm -rf /opt/rbenv/versions/#{args.version}"
+            else
+              abort "/opt/rbenv/versions/#{args.version} already exist (set env var RUBY_BINARY_INSTALL_FORCE to force install)"
+            end
+          end
+          sh "sudo mkdir -p /opt/rbenv/versions/#{args.version}"
+          sh "sudo tar xf #{name} -C /opt/rbenv/versions/#{args.version}"
+          sh "sudo bash -l -c 'rbenv rehash'"
+        end
+      end
+    end
+
+    desc "install all versions of github released binary with tag (or latest release if tag is omitted)"
+    task :install_all, [:tag] do |t, args|
+      get_github_release('minimum2scp', 'ruby-binary', args.tag)['assets'].each do |asset|
+        version = asset['name'].scan(/ruby-(\d+\.\d+\.\d+(?:-dev|-preview\d+|-rc\d+|-p\d+)?)/).first.first
+        Rake::Task['install:github_release:install'].invoke(version, asset['browser_download_url'])
+        Rake::Task['install:github_release:install'].reenable
+      end
+    end
+  end
+end
