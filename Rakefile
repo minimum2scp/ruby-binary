@@ -133,3 +133,11 @@ namespace :install do
     end
   end
 end
+
+namespace :rbenv do
+  desc "install rbenv into /opt/rbenv"
+  task :install do
+    sh "install-rbenv.sh"
+  end
+end
+
