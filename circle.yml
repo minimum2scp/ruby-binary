@@ -11,6 +11,10 @@ general:
     - files/binary
     - files/log
 
+checkout:
+  post:
+    - find . -name .gitkeep -delete
+
 test:
   override:
     - rake
@@ -20,4 +24,4 @@ deployment:
     branch: release
     commands:
       - go get github.com/tcnksm/ghr
-      - ghr -u minimum2scp -r ruby-binary --draft v0.0.3 ${CIRCLE_ARTIFACTS}/binary/
+      - ghr -u minimum2scp -r ruby-binary --draft v0.0.3 files/binary/
