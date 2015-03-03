@@ -34,7 +34,7 @@ end
 namespace :build do
   cname = 'ruby-build-container'
   image = 'minimum2scp/ruby:latest'
-  ruby_versions = %w[2.0.0-p643 2.1.5 2.2.0]
+  ruby_versions = %w[2.0.0-p643 2.1.5 2.2.1]
   volume = File.expand_path('files', __dir__)
 
   desc "prepare docker container"
@@ -133,3 +133,11 @@ namespace :install do
     end
   end
 end
+
+namespace :rbenv do
+  desc "install rbenv into /opt/rbenv"
+  task :install do
+    sh "install-rbenv.sh"
+  end
+end
+
