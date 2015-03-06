@@ -55,6 +55,7 @@ namespace :build do
       "-v #{volume}:/data",
       *envs.map{|k,v| ["-e #{k}=#{v}"] }
     ]
+    envs['MAKE_OPTS'] = "-j %d" % [`nproc`.chomp.to_i] if ENV['CIRCLECI']
     cmd = '/data/scripts/build.sh'
     sh "docker run #{opts.join(' ')} #{image} #{cmd}"
   end
