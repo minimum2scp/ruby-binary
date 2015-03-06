@@ -40,6 +40,22 @@ task :default do
   end
 end
 
+desc "download artifacts from Circle CI, and create release on Github"
+task :release, [:version] do |t, args|
+  Dir.mktmpdir do |dir|
+    token = ENV['CIRCLECI_TOKEN']
+    recent_build = JSON.parse(open("https://circleci.com/api/v1/project/minimum2scp/ruby-binary/tree/master?circle-token=#{token}&limit=20&offset=5&filter=completed").read)
+    build_num = recent_build.first["build_num"]
+    artifacts = JSON.parse(open("https://circleci.com/api/v1/project/minimum2scp/ruby-binary/#{build_num}/artifacts?circle-token=#{token}").read)
+    artifacts.each do |a|
+      local_name = File.basename(a["path"])
+      next if local_name !~ /\.tar\.gz$/
+      sh "curl -L -o #{dir}/#{File.basename(a["path"])} #{a["url"]}"
+    end
+    sh "ghr -u minimum2scp -r ruby-binary --draft #{args.version} #{dir}"
+  end
+end
+
 namespace :build do
   cname = 'ruby-build-container'
   image = 'minimum2scp/ruby:latest'
