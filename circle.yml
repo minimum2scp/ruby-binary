@@ -7,10 +7,6 @@ machine:
     - docker
 
 general:
-  branches:
-    only:
-      - master
-      - release
   artifacts:
     - files/binary
     - files/log
