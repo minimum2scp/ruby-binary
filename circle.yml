@@ -19,13 +19,12 @@ checkout:
   post:
     - find . -name .gitkeep -delete
 
+dependencies:
+  override:
+    - rake build:prepare
+
 test:
   override:
-    - rake
+    - rake:
+        parallel: true
 
-deployment:
-  production:
-    branch: release
-    commands:
-      - go get github.com/tcnksm/ghr
-      - ghr -u minimum2scp -r ruby-binary --draft v0.0.4 files/binary/

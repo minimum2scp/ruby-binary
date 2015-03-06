@@ -25,16 +25,24 @@ module FileUtils
 end
 
 task :default do
-  Rake::Task['build:prepare'].invoke
-  Rake::Task['build:run'].invoke
-  Rake::Task['build:fixperm'].invoke
-  Rake::Task['build:teardown'].invoke
+  ruby_versions = %w[2.0.0-p643 2.1.5 2.2.1]
+  if ENV['CIRCLECI'] && ENV['CIRCLE_NODE_TOTAL'].to_i > 1
+    ruby_versions_subset = ruby_versions.group_by.with_index{|v,idx| idx % ENV['CIRCLE_NODE_TOTAL'].to_i}[ENV['CIRCLE_NODE_INDEX'].to_i]
+    Rake::Task['build:prepare'].invoke
+    Rake::Task['build:run'].invoke(ruby_versions_subset.join(','))
+    Rake::Task['build:fixperm'].invoke
+    Rake::Task['build:teardown'].invoke
+  else
+    Rake::Task['build:prepare'].invoke
+    Rake::Task['build:run'].invoke(ruby_versions.join(','))
+    Rake::Task['build:fixperm'].invoke
+    Rake::Task['build:teardown'].invoke
+  end
 end
 
 namespace :build do
   cname = 'ruby-build-container'
   image = 'minimum2scp/ruby:latest'
-  ruby_versions = %w[2.0.0-p643 2.1.5 2.2.1]
   volume = File.expand_path('files', __dir__)
 
   desc "prepare docker container"
@@ -43,9 +51,9 @@ namespace :build do
   end
 
   desc "build ruby binaries in docker container"
-  task :run do
+  task :run, [:ruby_binary_versions] do |t, args|
     envs = {
-      'RUBY_BINARY_VERSIONS' => ruby_versions.join(','),
+      'RUBY_BINARY_VERSIONS' => args.ruby_binary_versions,
       'RUBY_BINARY_DEST'     => '/data/binary',
       'RUBY_BINARY_LOG_DIR'  => '/data/log'
     }
