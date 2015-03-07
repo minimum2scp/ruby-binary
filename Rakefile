@@ -25,16 +25,40 @@ module FileUtils
 end
 
 task :default do
-  Rake::Task['build:prepare'].invoke
-  Rake::Task['build:run'].invoke
-  Rake::Task['build:fixperm'].invoke
-  Rake::Task['build:teardown'].invoke
+  ruby_versions = %w[2.0.0-p643 2.1.5 2.2.1]
+  if ENV['CIRCLECI'] && ENV['CIRCLE_NODE_TOTAL'].to_i > 1
+    ruby_versions_subset = ruby_versions.group_by.with_index{|v,idx| idx % ENV['CIRCLE_NODE_TOTAL'].to_i}[ENV['CIRCLE_NODE_INDEX'].to_i]
+    Rake::Task['build:prepare'].invoke
+    Rake::Task['build:run'].invoke(ruby_versions_subset.join(','))
+    Rake::Task['build:fixperm'].invoke
+    Rake::Task['build:teardown'].invoke
+  else
+    Rake::Task['build:prepare'].invoke
+    Rake::Task['build:run'].invoke(ruby_versions.join(','))
+    Rake::Task['build:fixperm'].invoke
+    Rake::Task['build:teardown'].invoke
+  end
+end
+
+desc "download artifacts from Circle CI, and create release on Github"
+task :release, [:version] do |t, args|
+  Dir.mktmpdir do |dir|
+    token = ENV['CIRCLECI_TOKEN']
+    recent_build = JSON.parse(open("https://circleci.com/api/v1/project/minimum2scp/ruby-binary/tree/master?circle-token=#{token}&limit=20&offset=5&filter=completed").read)
+    build_num = recent_build.first["build_num"]
+    artifacts = JSON.parse(open("https://circleci.com/api/v1/project/minimum2scp/ruby-binary/#{build_num}/artifacts?circle-token=#{token}").read)
+    artifacts.each do |a|
+      local_name = File.basename(a["path"])
+      next if local_name !~ /\.tar\.gz$/
+      sh "curl -L -o #{dir}/#{File.basename(a["path"])} #{a["url"]}"
+    end
+    sh "ghr -u minimum2scp -r ruby-binary --draft #{args.version} #{dir}"
+  end
 end
 
 namespace :build do
   cname = 'ruby-build-container'
   image = 'minimum2scp/ruby:latest'
-  ruby_versions = %w[2.0.0-p643 2.1.5 2.2.1]
   volume = File.expand_path('files', __dir__)
 
   desc "prepare docker container"
@@ -43,9 +67,9 @@ namespace :build do
   end
 
   desc "build ruby binaries in docker container"
-  task :run do
+  task :run, [:ruby_binary_versions] do |t, args|
     envs = {
-      'RUBY_BINARY_VERSIONS' => ruby_versions.join(','),
+      'RUBY_BINARY_VERSIONS' => args.ruby_binary_versions,
       'RUBY_BINARY_DEST'     => '/data/binary',
       'RUBY_BINARY_LOG_DIR'  => '/data/log'
     }
@@ -55,6 +79,7 @@ namespace :build do
       "-v #{volume}:/data",
       *envs.map{|k,v| ["-e #{k}=#{v}"] }
     ]
+    envs['MAKE_OPTS'] = "-j %d" % [`nproc`.chomp.to_i] if ENV['CIRCLECI']
     cmd = '/data/scripts/build.sh'
     sh "docker run #{opts.join(' ')} #{image} #{cmd}"
   end
