@@ -106,7 +106,7 @@ namespace :build do
         ## Circle CI build container has 32 vcpu cores, but nproc returns 2,
         ## and no need to delete container
         if ENV['CIRCLECI']
-          envs['RUBY_MAKE_OPTS'] = "-j %d" % [`nproc`.chomp.to_i]
+          envs['MAKE_OPTS'] = "-j %d" % [`nproc`.chomp.to_i]
         else
           opts << '--rm'
         end
