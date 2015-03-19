@@ -6,8 +6,7 @@ set -x
 tmpdir=`mktemp -d`
 trap "
 set +e
-rm $tmpdir/Rakefile
-rmdir $tmpdir
+rm -rv $tmpdir
 " 0
 
 cd $tmpdir
@@ -18,7 +17,7 @@ tag=$1
 git clone https://github.com/minimum2scp/ruby-binary -b master $tmpdir
 
 ## detect platform
-arch=`dpkg-architecture -q DEB_HOST_ARCH`
+arch=`dpkg-architecture -qDEB_HOST_ARCH`
 if [ $arch != 'amd64' ]; then
   echo "DEB_HOST_ARCH ${arch} is not supported"
   exit 1
