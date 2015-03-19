@@ -1,17 +1,18 @@
-#! /bin/bash -l
+#! /bin/sh
 set -x
 set -e
 
-#sed -i -e 's@http.debian.net@ftp.jp.debian.org@' /etc/apt/sources.list
+version=$1
+tarball=$2
+log=$3
 
-rbenv update
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get dist-upgrade -y
+unset DEBIAN_FRONTEND
 
-for version in ${RUBY_BINARY_VERSIONS//,/ }; do
-  rbenv install -v ${version} | tee ${RUBY_BINARY_LOG_DIR}/${version}.log
-done
+bash -lc "rbenv update"
+bash -lc "rbenv install -v ${version}" | tee $log
 
-for version in ${RUBY_BINARY_VERSIONS//,/ }; do
-  tarball=${RUBY_BINARY_DEST}/opt-rbenv-ruby-${version}.tar.gz
-  tar cfz ${tarball} -C /opt/rbenv/versions ${version}
-done
+tar cfz ${tarball} -C /opt/rbenv/versions ${version}
 

@@ -16,11 +16,13 @@ checkout:
     - find . -name .gitkeep -delete
 
 dependencies:
-  override:
+  cache_directories:
+    - ~/.cache/docker
+  post:
     - rake build:prepare
 
 test:
   override:
-    - rake:
+    - rake build:all:
         parallel: true
 
