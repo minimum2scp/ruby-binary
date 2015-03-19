@@ -19,10 +19,10 @@ dependencies:
   cache_directories:
     - ~/.cache/docker
   post:
-    - bundle exec rake build:prepare
+    - rake build:prepare
 
 test:
   override:
-    - bundle exec rake build:all:
+    - rake build:all:
         parallel: true
 
