@@ -16,6 +16,8 @@ checkout:
     - find . -name .gitkeep -delete
 
 dependencies:
+  cache_directories:
+    - ~/.cache/docker
   override:
     - rake build:prepare
 

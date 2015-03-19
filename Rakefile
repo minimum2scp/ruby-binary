@@ -81,7 +81,17 @@ namespace :build do
     namespace platform do
       desc "prepare docker container #{image}"
       task :prepare do
-        sh "if docker inspect #{image} 1>/dev/null 2>/dev/null; then :; else docker pull #{image}; fi"
+        docker_image = ::Docker::Image.all.find{|img| img.info['RepoTags'].include?(image) }
+        cache = File.expand_path("~/.cache/docker/#{image}.tar")
+        if docker_image
+          # image exists.
+        elsif File.exist?(File.expand_path("~/.cache/docker/#{image}.tar"))
+          # image is not pulled, but cache exists
+          sh "docker load < #{cache}"
+        else
+          sh "docker pull #{image}"
+          sh "docker save #{image} > #{cache}"
+        end
       end
 
       desc "build ruby #{version} with docker container #{image} (platform: #{platform})"
