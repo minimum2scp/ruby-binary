@@ -1,4 +1,4 @@
-#! /bin/bash -l
+#! /bin/sh
 set -x
 set -e
 
@@ -11,7 +11,8 @@ apt-get update
 apt-get dist-upgrade -y
 unset DEBIAN_FRONTEND
 
-rbenv update
-rbenv install -v ${version} | tee $log
+bash -lc "rbenv update"
+bash -lc "rbenv install -v ${version}" | tee $log
+
 tar cfz ${tarball} -C /opt/rbenv/versions ${version}
 
