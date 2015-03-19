@@ -1,4 +1,5 @@
 require 'rake/clean'
+require 'cgi'
 require 'etc'
 require 'tmpdir'
 require 'open-uri'
@@ -83,7 +84,7 @@ namespace :build do
       desc "prepare docker container #{image}"
       task :prepare do
         docker_image = ::Docker::Image.all.find{|img| img.info['RepoTags'].include?(image) }
-        cache = File.expand_path("~/.cache/docker/#{image}.tar")
+        cache = File.expand_path("~/.cache/docker/#{CGI.escape(image)}.tar")
         if docker_image
           # image exists.
         elsif File.exist?(File.expand_path("~/.cache/docker/#{image}.tar"))
