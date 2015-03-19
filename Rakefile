@@ -46,7 +46,7 @@ task :release, [:version] do |t, args|
 end
 
 namespace :build do
-  volume = File.expand_path('files', __dir__)
+  volume = File.expand_path('../files', __FILE__)
 
   desc "prepare all docker containers"
   task :prepare do
