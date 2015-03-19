@@ -175,12 +175,14 @@ namespace :install do
       end
     end
 
-    desc "install all versions of github released binary with tag (or latest release if tag is omitted)"
-    task :install_all, [:tag] do |t, args|
+    desc "install all versions of github released binary with tag (or latest release if omitted) and platform (or sid-amd64 if omitted)"
+    task :install_all, [:tag, :platform] do |t, args|
       get_github_release('minimum2scp', 'ruby-binary', args.tag)['assets'].each do |asset|
-        version = asset['name'].scan(/ruby-(\d+\.\d+\.\d+(?:-dev|-preview\d+|-rc\d+|-p\d+)?)/).first.first
-        Rake::Task['install:github_release:install'].invoke(version, asset['browser_download_url'])
-        Rake::Task['install:github_release:install'].reenable
+        platform, version = asset['name'].scan(/ruby-binary_([^_]+)_(\d+\.\d+\.\d+(?:-dev|-preview\d+|-rc\d+|-p\d+)?)/).first
+        if platform == (args.platform || 'sid-amd64')
+          Rake::Task['install:github_release:install'].invoke(version, asset['browser_download_url'])
+          Rake::Task['install:github_release:install'].reenable
+        end
       end
     end
   end
