@@ -90,7 +90,7 @@ namespace :build do
         cache = File.expand_path("~/.cache/docker/#{CGI.escape(image)}.tar")
         if docker_image
           # image exists.
-        elsif File.exist?(File.expand_path("~/.cache/docker/#{image}.tar"))
+        elsif File.exist?(cache)
           # image is not pulled, but cache exists
           sh "docker load < #{cache}"
         else
