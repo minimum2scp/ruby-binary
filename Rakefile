@@ -126,7 +126,7 @@ def get_github_release(user, repos, tag, prerelease=false)
   if prerelease
     releases = JSON.parse open("https://api.github.com/repos/#{user}/#{repos}/releases").read
     releases.sort_by{|rel| rel['published_at']}.last
-  elsif tag
+  elsif tag && !tag.empty?
     JSON.parse open("https://api.github.com/repos/#{user}/#{repos}/releases/tags/#{tag}").read
   else
     JSON.parse open("https://api.github.com/repos/#{user}/#{repos}/releases/latest").read
