@@ -7,6 +7,7 @@ require 'uri'
 require 'json'
 require 'yaml'
 require 'docker'
+require 'pry'
 
 TARBALLS = FileList["files/binary/*.tar.gz", "files/log/*.log"]
 CLEAN.include(TARBALLS)
@@ -33,7 +34,8 @@ desc "download artifacts from Circle CI, and create release on Github"
 task :release, [:version] do |t, args|
   Dir.mktmpdir do |dir|
     token = ENV['CIRCLECI_TOKEN']
-    recent_build = JSON.parse(open("https://circleci.com/api/v1/project/minimum2scp/ruby-binary/tree/master?circle-token=#{token}&limit=20&offset=5&filter=completed").read)
+    branch = ENV['CIRCLECI_BRANCH'] || 'master'
+    recent_build = JSON.parse(open("https://circleci.com/api/v1/project/minimum2scp/ruby-binary/tree/#{branch}?circle-token=#{token}&limit=20&offset=0&filter=completed").read)
     build_num = recent_build.first["build_num"]
     artifacts = JSON.parse(open("https://circleci.com/api/v1/project/minimum2scp/ruby-binary/#{build_num}/artifacts?circle-token=#{token}").read)
     artifacts.each do |a|
@@ -41,6 +43,7 @@ task :release, [:version] do |t, args|
       next if local_name !~ /\.tar\.gz$/
       sh "curl -L -o #{dir}/#{File.basename(a["path"])} #{a["url"]}"
     end
+    #binding.pry
     sh "ghr -u minimum2scp -r ruby-binary --draft #{args.version} #{dir}"
   end
 end
