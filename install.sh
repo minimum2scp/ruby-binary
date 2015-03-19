@@ -15,7 +15,7 @@ cd $tmpdir
 tag=$1
 
 ## download Rakefile (https://github.com/minimum2scp/ruby-binary/blob/master/Rakefile)
-curl -L -o Rakefile https://raw.githubusercontent.com/minimum2scp/ruby-binary/master/Rakefile
+git clone https://github.com/minimum2scp/ruby-binary -b master $tmpdir
 
 ## detect platform
 arch=`dpkg-architecture -q DEB_HOST_ARCH`

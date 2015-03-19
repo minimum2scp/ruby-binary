@@ -1,5 +1,3 @@
-.bundle
 .envrc
 files/binary/*.tar.gz
 files/log/*.log
-vendor/bundle

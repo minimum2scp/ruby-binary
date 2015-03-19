@@ -41,8 +41,6 @@ task :release, [:version] do |t, args|
       next if local_name !~ /\.tar\.gz$/
       sh "curl -L -o #{dir}/#{File.basename(a["path"])} #{a["url"]}"
     end
-    #require 'pry'
-    #binding.pry
     sh "ghr -u minimum2scp -r ruby-binary --draft #{args.version} #{dir}"
   end
 end
@@ -85,10 +83,9 @@ namespace :build do
     namespace platform do
       desc "prepare docker container #{image}"
       task :prepare do
-        require 'docker'
-        docker_image = ::Docker::Image.all.find{|img| img.info['RepoTags'].include?(image) }
+        inspect_image = JSON.parse(`docker inspect #{image}`.chomp)
         cache = File.expand_path("~/.cache/docker/#{CGI.escape(image)}.tar")
-        if docker_image
+        if !inspect_image.empty?
           # image exists.
         elsif File.exist?(cache)
           # image is not pulled, but cache exists
