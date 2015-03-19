@@ -17,7 +17,7 @@ targets:
       RUBY_CONFIGURE_OPTS: "--disable-install-docs"
   - image: minimum2scp/ruby-wheezy:latest
     platform: wheezy-amd64
-    versions: 2.2.1
+    version: 2.2.1
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-docs"
 
