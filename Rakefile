@@ -51,7 +51,7 @@ namespace :build do
   task :prepare do
     BUILD_CONFIG['targets'].each do |build_target|
       platform      = build_target['platform']
-      Rake::Task["build:#{platform}:prepare"]
+      Rake::Task["build:#{platform}:prepare"].invoke
     end
   end
 
