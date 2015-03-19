@@ -6,7 +6,7 @@ set -x
 tmpdir=`mktemp -d`
 trap "
 set +e
-rm -rv $tmpdir
+rm -rf $tmpdir
 " 0
 
 cd $tmpdir
