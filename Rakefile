@@ -5,6 +5,7 @@ require 'open-uri'
 require 'uri'
 require 'json'
 require 'yaml'
+require 'docker'
 
 TARBALLS = FileList["files/binary/*.tar.gz", "files/log/*.log"]
 CLEAN.include(TARBALLS)
