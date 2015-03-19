@@ -6,8 +6,6 @@ require 'open-uri'
 require 'uri'
 require 'json'
 require 'yaml'
-require 'docker'
-require 'pry'
 
 TARBALLS = FileList["files/binary/*.tar.gz", "files/log/*.log"]
 CLEAN.include(TARBALLS)
@@ -43,6 +41,7 @@ task :release, [:version] do |t, args|
       next if local_name !~ /\.tar\.gz$/
       sh "curl -L -o #{dir}/#{File.basename(a["path"])} #{a["url"]}"
     end
+    #require 'pry'
     #binding.pry
     sh "ghr -u minimum2scp -r ruby-binary --draft #{args.version} #{dir}"
   end
@@ -86,6 +85,7 @@ namespace :build do
     namespace platform do
       desc "prepare docker container #{image}"
       task :prepare do
+        require 'docker'
         docker_image = ::Docker::Image.all.find{|img| img.info['RepoTags'].include?(image) }
         cache = File.expand_path("~/.cache/docker/#{CGI.escape(image)}.tar")
         if docker_image
