@@ -21,6 +21,6 @@ dependencies:
 
 test:
   override:
-    - rake:
+    - rake build:all:
         parallel: true
 

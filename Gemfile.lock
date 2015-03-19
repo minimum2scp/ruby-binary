@@ -1,0 +1,16 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    archive-tar-minitar (0.5.2)
+    docker-api (1.18.0)
+      archive-tar-minitar
+      excon (>= 0.38.0)
+      json
+    excon (0.44.4)
+    json (1.8.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  docker-api (< 1.19.0)

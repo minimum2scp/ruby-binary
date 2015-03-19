@@ -2,16 +2,13 @@
 set -x
 set -e
 
-#sed -i -e 's@http.debian.net@ftp.jp.debian.org@' /etc/apt/sources.list
+version=$1
+tarball=$2
+log=$3
 
 rbenv update
 
-for version in ${RUBY_BINARY_VERSIONS//,/ }; do
-  rbenv install -v ${version} | tee ${RUBY_BINARY_LOG_DIR}/${version}.log
-done
+rbenv install -v ${version} | tee $log
 
-for version in ${RUBY_BINARY_VERSIONS//,/ }; do
-  tarball=${RUBY_BINARY_DEST}/opt-rbenv-ruby-${version}.tar.gz
-  tar cfz ${tarball} -C /opt/rbenv/versions ${version}
-done
+tar cfz ${tarball} -C /opt/rbenv/versions ${version}
 
