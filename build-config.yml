@@ -4,20 +4,20 @@ targets:
     platform: sid-amd64
     version: 2.0.0-p643
     envs:
-      CONFIGURE_OPTS: "--disable-install-docs"
+      RUBY_CONFIGURE_OPTS: "--disable-install-docs"
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.1.5
     envs:
-      CONFIGURE_OPTS: "--disable-install-docs"
+      RUBY_CONFIGURE_OPTS: "--disable-install-docs"
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.2.1
     envs:
-      CONFIGURE_OPTS: "--disable-install-docs"
+      RUBY_CONFIGURE_OPTS: "--disable-install-docs"
   - image: minimum2scp/ruby-wheezy:latest
     platform: wheezy-amd64
     version: 2.2.1
     envs:
-      CONFIGURE_OPTS: "--disable-install-docs"
+      RUBY_CONFIGURE_OPTS: "--disable-install-docs"
 
