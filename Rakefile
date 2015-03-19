@@ -92,6 +92,7 @@ namespace :build do
           sh "docker load < #{cache}"
         else
           sh "docker pull #{image}"
+          mkdir_p File.dirname(cache), :verbose => true
           sh "docker save #{image} > #{cache}"
         end
       end
