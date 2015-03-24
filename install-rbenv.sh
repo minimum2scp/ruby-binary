@@ -39,7 +39,7 @@ fi
 if [ ! -f ${RBENV_ROOT}/default-gems ]; then
   default_gems=`mktemp`
   cat <<DEFAULT_GEMS > $default_gems
-bundler ~>1.7.13
+bundler ~>1.8.5
 pry
 DEFAULT_GEMS
   sudo install -m 644 -o root -g root -p $default_gems ${RBENV_ROOT}/default-gems
