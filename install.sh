@@ -31,6 +31,8 @@ case $version_id in
     platform=sid-${arch};;
   *)
     echo "VERSION_ID ${version_id} is not supported"
+    exit 1
+    ;;
 esac
 unset arch version_id
 
