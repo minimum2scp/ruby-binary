@@ -6,15 +6,13 @@ set -x
 tmpdir=`mktemp -d`
 trap "
 set +e
-rm -rf $tmpdir
+cd $tmpdir && rm -rf ruby-binary && cd / && rmdir $tmpdir
 " 0
-
-cd $tmpdir
 
 tag=$1
 
 ## download Rakefile (https://github.com/minimum2scp/ruby-binary/blob/master/Rakefile)
-git clone https://github.com/minimum2scp/ruby-binary -b master $tmpdir
+git clone https://github.com/minimum2scp/ruby-binary -b master $tmpdir/ruby-binary
 
 ## detect platform
 arch=`dpkg-architecture -qDEB_HOST_ARCH`
@@ -38,5 +36,6 @@ unset arch version_id
 
 ## install ruby binary by rake task
 ## empty tag means latest release
+cd $tmpdir/ruby-binary
 rake "install:github_release:install_all[${tag},${platform}]"
 
