@@ -26,6 +26,8 @@ case $version_id in
   7)
     platform=wheezy-${arch};;
   8)
+    platform=jessie-${arch};;
+  9)
     platform=sid-${arch};;
   *)
     echo "VERSION_ID ${version_id} is not supported"
