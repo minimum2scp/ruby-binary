@@ -28,9 +28,9 @@ fi
 
 debian_version=`cat /etc/debian_version`
 case ${debian_version} in
-  wheezy)
+  7.*)
     platform=wheezy-${arch};;
-  jessie)
+  8.*)
     platform=jessie-${arch};;
   */sid)
     platform=sid-${arch};;
