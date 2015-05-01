@@ -14,6 +14,11 @@ tag=$1
 ## download Rakefile (https://github.com/minimum2scp/ruby-binary/blob/master/Rakefile)
 git clone https://github.com/minimum2scp/ruby-binary -b master $tmpdir/ruby-binary
 
+if [ ! -f /etc/debian_version ]; then
+  echo "/etc/debian_version not found"
+  exit 1
+fi
+
 ## detect platform
 arch=`dpkg-architecture -qDEB_HOST_ARCH`
 if [ $arch != 'amd64' ]; then
@@ -21,20 +26,20 @@ if [ $arch != 'amd64' ]; then
   exit 1
 fi
 
-version_id=`sh -c '. /etc/os-release && echo $VERSION_ID'`
-case $version_id in
-  7)
+debian_version=`cat /etc/debian_version`
+case ${debian_version} in
+  wheezy)
     platform=wheezy-${arch};;
-  8)
+  jessie)
     platform=jessie-${arch};;
-  9)
+  */sid)
     platform=sid-${arch};;
   *)
-    echo "VERSION_ID ${version_id} is not supported"
+    echo "debian_version ${debian_version} is not supported"
     exit 1
     ;;
 esac
-unset arch version_id
+unset arch debian_version
 
 ## install ruby binary by rake task
 ## empty tag means latest release
