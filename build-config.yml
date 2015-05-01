@@ -15,6 +15,11 @@ targets:
     version: 2.2.2
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
+  - image: minimum2scp/ruby-jessie:latest
+    platform: jessie-amd64
+    version: 2.2.2
+    envs:
+      RUBY_CONFIGURE_OPTS: "--disable-install-doc"
   - image: minimum2scp/ruby-wheezy:latest
     platform: wheezy-amd64
     version: 2.2.2
