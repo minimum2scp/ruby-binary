@@ -9,6 +9,7 @@ require 'yaml'
 
 TARBALLS = FileList["files/binary/*.tar.gz", "files/log/*.log"]
 CLEAN.include(TARBALLS)
+CLEAN.include("files/scripts/install-rbenv.sh")
 BUILD_CONFIG = YAML.load(File.read "build-config.yml")
 
 ## colorize: see lib/rake/file_utils_ext.rb
@@ -56,6 +57,11 @@ namespace :build do
     end
   end
 
+  desc "copy install-rbenv.sh to files/scripts/"
+  file "files/scripts/install-rbenv.sh" => "install-rbenv.sh" do |t, args|
+    cp t.prerequisites[0], t.name, verbose:true, preserve:true
+  end
+
   desc "build all ruby binaries defined in build-config.yml"
   task :all do
     BUILD_CONFIG["targets"].each.with_index do |target, idx|
@@ -95,6 +101,7 @@ namespace :build do
           mkdir_p File.dirname(cache), :verbose => true
           sh "docker save #{image} > #{cache}"
         end
+        Rake::Task['files/scripts/install-rbenv.sh'].invoke
       end
 
       desc "build ruby #{version} with docker container #{image} (platform: #{platform})"
