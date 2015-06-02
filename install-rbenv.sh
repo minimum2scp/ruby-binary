@@ -15,43 +15,28 @@ if [ ! -d ${RBENV_ROOT}/plugins/ruby-build ]; then
   sudo git clone https://github.com/sstephenson/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build
 fi
 
-## install rbenv-default-gems
-if [ ! -d ${RBENV_ROOT}/plugins/rbenv-default-gems ]; then
-  sudo git clone https://github.com/sstephenson/rbenv-default-gems.git ${RBENV_ROOT}/plugins/rbenv-default-gems
-fi
-
 ## install rbenv-update
 if [ ! -d ${RBENV_ROOT}/plugins/rbenv-update ]; then
   sudo git clone https://github.com/rkh/rbenv-update.git ${RBENV_ROOT}/plugins/rbenv-update
 fi
 
-## install or update /etc/profile.d/rbenv.sh
-profile=`mktemp`
-cat <<PROFILE > $profile
+## install /etc/profile.d/rbenv.sh
+if [ ! -f /etc/profile.d/rbenv.sh ]; then
+  profile=`mktemp`
+  cat <<PROFILE > $profile
 export RBENV_ROOT=${RBENV_ROOT}
 export PATH=\$RBENV_ROOT/bin:\$PATH
 eval "\$(rbenv init -)"
 PROFILE
-sudo install -m 644 -o root -g root -p $profile  /etc/profile.d/rbenv.sh
-if dpkg-query -s etckeeper 1>/dev/null 2>/dev/null; then
-  if etckeeper unclean 1>/dev/null 2>/dev/null; then
-    sudo etckeeper commit "add or update /etc/profile.d/rbenv.sh to use ${RBENV_ROOT}"
+  sudo install -m 644 -o root -g root -p $profile  /etc/profile.d/rbenv.sh
+  if dpkg-query -s etckeeper 1>/dev/null 2>/dev/null; then
+    if etckeeper unclean 1>/dev/null 2>/dev/null; then
+      sudo etckeeper commit "add or update /etc/profile.d/rbenv.sh to use ${RBENV_ROOT}"
+    fi
   fi
+  rm $profile
 fi
-rm $profile
-
-## install or update /opt/rbenv/default-gems
-default_gems=`mktemp`
-cat <<DEFAULT_GEMS > $default_gems
-bundler 1.9.9
-pry
-DEFAULT_GEMS
-sudo install -m 644 -o root -g root -p $default_gems ${RBENV_ROOT}/default-gems
-rm $default_gems
 
 ## enable rbenv (creates shims, versions)
 sudo bash -l -c "rbenv rehash"
-
-## update rbenv and rbenv plugins
-sudo bash -l -c "rbenv update"
 

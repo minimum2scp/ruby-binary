@@ -1,21 +1,38 @@
-#! /bin/sh
+#! /bin/bash -l
+
 set -x
 set -e
 
 version=$1
 tarball=$2
 log=$3
+gems=$4
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get dist-upgrade -y
 unset DEBIAN_FRONTEND
 
-## update rbenv, and plugins, and configurations
-${0%/*}/install-rbenv.sh
+## update rbenv, and plugins
+rbenv update
 
 ## build and install ruby
-bash -lc "rbenv install -v ${version}" | tee $log
+rbenv install -v ${version} | tee $log
+
+## install gems
+while read gem_name gem_version; do
+  case ${gem_version} in
+    --pre)
+      RBENV_VERSION=$version rbenv exec gem install "${gem_name}" --pre
+      ;;
+    ?*)
+      RBENV_VERSION=$version rbenv exec gem install "${gem_name}" --version "${gem_version}"
+      ;;
+    *)
+      RBENV_VERSION=$version rbenv exec gem install "${gem_name}"
+      ;;
+  esac
+done < $gems
 
 ## archive binary
 tar cfz ${tarball} -C /opt/rbenv/versions ${version}
