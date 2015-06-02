@@ -34,7 +34,9 @@ eval "\$(rbenv init -)"
 PROFILE
 sudo install -m 644 -o root -g root -p $profile  /etc/profile.d/rbenv.sh
 if dpkg-query -s etckeeper 1>/dev/null 2>/dev/null; then
-  sudo etckeeper commit "add /etc/profile.d/rbenv.sh to use ${RBENV_ROOT}"
+  if etckeeper unclean 1>/dev/null 2>/dev/null; then
+    sudo etckeeper commit "add or update /etc/profile.d/rbenv.sh to use ${RBENV_ROOT}"
+  fi
 fi
 rm $profile
 
