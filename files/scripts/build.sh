@@ -13,6 +13,11 @@ apt-get update
 apt-get dist-upgrade -y
 unset DEBIAN_FRONTEND
 
+## remove rbenv-default-gems plugin if exists
+if [ -d /opt/rbenv/plugins/rbenv-default-gems ]; then
+  rm -fr /opt/rbenv/plugins/rbenv-default-gems
+fi
+
 ## update rbenv, and plugins
 rbenv update
 
