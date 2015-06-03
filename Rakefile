@@ -111,6 +111,7 @@ namespace :build do
           }
           fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result(binding)
         end
+        chmod "u+x", t.name
       end
 
       desc "build ruby #{version} with docker container #{image} (platform: #{platform})"
