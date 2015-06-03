@@ -1,0 +1,29 @@
+#! /bin/bash -l
+
+set -x
+set -e
+
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get dist-upgrade -y
+unset DEBIAN_FRONTEND
+
+## remove rbenv-default-gems plugin if exists
+if [ -d /opt/rbenv/plugins/rbenv-default-gems ]; then
+  rm -fr /opt/rbenv/plugins/rbenv-default-gems
+fi
+
+## update rbenv, and plugins
+rbenv update
+
+## build and install ruby
+rbenv install -v <%= build_config[:version] %> | tee <%= build_config[:log] %>
+
+## after build hook
+<% build_config[:after_build].each do |cmd| -%>
+<%= cmd %>
+<% end -%>
+
+## archive binary
+tar cfz <%= build_config[:tarball] %> -C /opt/rbenv/versions <%= build_config[:version] %>
+
