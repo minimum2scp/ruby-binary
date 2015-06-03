@@ -6,6 +6,7 @@ require 'open-uri'
 require 'uri'
 require 'json'
 require 'yaml'
+require 'erb'
 
 TARBALLS = FileList["files/binary/*.tar.gz", "files/log/*.log"]
 CLEAN.include(TARBALLS)
@@ -74,15 +75,14 @@ namespace :build do
   end
 
   BUILD_CONFIG['targets'].each do |target|
-    platform = target['platform']
-    image    = target['image']
-    version  = target['version']
-    envs     = target['envs'] || {}
-    gems     = target['gems'] || []
-    tarball  = "/data/binary/ruby-binary_#{platform}_#{version}.tar.gz"
-    log      = "/data/log/ruby-binary_#{platform}_#{version}.log"
-
-    gems_file = "#{volume}/tmp/gems_#{platform}_#{version}"
+    platform      = target['platform']
+    image         = target['image']
+    version       = target['version']
+    envs          = target['envs'] || {}
+    after_build   = target['after_build'] || []
+    tarball       = "/data/binary/ruby-binary_#{platform}_#{version}.tar.gz"
+    log           = "/data/log/ruby-binary_#{platform}_#{version}.log"
+    build_script  = "#{volume}/tmp/build_#{platform}_#{version}"
 
     namespace platform do
       desc "prepare docker container #{image}"
@@ -101,38 +101,21 @@ namespace :build do
         end
       end
 
-      file gems_file => 'build-config.yml' do |t, args|
+      file build_script => ['files/scripts/build.sh.erb', 'build-config.yml'] do |t, args|
         File.open(t.name, 'w') do |fh|
-          gems.each do |gem|
-            case
-            when gem.respond_to?(:[]) && gem.respond_to?(:each) && !gem['name']
-              gem.each do |gem_name, gem_version|
-                case
-                when gem_version['pre']
-                  fh.puts "#{gem_name} --pre"
-                when gem_version['version']
-                  fh.puts "#{gem_name} #{gem_version['version']}"
-                else
-                  fh.puts "#{gem_name}"
-                end
-              end
-            when gem.respond_to?(:[]) && gem['name'] && gem['pre']
-              fh.puts "#{gem['name']} --pre"
-            when gem.respond_to?(:[]) && gem['name'] && gem['version']
-              fh.puts "#{gem['name']} #{gem['version']}"
-            when gem.respond_to?(:[]) && gem['name']
-              fh.puts gem['name']
-            else
-              fh.puts gem
-            end
-          end
+          build_config = {
+            version:     version,
+            log:         log,
+            tarball:     tarball,
+            after_build: after_build,
+          }
+          fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result(binding)
         end
       end
 
       desc "build ruby #{version} with docker container #{image} (platform: #{platform})"
-      task version, [] => ["build:#{platform}:prepare", gems_file] do |t,args|
+      task version, [] => ["build:#{platform}:prepare", build_script] do |t,args|
         opts = [ '-ti', "-v #{volume}:/data" ]
-        gems_file_in_container = gems_file.sub(volume, '/data')
         ## Circle CI build container has 32 vcpu cores, but nproc returns 2,
         ## and no need to delete container
         if ENV['CIRCLECI']
@@ -140,7 +123,7 @@ namespace :build do
         else
           opts << '--rm'
         end
-        cmd = "/data/scripts/build.sh #{version} #{tarball} #{log} #{gems_file_in_container}"
+        cmd = build_script.sub(volume, '/data')
         opts += envs.map{|k,v| "-e #{k}=\"#{v}\""}
         sh "docker run #{opts.join(' ')} #{image} #{cmd}"
       end
