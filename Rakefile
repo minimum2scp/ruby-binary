@@ -32,19 +32,25 @@ task :default => "build:all"
 
 desc "download artifacts from Circle CI, and create release on Github"
 task :release, [:version] do |t, args|
-  Dir.mktmpdir do |dir|
-    token = ENV['CIRCLECI_TOKEN']
-    branch = ENV['CIRCLECI_BRANCH'] || 'master'
-    recent_build = JSON.parse(open("https://circleci.com/api/v1/project/minimum2scp/ruby-binary/tree/#{branch}?circle-token=#{token}&limit=20&offset=0&filter=completed").read)
-    build_num = recent_build.first["build_num"]
-    artifacts = JSON.parse(open("https://circleci.com/api/v1/project/minimum2scp/ruby-binary/#{build_num}/artifacts?circle-token=#{token}").read)
-    artifacts.each do |a|
-      local_name = File.basename(a["path"])
-      next if local_name !~ /\.tar\.gz$/
-      sh "curl -L -o #{dir}/#{File.basename(a["path"])} #{a["url"]}"
+  dir = Dir.mktmpdir
+  token = ENV['CIRCLECI_TOKEN']
+  branch = ENV['CIRCLECI_BRANCH'] || 'master'
+  recent_build = JSON.parse(open("https://circleci.com/api/v1/project/minimum2scp/ruby-binary/tree/#{branch}?circle-token=#{token}&limit=20&offset=0&filter=completed").read)
+  build_num = recent_build.first["build_num"]
+  artifacts = JSON.parse(open("https://circleci.com/api/v1/project/minimum2scp/ruby-binary/#{build_num}/artifacts?circle-token=#{token}").read)
+  artifacts.each do |a|
+    local_name = File.basename(a["path"])
+    next if local_name !~ /\.tar\.gz$/
+    loop do
+      dest = "#{dir}/#{File.basename(a["path"])}"
+      sh "curl -L -o #{dest} #{a["url"]}"
+      if File.size(dest) > 0
+        break
+      end
     end
-    sh "ghr -u minimum2scp -r ruby-binary --draft #{args.version} #{dir}"
   end
+  sh "ghr -u minimum2scp -r ruby-binary --draft #{args.version} #{dir}"
+  remove_entry_secure dir
 end
 
 namespace :build do
