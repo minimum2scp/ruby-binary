@@ -2,20 +2,20 @@
 targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.0.0-p645
+    version: 2.0.0-p647
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
-      - rbenv global 2.0.0-p645
+      - rbenv global 2.0.0-p647
       - gem install bundler --version 1.10.5 -N
       - gem install pry -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.1.6
+    version: 2.1.7
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
-      - rbenv global 2.1.6
+      - rbenv global 2.1.7
       - gem install bundler --version 1.10.5 -N
       - gem install pry -N
   - image: minimum2scp/ruby:latest
