@@ -18,9 +18,9 @@ rbenv update
 
 ## add custom defs
 add_definition (){
-  version=$1
-  src=$2
-  cat > "/opt/rbenv/plugins/ruby-build/share/ruby-build/${1}" <<-DEFINITION
+	version=$1
+	src=$2
+	cat > "/opt/rbenv/plugins/ruby-build/share/ruby-build/${1}" <<-DEFINITION
 		install_package "ruby-${version}" "${src}" ldflags_dirs standard verify_openssl
 	DEFINITION
 }
