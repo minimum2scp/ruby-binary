@@ -3,7 +3,7 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.0.0-p647
-    src: ftp://ftp.ruby-lang.org/pub/tmp/ruby-2.0.0-p647.tar.bz2
+    src: https://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p647.tar.gz#c88aaf5b4ec72e2cb7d290ff854f04d135939f6134f517002a9d65d5fc5e5bec
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
@@ -13,7 +13,7 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.1.7
-    src: ftp://ftp.ruby-lang.org/pub/tmp/ruby-2.1.7.tar.bz2
+    src: https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.7.tar.gz#f59c1596ac39cc7e60126e7d3698c19f482f04060674fdfe0124e1752ba6dd81
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
@@ -23,7 +23,7 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.2.3
-    src: ftp://ftp.ruby-lang.org/pub/tmp/ruby-2.2.3.tar.bz2
+    src: https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.3.tar.gz#df795f2f99860745a416092a4004b016ccf77e8b82dec956b120f18bdc71edce
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
@@ -33,7 +33,7 @@ targets:
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
     version: 2.2.3
-    src: ftp://ftp.ruby-lang.org/pub/tmp/ruby-2.2.3.tar.bz2
+    src: https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.3.tar.gz#df795f2f99860745a416092a4004b016ccf77e8b82dec956b120f18bdc71edce
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
@@ -43,7 +43,7 @@ targets:
   - image: minimum2scp/ruby-wheezy:latest
     platform: wheezy-amd64
     version: 2.2.3
-    src: ftp://ftp.ruby-lang.org/pub/tmp/ruby-2.2.3.tar.bz2
+    src: https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.3.tar.gz#df795f2f99860745a416092a4004b016ccf77e8b82dec956b120f18bdc71edce
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
