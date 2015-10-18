@@ -8,7 +8,7 @@ targets:
     after_build:
       - rbenv global 2.0.0-p647
       - gem install bundler --version 1.10.6 -N
-      - gem install pry -N
+      - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.1.7
@@ -17,7 +17,7 @@ targets:
     after_build:
       - rbenv global 2.1.7
       - gem install bundler --version 1.10.6 -N
-      - gem install pry -N
+      - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.2.3
@@ -26,7 +26,7 @@ targets:
     after_build:
       - rbenv global 2.2.3
       - gem install bundler --version 1.10.6 -N
-      - gem install pry -N
+      - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
     version: 2.2.3
@@ -35,7 +35,7 @@ targets:
     after_build:
       - rbenv global 2.2.3
       - gem install bundler --version 1.10.6 -N
-      - gem install pry -N
+      - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-wheezy:latest
     platform: wheezy-amd64
     version: 2.2.3
@@ -44,5 +44,5 @@ targets:
     after_build:
       - rbenv global 2.2.3
       - gem install bundler --version 1.10.6 -N
-      - gem install pry -N
+      - gem install pry pry-doc pry-coolline -N
 
