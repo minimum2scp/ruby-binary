@@ -141,7 +141,7 @@ namespace :build do
 
   desc "fix owner/group of build results"
   task :fixperm do
-    user = Etc.getpwent
+    user = Etc.getpwnam(Etc.getlogin)
     sh "sudo chown -R #{user.uid}:#{user.gid} #{volume}/binary #{volume}/log"
   end
 
