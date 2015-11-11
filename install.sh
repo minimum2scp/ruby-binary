@@ -20,9 +20,10 @@ if [ ! -f /etc/debian_version ]; then
 fi
 
 ## detect platform
-arch=`dpkg-architecture -qDEB_HOST_ARCH`
+arch=
+eval $(apt-config shell arch APT::Architecture)
 if [ $arch != 'amd64' ]; then
-  echo "DEB_HOST_ARCH ${arch} is not supported"
+  echo "arch ${arch} is not supported"
   exit 1
 fi
 
