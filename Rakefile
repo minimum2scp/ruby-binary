@@ -86,6 +86,7 @@ namespace :build do
     version       = target['version']
     envs          = target['envs'] || {}
     src           = target['src']
+    patches       = target['patches'] || []
     after_build   = target['after_build'] || []
     tarball       = "/data/binary/ruby-binary_#{platform}_#{version}.tar.gz"
     log           = "/data/log/ruby-binary_#{platform}_#{version}.log"
@@ -115,6 +116,7 @@ namespace :build do
             log:         log,
             tarball:     tarball,
             src:         src,
+            patches:     patches,
             after_build: after_build,
           }
           fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result(binding)

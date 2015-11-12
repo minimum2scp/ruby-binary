@@ -28,8 +28,25 @@ add_definition (){
 add_definition "<%= build_config[:version] %>" "<%= build_config[:src] %>"
 <% end -%>
 
+## prepare patches
+<% unless build_config[:patches].empty? -%>
+mkdir -p /tmp/patches
+<% end -%>
+<% build_config[:patches].each do |patch| -%>
+<% case -%>
+<% when patch['url'] -%>
+( cd /tmp/patches; curl -sSL <%= patch['as'] ? "-o #{patch['as']}" : "-O" %> <%= patch['url'] %> )
+<% when patch['file'] -%>
+cp -a /data/patches/<%= patch['file'] %> /tmp/patches/
+<% end -%>
+<% end -%>
+
 ## build and install ruby
-rbenv install -v <%= build_config[:version] %> | tee <%= build_config[:log] %>
+if [ -d /tmp/patches ]; then
+  cat /tmp/patches/* | rbenv install --patch -v <%= build_config[:version] %> | tee <%= build_config[:log] %>
+else
+  rbenv install -v <%= build_config[:version] %> | tee <%= build_config[:log] %>
+fi
 
 ## after build hook
 <% build_config[:after_build].each do |cmd| -%>
