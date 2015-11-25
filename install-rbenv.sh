@@ -7,12 +7,12 @@ RBENV_ROOT=/opt/rbenv
 
 ## install rbenv into /opt/rbenv, with git
 if [ ! -d ${RBENV_ROOT} ]; then
-  sudo git clone https://github.com/sstephenson/rbenv.git ${RBENV_ROOT}
+  sudo git clone https://github.com/rbenv/rbenv.git ${RBENV_ROOT}
 fi
 
 ## install ruby-build
 if [ ! -d ${RBENV_ROOT}/plugins/ruby-build ]; then
-  sudo git clone https://github.com/sstephenson/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build
+  sudo git clone https://github.com/rbenv/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build
 fi
 
 ## install rbenv-update
