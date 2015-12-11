@@ -35,12 +35,11 @@ targets:
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.3.0-preview1
+    version: 2.3.0-preview2
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
-      - find /opt/rbenv/versions/2.3.0-preview1/lib/ruby/gems/2.3.0 -name \*.gemspec -a -perm 0600 -exec chmod 0644 {} \;
-      - rbenv global 2.3.0-preview1
+      - rbenv global 2.3.0-preview2
       - gem install bundler --version 1.10.6 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
