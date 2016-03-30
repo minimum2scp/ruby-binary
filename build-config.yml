@@ -2,22 +2,12 @@
 targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.0.0-p648
+    version: 2.1.9
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
-    patches:
-      - {url: "http://anonscm.debian.org/cgit/collab-maint/ruby.git/patch/?id=d8a4855cd09f42c83526e1391895accbf95a472e", "r51722.diff"}
+    src: "https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.9.tar.bz2#4f21376aa11e09b499c3254bbd839e68e053c0d18e28d61c428a32347269036e"
     after_build:
-      - rbenv global 2.0.0-p648
-      - gem install bundler --version 1.11.2 -N
-      - gem install pry pry-doc pry-coolline -N
-  - image: minimum2scp/ruby:latest
-    platform: sid-amd64
-    version: 2.1.8
-    envs:
-      RUBY_CONFIGURE_OPTS: "--disable-install-doc"
-    after_build:
-      - rbenv global 2.1.8
+      - rbenv global 2.1.9
       - gem install bundler --version 1.11.2 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
