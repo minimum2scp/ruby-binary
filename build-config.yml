@@ -5,6 +5,7 @@ targets:
     version: 2.1.9
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
+    src: "https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.9.tar.bz2#4f21376aa11e09b499c3254bbd839e68e053c0d18e28d61c428a32347269036e"
     after_build:
       - rbenv global 2.1.9
       - gem install bundler --version 1.11.2 -N
