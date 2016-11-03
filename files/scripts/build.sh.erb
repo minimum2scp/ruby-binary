@@ -8,6 +8,11 @@ apt-get update
 apt-get dist-upgrade -y
 unset DEBIAN_FRONTEND
 
+## before build hook
+<% build_config[:before_build].each do |cmd| -%>
+<%= cmd %>
+<% end -%>
+
 ## remove rbenv-default-gems plugin if exists
 if [ -d /opt/rbenv/plugins/rbenv-default-gems ]; then
   rm -fr /opt/rbenv/plugins/rbenv-default-gems
