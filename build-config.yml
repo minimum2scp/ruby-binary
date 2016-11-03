@@ -32,8 +32,13 @@ targets:
     version: 2.4.0-preview2
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
+    before_build:
+      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
+      - apt-get install -y libssl-dev
     after_build:
       - rbenv global 2.4.0-preview2
+      ## Check openssl version
+      - ruby -ropenssl -ve 'puts OpenSSL::OPENSSL_VERSION'
       - gem install bundler --version 1.13.6 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest

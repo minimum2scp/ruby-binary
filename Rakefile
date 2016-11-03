@@ -87,6 +87,7 @@ namespace :build do
     envs          = target['envs'] || {}
     src           = target['src']
     patches       = target['patches'] || []
+    before_build  = target['before_build'] || []
     after_build   = target['after_build'] || []
     tarball       = "/data/binary/ruby-binary_#{platform}_#{version}.tar.gz"
     log           = "/data/log/ruby-binary_#{platform}_#{version}.log"
@@ -112,12 +113,13 @@ namespace :build do
       file build_script => ['files/scripts/build.sh.erb', 'build-config.yml'] do |t, args|
         File.open(t.name, 'w') do |fh|
           build_config = {
-            version:     version,
-            log:         log,
-            tarball:     tarball,
-            src:         src,
-            patches:     patches,
-            after_build: after_build,
+            version:      version,
+            log:          log,
+            tarball:      tarball,
+            src:          src,
+            patches:      patches,
+            before_build: before_build,
+            after_build:  after_build,
           }
           fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result(binding)
         end
