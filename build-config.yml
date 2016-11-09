@@ -32,7 +32,6 @@ targets:
     version: 2.4.0-preview3
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
-    src: "https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.0-preview3.tar.bz2#(sha256sum)"
     before_build:
       ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
       - apt-get install -y libssl-dev
