@@ -2,72 +2,17 @@
 targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.1.10
-    envs:
-      RUBY_CONFIGURE_OPTS: "--disable-install-doc"
-    before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-    after_build:
-      - rbenv global 2.1.10
-      - gem install bundler --version 1.13.6 -N
-      - gem install pry pry-doc pry-coolline -N
-  - image: minimum2scp/ruby:latest
-    platform: sid-amd64
-    version: 2.2.5
-    envs:
-      RUBY_CONFIGURE_OPTS: "--disable-install-doc"
-    before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-    after_build:
-      - rbenv global 2.2.5
-      - gem install bundler --version 1.13.6 -N
-      - gem install pry pry-doc pry-coolline -N
-  - image: minimum2scp/ruby:latest
-    platform: sid-amd64
     version: 2.3.1
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
+      - DEBIAN_FRONTEND=noninteractive apt-get install usrmerge -y
+      - if [ ! -L /bin -a ! -L /lib -a ! -L /sbin ]; then exit 1; fi
+      - export -p
     after_build:
       - rbenv global 2.3.1
+      - ruby -rrbconfig -e 'RbConfig::CONFIG.sort_by{|k,v| k}.each{|k,v| p [k,v]}'
       - gem install bundler --version 1.13.6 -N
       - gem install pry pry-doc pry-coolline -N
-  - image: minimum2scp/ruby:latest
-    platform: sid-amd64
-    version: 2.4.0-preview2
-    envs:
-      RUBY_CONFIGURE_OPTS: "--disable-install-doc"
-    before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
-      - apt-get install -y libssl-dev
-    after_build:
-      - rbenv global 2.4.0-preview2
-      ## Check openssl version
-      - ruby -ropenssl -ve 'puts OpenSSL::OPENSSL_VERSION'
-      - gem install bundler --version 1.13.6 -N
-      - gem install pry pry-doc pry-coolline -N
-  - image: minimum2scp/ruby-jessie:latest
-    platform: jessie-amd64
-    version: 2.3.1
-    envs:
-      RUBY_CONFIGURE_OPTS: "--disable-install-doc"
-    after_build:
-      - rbenv global 2.3.1
-      - gem install bundler --version 1.13.6 -N
-      - gem install pry pry-doc pry-coolline -N
-  - image: minimum2scp/ruby-wheezy:latest
-    platform: wheezy-amd64
-    version: 2.3.1
-    envs:
-      RUBY_CONFIGURE_OPTS: "--disable-install-doc"
-    after_build:
-      - rbenv global 2.3.1
-      - gem install bundler --version 1.13.6 -N
-      - gem install pry pry-doc pry-coolline -N
-
