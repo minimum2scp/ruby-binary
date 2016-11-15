@@ -48,9 +48,9 @@ cp -a /data/patches/<%= patch['file'] %> /tmp/patches/
 
 ## build and install ruby
 if [ -d /tmp/patches ]; then
-  cat /tmp/patches/* | rbenv install --patch -v <%= build_config[:version] %> | tee <%= build_config[:log] %>
+  cat /tmp/patches/* | rbenv install --patch -k -v <%= build_config[:version] %> | tee <%= build_config[:log] %>
 else
-  rbenv install -v <%= build_config[:version] %> | tee <%= build_config[:log] %>
+  rbenv install -k -v <%= build_config[:version] %> | tee <%= build_config[:log] %>
 fi
 
 ## after build hook
