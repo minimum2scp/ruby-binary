@@ -34,7 +34,6 @@ targets:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
-      - (cd /opt/rbenv/sources/2.3.2/ruby-2.3.2 && make check)
       - rbenv global 2.3.2
       - gem install bundler --version 1.13.6 -N
       - gem install pry pry-doc pry-coolline -N
@@ -61,7 +60,6 @@ targets:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.3.2.tar.bz2#e6ce83d46819c4120c9295ff6b36b90393dd5f6bef3bb117a06d7399c11fc7c0"
     after_build:
-      - (cd /opt/rbenv/sources/2.3.2/ruby-2.3.2 && make check)
       - rbenv global 2.3.2
       - gem install bundler --version 1.13.6 -N
       - gem install pry pry-doc pry-coolline -N
@@ -72,7 +70,6 @@ targets:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.3.2.tar.bz2#e6ce83d46819c4120c9295ff6b36b90393dd5f6bef3bb117a06d7399c11fc7c0"
     after_build:
-      - (cd /opt/rbenv/sources/2.3.2/ruby-2.3.2 && make check)
       - rbenv global 2.3.2
       - gem install bundler --version 1.13.6 -N
       - gem install pry pry-doc pry-coolline -N
