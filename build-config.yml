@@ -27,7 +27,6 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.3.3
-    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.3.3.tar.bz2#882e6146ed26c6e78c02342835f5d46b86de95f0dc4e16543294bc656594cc5b"
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     before_build:
@@ -56,7 +55,6 @@ targets:
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
     version: 2.3.3
-    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.3.3.tar.bz2#882e6146ed26c6e78c02342835f5d46b86de95f0dc4e16543294bc656594cc5b"
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
@@ -66,7 +64,6 @@ targets:
   - image: minimum2scp/ruby-wheezy:latest
     platform: wheezy-amd64
     version: 2.3.3
-    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.3.3.tar.bz2#882e6146ed26c6e78c02342835f5d46b86de95f0dc4e16543294bc656594cc5b"
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
