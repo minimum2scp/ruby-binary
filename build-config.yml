@@ -27,6 +27,7 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.3.4
+    src: "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.4.tar.bz2#cd9808bb53824d6edb58beaadd3906cb23b987438ce75ab7bb279b2229930e2f"
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     before_build:
