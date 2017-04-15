@@ -31,6 +31,8 @@ jobs:
 
       - run: rake build:all
 
+      - run: rm files/binary/.gitkeep files/log/.gitkeep
+
       - store_artifacts:
           path: files/binary
           destination: binary
