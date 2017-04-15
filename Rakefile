@@ -94,18 +94,7 @@ namespace :build do
     namespace platform do
       desc "prepare docker container #{image}"
       task :prepare do
-        inspect_image = JSON.parse(`docker inspect #{image}`.chomp)
-        cache = File.expand_path("~/.cache/docker/#{CGI.escape(image)}.tar")
-        if !inspect_image.empty?
-          # image exists.
-        elsif File.exist?(cache)
-          # image is not pulled, but cache exists
-          sh "docker load < #{cache}"
-        else
-          sh "docker pull #{image}"
-          mkdir_p File.dirname(cache), :verbose => true
-          sh "docker save #{image} > #{cache}"
-        end
+        sh "docker pull #{image}"
       end
 
       file build_script[:local] => ['files/scripts/build.sh.erb', 'build-config.yml'] do |t, args|
