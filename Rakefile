@@ -75,7 +75,6 @@ namespace :build do
         Rake::Task["build:#{platform}:#{version}"].invoke
       end
     end
-    Rake::Task["build:fixperm"].invoke
   end
 
   BUILD_CONFIG['targets'].each do |target|
@@ -132,13 +131,6 @@ namespace :build do
       end
     end
   end
-
-  desc "fix owner/group of build results"
-  task :fixperm do
-    user = Etc.getpwnam(Etc.getlogin)
-    sh "sudo chown -R #{user.uid}:#{user.gid} files/binary files/log"
-  end
-
 end
 
 def get_github_release(user, repos, tag, prerelease=false)
