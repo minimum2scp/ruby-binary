@@ -183,11 +183,16 @@ namespace :install do
     end
 
     desc "install github released binary with a version"
-    task :install, [:version, :url] do |t, args|
-      name = File.basename(URI.parse(args.url).path)
+    task :install, [:tag, :platform, :version] do |t, args|
       Dir.mktmpdir do |dir|
         cd dir, :verbose => true do
-          sh "curl -L -o #{name} #{args.url}"
+          asset = get_github_release('minimum2scp', 'ruby-binary', args.tag)['assets'].find{ |asset|
+            asset['name'] =~ /\Aruby-binary_#{Regexp.quote(args.platform)}_#{Regexp.quote(args.version)}/
+          }
+          fail "No such asset in tag=#{args.tag}, platform=#{args.platform}, version=#{args.version}" unless asset
+          name = asset['name']
+          url = asset['browser_download_url']
+          sh "curl -L -o #{name} #{url}"
           if File.directory?("/opt/rbenv/versions/#{args.version}")
             if ENV['RUBY_BINARY_INSTALL_FORCE'] =~ /^(1|on|true|yes)$/
               sh "sudo rm -rf /opt/rbenv/versions/#{args.version}"
@@ -202,11 +207,11 @@ namespace :install do
     end
 
     desc "install all versions of github released binary with tag (or latest release if omitted) and platform (or sid-amd64 if omitted)"
-    task :install_all, [:tag, :platform] do |t, args|
+    task :install_all, [:tag, :platform, :version] do |t, args|
       get_github_release('minimum2scp', 'ruby-binary', args.tag)['assets'].each do |asset|
         platform, version = asset['name'].scan(/ruby-binary_([^_]+)_(\d+\.\d+\.\d+(?:-dev|-preview\d+|-rc\d+|-p\d+)?)/).first
         if platform == (args.platform || 'sid-amd64')
-          Rake::Task['install:github_release:install'].invoke(version, asset['browser_download_url'])
+          Rake::Task['install:github_release:install'].invoke(version, platform, version)
           Rake::Task['install:github_release:install'].reenable
         end
       end

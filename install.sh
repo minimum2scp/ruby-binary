@@ -3,13 +3,27 @@
 set -e
 set -x
 
+tag=
+platform=
+version=
+while getopts t:v: OPT; do
+  case $OPT in
+    t)
+      tag=${OPTARG};;
+    v)
+      version=${OPTARG};;
+    *)
+      echo "Usage: install.sh [-t tag] [-v version]" 1>&2
+      exit 1
+      ;;
+  esac
+done
+
 tmpdir=`mktemp -d`
 trap "
 set +e
 cd $tmpdir && rm -rf ruby-binary && cd / && rmdir $tmpdir
 " 0
-
-tag=$1
 
 ## download Rakefile (https://github.com/minimum2scp/ruby-binary/blob/master/Rakefile)
 git clone https://github.com/minimum2scp/ruby-binary -b master $tmpdir/ruby-binary
@@ -45,5 +59,9 @@ unset arch debian_version
 ## install ruby binary by rake task
 ## empty tag means latest release
 cd $tmpdir/ruby-binary
-rake "install:github_release:install_all[${tag},${platform}]"
+if [ -n "${version}" ]; then
+  rake "install:github_release:install[${tag},${platform},${version}]"
+else
+  rake "install:github_release:install_all[${tag},${platform}]"
+fi
 
