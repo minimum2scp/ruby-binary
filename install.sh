@@ -3,11 +3,14 @@
 set -e
 set -x
 
+branch=master
 tag=
 platform=
 version=
-while getopts t:v: OPT; do
+while getopts b:t:v: OPT; do
   case $OPT in
+    b)
+      branch=${OPTARG};;
     t)
       tag=${OPTARG};;
     v)
@@ -26,7 +29,7 @@ cd $tmpdir && rm -rf ruby-binary && cd / && rmdir $tmpdir
 " 0
 
 ## download Rakefile (https://github.com/minimum2scp/ruby-binary/blob/master/Rakefile)
-git clone https://github.com/minimum2scp/ruby-binary -b master $tmpdir/ruby-binary
+git clone https://github.com/minimum2scp/ruby-binary -b ${branch} $tmpdir/ruby-binary
 
 if [ ! -f /etc/debian_version ]; then
   echo "/etc/debian_version not found"
