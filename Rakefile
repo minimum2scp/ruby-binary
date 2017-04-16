@@ -165,7 +165,7 @@ end
 namespace :install do
   namespace :github_release do
     desc "list releases on github"
-    task :list_relases do
+    task :list_releases do
       releases = JSON.parse open('https://api.github.com/repos/minimum2scp/ruby-binary/releases').read
       releases.each do |rel|
         puts "%s (%s) assets: %s" % [
