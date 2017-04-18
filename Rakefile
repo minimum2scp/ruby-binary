@@ -211,7 +211,7 @@ namespace :install do
       get_github_release('minimum2scp', 'ruby-binary', args.tag)['assets'].each do |asset|
         platform, version = asset['name'].scan(/ruby-binary_([^_]+)_(\d+\.\d+\.\d+(?:-dev|-preview\d+|-rc\d+|-p\d+)?)/).first
         if platform == (args.platform || 'sid-amd64')
-          Rake::Task['install:github_release:install'].invoke(version, platform, version)
+          Rake::Task['install:github_release:install'].invoke(args.tag, platform, version)
           Rake::Task['install:github_release:install'].reenable
         end
       end
