@@ -54,8 +54,6 @@ task :release, [:version] do |t, args|
 end
 
 namespace :build do
-  volume = File.expand_path('../files', __FILE__)
-
   desc "prepare all docker containers"
   task :prepare do
     BUILD_CONFIG['targets'].each do |build_target|
@@ -77,7 +75,6 @@ namespace :build do
         Rake::Task["build:#{platform}:#{version}"].invoke
       end
     end
-    Rake::Task["build:fixperm"].invoke
   end
 
   BUILD_CONFIG['targets'].each do |target|
@@ -89,28 +86,17 @@ namespace :build do
     patches       = target['patches'] || []
     before_build  = target['before_build'] || []
     after_build   = target['after_build'] || []
-    tarball       = "/data/binary/ruby-binary_#{platform}_#{version}.tar.gz"
-    log           = "/data/log/ruby-binary_#{platform}_#{version}.log"
-    build_script  = "#{volume}/tmp/build_#{platform}_#{version}"
+    tarball       = {remote: "/data/binary/ruby-binary_#{platform}_#{version}.tar.gz", local: "files/binary/ruby-binary_#{platform}_#{version}.tar.gz"}
+    log           = {remote: "/data/log/ruby-binary_#{platform}_#{version}.log",       local: "files/log/ruby-binary_#{platform}_#{version}.log"}
+    build_script  = {remote: "/data/tmp/build_#{platform}_#{version}",                 local: "files/tmp/build_#{platform}_#{version}" }
 
     namespace platform do
       desc "prepare docker container #{image}"
       task :prepare do
-        inspect_image = JSON.parse(`docker inspect #{image}`.chomp)
-        cache = File.expand_path("~/.cache/docker/#{CGI.escape(image)}.tar")
-        if !inspect_image.empty?
-          # image exists.
-        elsif File.exist?(cache)
-          # image is not pulled, but cache exists
-          sh "docker load < #{cache}"
-        else
-          sh "docker pull #{image}"
-          mkdir_p File.dirname(cache), :verbose => true
-          sh "docker save #{image} > #{cache}"
-        end
+        sh "docker pull #{image}"
       end
 
-      file build_script => ['files/scripts/build.sh.erb', 'build-config.yml'] do |t, args|
+      file build_script[:local] => ['files/scripts/build.sh.erb', 'build-config.yml'] do |t, args|
         File.open(t.name, 'w') do |fh|
           build_config = {
             version:      version,
@@ -127,28 +113,24 @@ namespace :build do
       end
 
       desc "build ruby #{version} with docker container #{image} (platform: #{platform})"
-      task version, [] => ["build:#{platform}:prepare", build_script] do |t,args|
-        opts = [ '-ti', "-v #{volume}:/data" ]
-        ## Circle CI build container has 32 vcpu cores, but nproc returns 2,
-        ## and no need to delete container
-        if ENV['CIRCLECI']
-          envs['RUBY_MAKE_OPTS'] = "-j %d" % [`nproc`.chomp.to_i]
-        else
-          opts << '--rm'
-        end
-        cmd = build_script.sub(volume, '/data')
+      task version, [] => ["build:#{platform}:prepare", build_script[:local]] do |t,args|
+        container_name = "ruby_#{platform}_#{version}"
+        data_volume_name = "data_ruby_#{platform}_#{version}"
+        opts = [ "--name=#{container_name}", "-t", "-v #{data_volume_name}:/data" ]
         opts += envs.map{|k,v| "-e #{k}=\"#{v}\""}
-        sh "docker run #{opts.join(' ')} #{image} #{cmd}"
+        sh "docker volume create #{data_volume_name}"
+        sh "docker run --rm #{opts.join(' ')} #{image} mkdir /data/binary /data/log /data/tmp"
+        sh "docker create #{opts.join(' ')} #{image} #{build_script[:remote]}"
+        sh "docker cp #{build_script[:local]} #{container_name}:#{build_script[:remote]}"
+        sh "docker cp files/patches/ #{container_name}:/data/patches/"
+        sh "docker start -a #{container_name}"
+        sh "docker cp #{container_name}:#{log[:remote]} #{log[:local]}"
+        sh "docker cp #{container_name}:#{tarball[:remote]} #{tarball[:local]}"
+        sh "docker rm #{container_name}"
+        sh "docker volume rm #{data_volume_name}"
       end
     end
   end
-
-  desc "fix owner/group of build results"
-  task :fixperm do
-    user = Etc.getpwnam(Etc.getlogin)
-    sh "sudo chown -R #{user.uid}:#{user.gid} #{volume}/binary #{volume}/log"
-  end
-
 end
 
 def get_github_release(user, repos, tag, prerelease=false)
