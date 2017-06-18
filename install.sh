@@ -50,7 +50,9 @@ case ${debian_version} in
     platform=wheezy-${arch};;
   8.*)
     platform=jessie-${arch};;
-  9.0|*/sid)
+  9.*)
+    platform=stretch--${arch};;
+  10.0|*/sid)
     platform=sid-${arch};;
   *)
     echo "debian_version ${debian_version} is not supported"
