@@ -15,8 +15,10 @@ while getopts b:t:v: OPT; do
       tag=${OPTARG};;
     v)
       version=${OPTARG};;
+    p)
+      platform=${OPTARG};;
     *)
-      echo "Usage: install.sh [-t tag] [-v version]" 1>&2
+      echo "Usage: install.sh [-t tag] [-v version] [-p platform]" 1>&2
       exit 1
       ;;
   esac
@@ -31,33 +33,37 @@ cd $tmpdir && rm -rf ruby-binary && cd / && rmdir $tmpdir
 ## download Rakefile (https://github.com/minimum2scp/ruby-binary/blob/master/Rakefile)
 git clone https://github.com/minimum2scp/ruby-binary -b ${branch} $tmpdir/ruby-binary
 
-if [ ! -f /etc/debian_version ]; then
-  echo "/etc/debian_version not found"
-  exit 1
-fi
-
 ## detect platform
-arch=
-eval $(apt-config shell arch APT::Architecture)
-if [ $arch != 'amd64' ]; then
-  echo "arch ${arch} is not supported"
-  exit 1
-fi
-
-debian_version=`cat /etc/debian_version`
-case ${debian_version} in
-  7.*)
-    platform=wheezy-${arch};;
-  8.*)
-    platform=jessie-${arch};;
-  9.0|*/sid)
-    platform=sid-${arch};;
-  *)
-    echo "debian_version ${debian_version} is not supported"
+if [ -n "${platform}" ]; then
+  if [ ! -f /etc/debian_version ]; then
+    echo "/etc/debian_version not found"
     exit 1
-    ;;
-esac
-unset arch debian_version
+  fi
+
+  arch=
+  eval $(apt-config shell arch APT::Architecture)
+  if [ $arch != 'amd64' ]; then
+    echo "arch ${arch} is not supported"
+    exit 1
+  fi
+
+  debian_version=`cat /etc/debian_version`
+  case ${debian_version} in
+    7.*)
+      platform=wheezy-${arch};;
+    8.*)
+      platform=jessie-${arch};;
+    9.*)
+      platform=stretch-${arch};;
+    10.0|*/sid)
+      platform=sid-${arch};;
+    *)
+      echo "debian_version ${debian_version} is not supported"
+      exit 1
+      ;;
+  esac
+  unset arch debian_version
+fi
 
 ## install ruby binary by rake task
 ## empty tag means latest release

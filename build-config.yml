@@ -52,6 +52,15 @@ targets:
       - ruby -ropenssl -ve 'puts OpenSSL::OPENSSL_VERSION'
       - gem install bundler --version 1.15.1 -N
       - gem install pry pry-doc pry-coolline -N
+  - image: minimum2scp/ruby-stretch:latest
+    platform: stretch-amd64
+    version: 2.4.1
+    envs:
+      RUBY_CONFIGURE_OPTS: "--disable-install-doc"
+    after_build:
+      - rbenv global 2.4.1
+      - gem install bundler --version 1.15.1 -N
+      - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
     version: 2.4.1
