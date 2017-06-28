@@ -34,7 +34,7 @@ cd $tmpdir && rm -rf ruby-binary && cd / && rmdir $tmpdir
 git clone https://github.com/minimum2scp/ruby-binary -b ${branch} $tmpdir/ruby-binary
 
 ## detect platform
-if [ -n "${platform}" ]; then
+if [ -z "${platform}" ]; then
   if [ ! -f /etc/debian_version ]; then
     echo "/etc/debian_version not found"
     exit 1
