@@ -10,7 +10,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
       - rbenv global 2.1.10
-      - gem install bundler --version 1.15.1 -N
+      - gem install bundler --version 1.15.2 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -22,7 +22,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
       - rbenv global 2.2.7
-      - gem install bundler --version 1.15.1 -N
+      - gem install bundler --version 1.15.2 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -34,7 +34,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
       - rbenv global 2.3.4
-      - gem install bundler --version 1.15.1 -N
+      - gem install bundler --version 1.15.2 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -50,7 +50,7 @@ targets:
       - rbenv global 2.4.1
       ## Check openssl version
       - ruby -ropenssl -ve 'puts OpenSSL::OPENSSL_VERSION'
-      - gem install bundler --version 1.15.1 -N
+      - gem install bundler --version 1.15.2 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
@@ -59,7 +59,7 @@ targets:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
       - rbenv global 2.4.1
-      - gem install bundler --version 1.15.1 -N
+      - gem install bundler --version 1.15.2 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
@@ -68,7 +68,7 @@ targets:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
       - rbenv global 2.4.1
-      - gem install bundler --version 1.15.1 -N
+      - gem install bundler --version 1.15.2 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-wheezy:latest
     platform: wheezy-amd64
@@ -77,6 +77,6 @@ targets:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
       - rbenv global 2.4.1
-      - gem install bundler --version 1.15.1 -N
+      - gem install bundler --version 1.15.2 -N
       - gem install pry pry-doc pry-coolline -N
 
