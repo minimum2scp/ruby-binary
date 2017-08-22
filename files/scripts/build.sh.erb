@@ -36,19 +36,22 @@ add_definition "<%= build_config[:version] %>" "<%= build_config[:src] %>"
 ## prepare patches
 <% unless build_config[:patches].empty? -%>
 mkdir -p /tmp/patches
+touch /tmp/patches/series
 <% end -%>
 <% build_config[:patches].each do |patch| -%>
 <% case -%>
 <% when patch['url'] -%>
 ( cd /tmp/patches; curl -sSL <%= patch['as'] ? "-o #{patch['as']}" : "-O" %> <%= patch['url'] %> )
+echo "<%= patch['as'] || File.basename(patch['url']) %>" >> /tmp/patches/series
 <% when patch['file'] -%>
 cp -a /data/patches/<%= patch['file'] %> /tmp/patches/
+echo "<%= patch['file'] %>" >> /tmp/patches/series
 <% end -%>
 <% end -%>
 
 ## build and install ruby
 if [ -d /tmp/patches ]; then
-  cat /tmp/patches/* | rbenv install --patch -k -v <%= build_config[:version] %> | tee <%= build_config[:log][:remote] %>
+  cat $(sed -e 's@^@/tmp/patches/@' /tmp/patches/series) | rbenv install --patch -k -v <%= build_config[:version] %> | tee <%= build_config[:log][:remote] %>
 else
   rbenv install -k -v <%= build_config[:version] %> | tee <%= build_config[:log][:remote] %>
 fi
