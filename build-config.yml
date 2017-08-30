@@ -10,6 +10,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
       - rbenv global 2.1.10
+      - gem update -N --system 2.6.13
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
@@ -25,6 +26,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
       - rbenv global 2.2.7
+      - gem update -N --system 2.6.13
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
@@ -40,6 +42,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
       - rbenv global 2.3.4
+      - gem update -N --system 2.6.13
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
@@ -56,6 +59,7 @@ targets:
       - rbenv global 2.4.1
       ## Check openssl version
       - ruby -ropenssl -ve 'puts OpenSSL::OPENSSL_VERSION'
+      - gem update -N --system 2.6.13
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-stretch:latest
@@ -65,6 +69,7 @@ targets:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
       - rbenv global 2.4.1
+      - gem update -N --system 2.6.13
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
@@ -74,6 +79,7 @@ targets:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
       - rbenv global 2.4.1
+      - gem update -N --system 2.6.13
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-wheezy:latest
@@ -83,6 +89,7 @@ targets:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
       - rbenv global 2.4.1
+      - gem update -N --system 2.6.13
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
 
