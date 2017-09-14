@@ -10,12 +10,14 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
       - rbenv global 2.1.10
+      - ruby --version
+      - gem --version
       - gem update -N --system 2.6.13
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.2.7
+    version: 2.2.8
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     patches:
@@ -25,29 +27,28 @@ targets:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
-      - rbenv global 2.2.7
-      - gem update -N --system 2.6.13
+      - rbenv global 2.2.8
+      - ruby --version
+      - gem --version
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.3.4
+    version: 2.3.5
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
-    patches:
-      - { url: "https://bugs.ruby-lang.org/attachments/download/6655/ruby_2_3_gcc7.patch" }
-      - { file: "r57634_modified.diff" }
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
-      - rbenv global 2.3.4
-      - gem update -N --system 2.6.13
+      - rbenv global 2.3.5
+      - ruby --version
+      - gem --version
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.4.1
+    version: 2.4.2
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     before_build:
@@ -56,40 +57,44 @@ targets:
       ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
       - apt-get install -y libssl-dev
     after_build:
-      - rbenv global 2.4.1
+      - rbenv global 2.4.2
+      - ruby --version
+      - gem --version
       ## Check openssl version
       - ruby -ropenssl -ve 'puts OpenSSL::OPENSSL_VERSION'
-      - gem update -N --system 2.6.13
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
-    version: 2.4.1
+    version: 2.4.2
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
-      - rbenv global 2.4.1
-      - gem update -N --system 2.6.13
+      - rbenv global 2.4.2
+      - ruby --version
+      - gem --version
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
-    version: 2.4.1
+    version: 2.4.2
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
-      - rbenv global 2.4.1
-      - gem update -N --system 2.6.13
+      - rbenv global 2.4.2
+      - ruby --version
+      - gem --version
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-wheezy:latest
     platform: wheezy-amd64
-    version: 2.4.1
+    version: 2.4.2
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
-      - rbenv global 2.4.1
-      - gem update -N --system 2.6.13
+      - rbenv global 2.4.2
+      - ruby --version
+      - gem --version
       - gem install bundler --version 1.15.4 -N
       - gem install pry pry-doc pry-coolline -N
 
