@@ -20,6 +20,9 @@ targets:
     version: 2.2.8
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
+    patches:
+      - { url: "https://bugs.ruby-lang.org/attachments/download/6655/ruby_2_3_gcc7.patch" }
+      - { file: "r57634_modified.diff" }
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
