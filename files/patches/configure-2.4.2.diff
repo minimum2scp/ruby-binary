@@ -1,6 +1,6 @@
-diff -pU3 a/configure b/configure
---- a/configure	2017-09-14 21:52:19.000000000 +0900
-+++ b/configure	2017-09-15 07:03:12.000000000 +0900
+diff -pU3 configure configure
+--- configure	2017-09-14 21:52:19.000000000 +0900
++++ configure	2017-09-15 07:03:12.000000000 +0900
 @@ -10614,6 +10614,7 @@ fi
  ac_res=$ac_cv_search___gmpz_init
  if test "$ac_res" != no; then :
@@ -17,9 +17,9 @@ diff -pU3 a/configure b/configure
  
  else
    with_jemalloc=no
-diff -pU3 a/configure.in b/configure.in
---- a/configure.in	2017-08-04 23:39:29.000000000 +0900
-+++ b/configure.in	2017-09-15 07:20:40.000000000 +0900
+diff -pU3 configure.in configure.in
+--- configure.in	2017-08-04 23:39:29.000000000 +0900
++++ configure.in	2017-09-15 07:20:40.000000000 +0900
 @@ -1403,13 +1403,15 @@ AC_ARG_WITH([gmp],
  AS_IF([test "x$with_gmp" != xno],
    [AC_CHECK_HEADERS(gmp.h)
