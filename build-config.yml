@@ -37,6 +37,8 @@ targets:
     version: 2.3.5
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
+    patches:
+      - { url: "https://bugs.ruby-lang.org/attachments/download/6733/configure-2.3.5.diff" }
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
@@ -51,6 +53,8 @@ targets:
     version: 2.4.2
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
+    patches:
+      - { url: "https://bugs.ruby-lang.org/attachments/download/6735/configure-2.4.2.diff" }
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
@@ -69,6 +73,8 @@ targets:
     version: 2.4.2
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
+    patches:
+      - { url: "https://bugs.ruby-lang.org/attachments/download/6735/configure-2.4.2.diff" }
     after_build:
       - rbenv global 2.4.2
       - ruby --version
@@ -80,6 +86,8 @@ targets:
     version: 2.4.2
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
+    patches:
+      - { url: "https://bugs.ruby-lang.org/attachments/download/6735/configure-2.4.2.diff" }
     after_build:
       - rbenv global 2.4.2
       - ruby --version
@@ -91,6 +99,8 @@ targets:
     version: 2.4.2
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
+    patches:
+      - { url: "https://bugs.ruby-lang.org/attachments/download/6735/configure-2.4.2.diff" }
     after_build:
       - rbenv global 2.4.2
       - ruby --version
