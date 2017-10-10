@@ -10,6 +10,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
       - rbenv global 2.1.10
+      - gem update --system 2.6.14
       - ruby --version
       - gem --version
       - gem update -N --system 2.6.13
@@ -28,6 +29,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
       - rbenv global 2.2.8
+      - gem update --system 2.6.14
       - ruby --version
       - gem --version
       - gem install bundler --version 1.15.4 -N
@@ -44,6 +46,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
       - rbenv global 2.3.5
+      - gem update --system 2.6.14
       - ruby --version
       - gem --version
       - gem install bundler --version 1.15.4 -N
@@ -62,6 +65,7 @@ targets:
       - apt-get install -y libssl-dev
     after_build:
       - rbenv global 2.4.2
+      - gem update --system 2.6.14
       - ruby --version
       - gem --version
       ## Check openssl version
@@ -77,6 +81,7 @@ targets:
       - { file: "configure-2.4.2.diff" }
     after_build:
       - rbenv global 2.4.2
+      - gem update --system 2.6.14
       - ruby --version
       - gem --version
       - gem install bundler --version 1.15.4 -N
@@ -90,6 +95,7 @@ targets:
       - { file: "configure-2.4.2.diff" }
     after_build:
       - rbenv global 2.4.2
+      - gem update --system 2.6.14
       - ruby --version
       - gem --version
       - gem install bundler --version 1.15.4 -N
@@ -103,6 +109,7 @@ targets:
       - { file: "configure-2.4.2.diff" }
     after_build:
       - rbenv global 2.4.2
+      - gem update --system 2.6.14
       - ruby --version
       - gem --version
       - gem install bundler --version 1.15.4 -N
