@@ -13,7 +13,7 @@ targets:
       - gem update --system 2.6.14
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.15.4 -N
+      - gem install bundler --version 1.16.0 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -31,7 +31,7 @@ targets:
       - gem update --system 2.6.14
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.15.4 -N
+      - gem install bundler --version 1.16.0 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -48,7 +48,7 @@ targets:
       - gem update --system 2.6.14
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.15.4 -N
+      - gem install bundler --version 1.16.0 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -69,7 +69,7 @@ targets:
       - gem --version
       ## Check openssl version
       - ruby -ropenssl -ve 'puts OpenSSL::OPENSSL_VERSION'
-      - gem install bundler --version 1.15.4 -N
+      - gem install bundler --version 1.16.0 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -101,7 +101,7 @@ targets:
       - gem update --system 2.6.14
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.15.4 -N
+      - gem install bundler --version 1.16.0 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
@@ -115,7 +115,7 @@ targets:
       - gem update --system 2.6.14
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.15.4 -N
+      - gem install bundler --version 1.16.0 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-wheezy:latest
     platform: wheezy-amd64
@@ -129,6 +129,6 @@ targets:
       - gem update --system 2.6.14
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.15.4 -N
+      - gem install bundler --version 1.16.0 -N
       - gem install pry pry-doc pry-coolline -N
 
