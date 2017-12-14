@@ -13,7 +13,6 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
       - rbenv global 2.2.9
-      - gem update --system 2.6.14
       - ruby --version
       - gem --version
       - gem install bundler --version 1.16.0 -N
@@ -28,7 +27,6 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
       - rbenv global 2.3.6
-      - gem update --system 2.6.14
       - ruby --version
       - gem --version
       - gem install bundler --version 1.16.0 -N
@@ -45,7 +43,6 @@ targets:
       - apt-get install -y libssl-dev
     after_build:
       - rbenv global 2.4.3
-      - gem update --system 2.6.14
       - ruby --version
       - gem --version
       ## Check openssl version
@@ -77,7 +74,6 @@ targets:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
       - rbenv global 2.4.3
-      - gem update --system 2.6.14
       - ruby --version
       - gem --version
       - gem install bundler --version 1.16.0 -N
@@ -89,7 +85,6 @@ targets:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
       - rbenv global 2.4.3
-      - gem update --system 2.6.14
       - ruby --version
       - gem --version
       - gem install bundler --version 1.16.0 -N
@@ -101,7 +96,6 @@ targets:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
       - rbenv global 2.4.3
-      - gem update --system 2.6.14
       - ruby --version
       - gem --version
       - gem install bundler --version 1.16.0 -N
