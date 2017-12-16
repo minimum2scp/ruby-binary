@@ -1,36 +1,71 @@
 version: 2
-jobs:
-  build:
-    working_directory: /tmp/ruby-binary
 
+references:
+  build_job: &build_job
+    working_directory: /tmp/ruby-binary
     docker:
       - image: circleci/ruby:2.4.1
-
-    parallelism: 3
-
     steps:
       - checkout
-
       - setup_remote_docker
-
-      - run:
-          name: Check docker version
-          command: |
-            set -x
-            docker version
-            docker info
-
-      - run: rake build:prepare
-
-      - run: rake build:all
-
+      - run: docker version
+      - run: docker info
+      - run: rake build:${target_platform}:prepare
+      - run: rake build:${target_platform}:${target_version}
       - run: rm files/binary/.gitkeep files/log/.gitkeep
-
       - store_artifacts:
           path: files/binary
           destination: binary
-
       - store_artifacts:
           path: files/log
           destination: log
+
+jobs:
+  build_sid_2.2:
+    <<: *build_job
+    environment:
+      - target_platform: sid-amd64
+      - target_version: 2.2.9
+  build_sid_2.3:
+    <<: *build_job
+    environment:
+      - target_platform: sid-amd64
+      - target_version: 2.3.6
+  build_sid_2.4:
+    <<: *build_job
+    environment:
+      - target_platform: sid-amd64
+      - target_version: 2.4.3
+  build_sid_2.5:
+    <<: *build_job
+    environment:
+      - target_platform: sid-amd64
+      - target_version: 2.5.0-preview1
+  build_stretch_2.4:
+    <<: *build_job
+    environment:
+      - target_platform: stretch-amd64
+      - target_version: 2.4.3
+  build_jessie_2.4:
+    <<: *build_job
+    environment:
+      - target_platform: jessie-amd64
+      - target_version: 2.4.3
+  build_wheezy_2.4:
+    <<: *build_job
+    environment:
+      - target_platform: wheezy-amd64
+      - target_version: 2.4.3
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build_sid_2.2
+      - build_sid_2.3
+      - build_sid_2.4
+      - build_sid_2.5
+      - build_stretch_2.4
+      - build_jessie_2.4
+      - build_wheezy_2.4
 
