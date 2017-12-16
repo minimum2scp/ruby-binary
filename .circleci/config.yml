@@ -89,7 +89,6 @@ workflows:
             branches:
               only:
                 - master
-                - features/release-from-circleci
           requires:
             - build_sid_2.2
             - build_sid_2.3
