@@ -31,8 +31,9 @@ end
 task :default => "build:all"
 
 desc "download artifacts from Circle CI, and create release on Github"
-task :release, [:version] do |t, args|
+task :release do |t, args|
   dir = Dir.mktmpdir
+  version = File.read("VERSION").chomp
   token = ENV['CIRCLECI_TOKEN']
   branch = ENV['CIRCLECI_BRANCH'] || 'master'
   build_jobs = YAML.load(File.read(".circleci/config.yml"))["jobs"].keys
@@ -54,7 +55,7 @@ task :release, [:version] do |t, args|
       end
     end
   end
-  sh "ghr -u minimum2scp -r ruby-binary --draft #{args.version} #{dir}"
+  sh "ghr -u minimum2scp -r ruby-binary --draft #{version} #{dir}"
   remove_entry_secure dir
 end
 
