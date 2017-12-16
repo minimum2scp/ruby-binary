@@ -83,4 +83,18 @@ workflows:
       - build_stretch_2.4
       - build_jessie_2.4
       - build_wheezy_2.4
+      - release:
+          filters:
+            branches:
+              only:
+                - master
+                - features/release-from-circleci
+          requires:
+            - build_sid_2.2
+            - build_sid_2.3
+            - build_sid_2.4
+            - build_sid_2.5
+            - build_stretch_2.4
+            - build_jessie_2.4
+            - build_wheezy_2.4
 
