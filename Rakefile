@@ -35,17 +35,22 @@ task :release, [:version] do |t, args|
   dir = Dir.mktmpdir
   token = ENV['CIRCLECI_TOKEN']
   branch = ENV['CIRCLECI_BRANCH'] || 'master'
-  recent_build = JSON.parse(open("https://circleci.com/api/v1/project/minimum2scp/ruby-binary/tree/#{branch}?circle-token=#{token}&limit=20&offset=0&filter=completed").read)
-  build_num = recent_build.first["build_num"]
-  artifacts = JSON.parse(open("https://circleci.com/api/v1/project/minimum2scp/ruby-binary/#{build_num}/artifacts?circle-token=#{token}").read)
-  artifacts.each do |a|
-    local_name = File.basename(a["path"])
-    next if local_name !~ /\.tar\.gz$/
-    loop do
-      dest = "#{dir}/#{File.basename(a["path"])}"
-      sh "curl -L -o #{dest} #{a["url"]}"
-      if File.size(dest) > 0
-        break
+  build_jobs = YAML.load(File.read(".circleci/config.yml"))["jobs"].keys
+  recent_builds = JSON.parse(open("https://circleci.com/api/v1.1/project/github/minimum2scp/ruby-binary/tree/#{branch}?circle-token=#{token}&limit=20&offset=0&filter=completed").read)
+  build_nums = build_jobs.map{|job_name|
+    recent_builds.select{|b| b.dig("workflows", "job_name") == job_name}.map{|b| b["build_num"] }.max
+  }
+  build_nums.each do |build_num|
+    artifacts = JSON.parse(open("https://circleci.com/api/v1.1/project/github/minimum2scp/ruby-binary/#{build_num}/artifacts?circle-token=#{token}").read)
+    artifacts.each do |a|
+      local_name = File.basename(a["path"])
+      next if local_name !~ /\.tar\.gz$/
+      loop do
+        dest = "#{dir}/#{File.basename(a["path"])}"
+        sh "curl -L -o #{dest} #{a["url"]}"
+        if File.size(dest) > 0
+          break
+        end
       end
     end
   end
