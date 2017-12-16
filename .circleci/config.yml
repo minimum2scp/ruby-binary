@@ -83,7 +83,8 @@ workflows:
       - build_stretch_2.4
       - build_jessie_2.4
       - build_wheezy_2.4
-      - release:
+      - hold:
+          type: approval
           filters:
             branches:
               only:
@@ -97,4 +98,7 @@ workflows:
             - build_stretch_2.4
             - build_jessie_2.4
             - build_wheezy_2.4
+      - release:
+          requires:
+            - hold
 
