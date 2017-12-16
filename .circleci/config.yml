@@ -59,6 +59,18 @@ jobs:
     environment:
       - target_platform: wheezy-amd64
       - target_version: 2.4.3
+  release:
+    working_directory: /tmp/ruby-binary
+    docker:
+      - image: circleci/ruby:2.4.3
+    steps:
+      - checkout
+      - run: curl -o /tmp/ghr.zip -L https://github.com/tcnksm/ghr/releases/download/v0.5.4/ghr_v0.5.4_linux_amd64.zip
+      - run: unzip -d /tmp -x /tmp/ghr.zip
+      - run: sudo install -m 755 -o root -g root -p /tmp/ghr /usr/local/bin/ghr
+      - run: ghr --version
+      - attach_workspace: { at: /tmp/dist }
+      - run: ghr -u minimum2scp -r ruby-binary --draft "$(cat VERSION)" /tmp/dist
 
 workflows:
   version: 2
