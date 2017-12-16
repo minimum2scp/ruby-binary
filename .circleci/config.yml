@@ -24,80 +24,21 @@ references:
           paths: [ "*.tar.gz" ]
 
 jobs:
-  build_sid_2.2:
+  2.5.0-preview1:
     <<: *build_job
     environment:
       - target_platform: sid-amd64
-      - target_version: 2.2.9
-  build_sid_2.3:
-    <<: *build_job
-    environment:
-      - target_platform: sid-amd64
-      - target_version: 2.3.6
-  build_sid_2.4:
-    <<: *build_job
-    environment:
-      - target_platform: sid-amd64
-      - target_version: 2.4.3
-  build_sid_2.5:
+      - target_version: 2.5.0-preview1
+  2.5.0-rc1:
     <<: *build_job
     environment:
       - target_platform: sid-amd64
       - target_version: 2.5.0-rc1
-  build_stretch_2.4:
-    <<: *build_job
-    environment:
-      - target_platform: stretch-amd64
-      - target_version: 2.4.3
-  build_jessie_2.4:
-    <<: *build_job
-    environment:
-      - target_platform: jessie-amd64
-      - target_version: 2.4.3
-  build_wheezy_2.4:
-    <<: *build_job
-    environment:
-      - target_platform: wheezy-amd64
-      - target_version: 2.4.3
-  release:
-    working_directory: /tmp/ruby-binary
-    docker:
-      - image: circleci/ruby:2.4.3
-    steps:
-      - checkout
-      - run: curl -o /tmp/ghr.zip -L https://github.com/tcnksm/ghr/releases/download/v0.5.4/ghr_v0.5.4_linux_amd64.zip
-      - run: unzip -d /tmp -x /tmp/ghr.zip
-      - run: sudo install -m 755 -o root -g root -p /tmp/ghr /usr/local/bin/ghr
-      - run: ghr --version
-      - attach_workspace: { at: /tmp/dist }
-      - run: ghr -u minimum2scp -r ruby-binary --draft "$(cat VERSION)" /tmp/dist
 
 workflows:
   version: 2
   build_and_release:
     jobs:
-      - build_sid_2.2
-      - build_sid_2.3
-      - build_sid_2.4
-      - build_sid_2.5
-      - build_stretch_2.4
-      - build_jessie_2.4
-      - build_wheezy_2.4
-      - hold:
-          type: approval
-          filters:
-            branches:
-              only:
-                - master
-          requires:
-            - build_sid_2.2
-            - build_sid_2.3
-            - build_sid_2.4
-            - build_sid_2.5
-            - build_stretch_2.4
-            - build_jessie_2.4
-            - build_wheezy_2.4
-      - release:
-          requires:
-            - hold
+      - 2.5.0-preview1
+      - 2.5.0-rc1
 
