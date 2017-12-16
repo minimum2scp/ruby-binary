@@ -19,6 +19,9 @@ references:
       - store_artifacts:
           path: files/log
           destination: log
+      - persist_to_workspace:
+          root: files/binary
+          paths: [ "*.tar.gz" ]
 
 jobs:
   build_sid_2.2:
