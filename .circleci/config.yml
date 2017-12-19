@@ -34,6 +34,30 @@ jobs:
     environment:
       - target_platform: sid-amd64
       - target_version: 2.5.0-rc1
+  bisect:
+    working_directory: /tmp/ruby-binary
+    docker:
+      - image: circleci/ruby:2.4.3
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: docker version
+      - run: docker info
+      - run:
+          name: prepare bisect
+          command: ./bisect-helper.sh prepare
+          working_directory: /tmp/ruby-binary/bisect
+      - run:
+          name: start bisect
+          command: git bisect start v2_5_0_rc1 v2_5_0_preview1
+          working_directory: /tmp/ruby-binary/bisect/ruby
+      - run:
+          name: run bisect
+          command: git bisect run ../bisect-helper.sh build
+          working_directory: /tmp/ruby-binary/bisect/ruby
+      - store_artifacts:
+          path: bisect/log
+          destination: log
 
 workflows:
   version: 2
@@ -41,4 +65,5 @@ workflows:
     jobs:
       - 2.5.0-preview1
       - 2.5.0-rc1
+      - bisect
 
