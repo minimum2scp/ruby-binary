@@ -1,0 +1,13 @@
+diff --git a/io.c b/io.c
+index f2d1f84be8..1aa5a0e72a 100644
+--- a/io.c
++++ b/io.c
+@@ -10783,6 +10783,8 @@ nogvl_copy_file_range(struct copy_stream_struct *stp)
+ 	}
+         switch (errno) {
+ 	  case EINVAL:
++	  case EPERM: /* copy_file_range(2) doesn't exist (may happen in
++			 docker container) */
+ #ifdef ENOSYS
+ 	  case ENOSYS:
+ #endif
