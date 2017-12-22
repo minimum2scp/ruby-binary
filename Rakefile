@@ -129,8 +129,11 @@ namespace :build do
         sh "docker create #{opts.join(' ')} #{image} #{build_script[:remote]}"
         sh "docker cp #{build_script[:local]} #{container_name}:#{build_script[:remote]}"
         sh "docker cp files/patches/ #{container_name}:/data/patches/"
-        sh "docker start -a #{container_name}"
-        sh "docker cp #{container_name}:#{log[:remote]} #{log[:local]}"
+        begin
+          sh "docker start -a #{container_name}"
+        ensure
+          sh "docker cp #{container_name}:#{log[:remote]} #{log[:local]}"
+        end
         sh "docker cp #{container_name}:#{tarball[:remote]} #{tarball[:local]}"
         sh "docker rm #{container_name}"
         sh "docker volume rm #{data_volume_name}"
