@@ -15,7 +15,7 @@ targets:
       - rbenv global 2.2.9
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.16.0 -N
+      - gem install bundler --version 1.16.1 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -29,7 +29,7 @@ targets:
       - rbenv global 2.3.6
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.16.0 -N
+      - gem install bundler --version 1.16.1 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -47,7 +47,7 @@ targets:
       - gem --version
       ## Check openssl version
       - ruby -ropenssl -ve 'puts OpenSSL::OPENSSL_VERSION'
-      - gem install bundler --version 1.16.0 -N
+      - gem install bundler --version 1.16.1 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -76,7 +76,7 @@ targets:
       - rbenv global 2.4.3
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.16.0 -N
+      - gem install bundler --version 1.16.1 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
@@ -87,7 +87,7 @@ targets:
       - rbenv global 2.4.3
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.16.0 -N
+      - gem install bundler --version 1.16.1 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-wheezy:latest
     platform: wheezy-amd64
@@ -98,6 +98,6 @@ targets:
       - rbenv global 2.4.3
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.16.0 -N
+      - gem install bundler --version 1.16.1 -N
       - gem install pry pry-doc pry-coolline -N
 
