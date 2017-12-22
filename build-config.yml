@@ -54,6 +54,9 @@ targets:
     version: 2.5.0-rc1
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
+    patches:
+      ## https://bugs.ruby-lang.org/issues/14207, https://bugs.ruby-lang.org/projects/ruby-trunk/repository/revisions/61412
+      - { file: r61412_modified.diff }
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
