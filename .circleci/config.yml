@@ -43,22 +43,22 @@ jobs:
     <<: *build_job
     environment:
       - target_platform: sid-amd64
-      - target_version: 2.5.0-rc1
-  build_stretch_2.4:
+      - target_version: 2.5.0
+  build_stretch_2.5:
     <<: *build_job
     environment:
       - target_platform: stretch-amd64
-      - target_version: 2.4.3
-  build_jessie_2.4:
+      - target_version: 2.5.0
+  build_jessie_2.5:
     <<: *build_job
     environment:
       - target_platform: jessie-amd64
-      - target_version: 2.4.3
-  build_wheezy_2.4:
+      - target_version: 2.5.0
+  build_wheezy_2.5:
     <<: *build_job
     environment:
       - target_platform: wheezy-amd64
-      - target_version: 2.4.3
+      - target_version: 2.5.0
   release:
     working_directory: /tmp/ruby-binary
     docker:
@@ -80,9 +80,9 @@ workflows:
       - build_sid_2.3
       - build_sid_2.4
       - build_sid_2.5
-      - build_stretch_2.4
-      - build_jessie_2.4
-      - build_wheezy_2.4
+      - build_stretch_2.5
+      - build_jessie_2.5
+      - build_wheezy_2.5
       - hold:
           type: approval
           filters:
@@ -94,9 +94,9 @@ workflows:
             - build_sid_2.3
             - build_sid_2.4
             - build_sid_2.5
-            - build_stretch_2.4
-            - build_jessie_2.4
-            - build_wheezy_2.4
+            - build_stretch_2.5
+            - build_jessie_2.5
+            - build_wheezy_2.5
       - release:
           requires:
             - hold
