@@ -45,8 +45,6 @@ targets:
       - rbenv global 2.4.3
       - ruby --version
       - gem --version
-      ## Check openssl version
-      - ruby -ropenssl -ve 'puts OpenSSL::OPENSSL_VERSION'
       - gem install bundler --version 1.16.1 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
@@ -63,8 +61,6 @@ targets:
       - rbenv global 2.5.0
       - ruby --version
       - gem --version
-      ## Check openssl version
-      - ruby -ropenssl -ve 'puts OpenSSL::OPENSSL_VERSION'
       - gem install bundler --version 1.16.1 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-stretch:latest
