@@ -1,3 +1,7 @@
 .envrc
 files/binary/*.tar.gz
 files/log/*.log
+files/tmp/Dockerfile_*
+files/tmp/build_*
+.bundle/
+vendor/bundle/
