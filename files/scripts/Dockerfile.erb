@@ -1,0 +1,6 @@
+FROM <%= image %>
+
+COPY <%= tarball[:local] %> /tmp/
+RUN tar xf /tmp/<%= File.basename tarball[:local] %> -C /opt/rbenv/versions
+RUN bash -lc 'rbenv rehash'
+

@@ -10,8 +10,10 @@ references:
       - setup_remote_docker
       - run: docker version
       - run: docker info
+      - run: bundle install
       - run: rake build:${target_platform}:prepare
       - run: rake build:${target_platform}:${target_version}
+      - run: rake test:${target_platform}:${target_version}
       - run: rm files/binary/.gitkeep files/log/.gitkeep
       - store_artifacts:
           path: files/binary

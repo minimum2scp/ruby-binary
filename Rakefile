@@ -138,6 +138,38 @@ namespace :build do
         sh "docker rm #{container_name}"
         sh "docker volume rm #{data_volume_name}"
       end
+
+      file tarball[:local] do
+        Rake::Task["build:#{platform}:#{version}"].invoke
+      end
+    end
+  end
+end
+
+namespace :test do
+  desc "test all binaries with container"
+  task :all => BUILD_CONFIG["targets"].map{|target| "test:#{target['platform']}:#{target['version']}" }
+
+  BUILD_CONFIG['targets'].each do |target|
+    platform      = target['platform']
+    image         = target['image']
+    version       = target['version']
+    tarball       = {local: "files/binary/ruby-binary_#{platform}_#{version}.tar.gz"}
+    dockerfile    = {local: "files/tmp/Dockerfile_#{platform}_#{version}" }
+    test_image    = "minimum2scp/ruby-binary:test_#{platform}_#{version}"
+
+    namespace platform do
+      file dockerfile[:local] => ['files/scripts/Dockerfile.erb', 'build-config.yml'] do |t, args|
+        File.open(t.name, 'w') do |fh|
+          fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result(binding)
+        end
+      end
+
+      desc "test ruby #{version} (platform: #{platform})"
+      task version, [] => [tarball[:local], dockerfile[:local]] do
+        sh "docker build -t #{test_image} -f #{dockerfile[:local]} ."
+        sh "bundle exec rspec -f d spec/#{platform}_#{version}_spec.rb"
+      end
     end
   end
 end
