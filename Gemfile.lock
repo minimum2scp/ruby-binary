@@ -6,7 +6,7 @@ GEM
       excon (>= 0.47.0)
       multi_json
     excon (0.60.0)
-    multi_json (1.12.2)
+    multi_json (1.13.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
@@ -15,7 +15,7 @@ GEM
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
       rspec-mocks (~> 3.7.0)
-    rspec-core (3.7.0)
+    rspec-core (3.7.1)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -33,7 +33,7 @@ GEM
       rspec-its
       specinfra (~> 2.72)
     sfl (2.3)
-    specinfra (2.73.0)
+    specinfra (2.73.1)
       net-scp
       net-ssh (>= 2.7, < 5.0)
       net-telnet
