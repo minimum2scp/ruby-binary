@@ -168,7 +168,7 @@ namespace :test do
       desc "test ruby #{version} (platform: #{platform})"
       task version, [] => [tarball[:local], dockerfile[:local]] do
         sh "docker build -t #{test_image} -f #{dockerfile[:local]} ."
-        sh "bundle exec rspec spec/#{platform}_#{version}_spec.rb"
+        sh "bundle exec rspec -f d spec/#{platform}_#{version}_spec.rb"
       end
     end
   end
