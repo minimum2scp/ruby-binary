@@ -26,11 +26,6 @@ references:
           paths: [ "*.tar.gz" ]
 
 jobs:
-  build_sid_2.2:
-    <<: *build_job
-    environment:
-      - target_platform: sid-amd64
-      - target_version: 2.2.9
   build_sid_2.3:
     <<: *build_job
     environment:
@@ -83,7 +78,6 @@ workflows:
   version: 2
   build_and_release:
     jobs:
-      - build_sid_2.2
       - build_sid_2.3
       - build_sid_2.4
       - build_sid_2.5
@@ -98,7 +92,6 @@ workflows:
               only:
                 - master
           requires:
-            - build_sid_2.2
             - build_sid_2.3
             - build_sid_2.4
             - build_sid_2.5
