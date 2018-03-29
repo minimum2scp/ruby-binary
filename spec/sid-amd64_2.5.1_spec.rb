@@ -5,7 +5,7 @@ set :docker_image, "minimum2scp/ruby-binary:test_sid-amd64_2.5.1"
 describe "platform=sid-amd64 version=2.5.1" do
   describe command("RBENV_VERSION=2.5.1 ruby -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "ruby 2.5.1p56 (2018-03-28 revision 63016) [x86_64-linux]\n" }
+    its(:stdout){ should eq "ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-linux]\n" }
   end
 
   describe command("RBENV_VERSION=2.5.1 gem -v") do
