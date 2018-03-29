@@ -2,21 +2,21 @@
 targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.3.6
+    version: 2.3.7
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
     after_build:
-      - rbenv global 2.3.6
+      - rbenv global 2.3.7
       - ruby --version
       - gem --version
       - gem install bundler --version 1.16.1 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.4.3
+    version: 2.4.4
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     before_build:
@@ -25,14 +25,14 @@ targets:
       ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
       - apt-get install -y libssl-dev
     after_build:
-      - rbenv global 2.4.3
+      - rbenv global 2.4.4
       - ruby --version
       - gem --version
       - gem install bundler --version 1.16.1 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.5.0
+    version: 2.5.1
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     before_build:
@@ -41,7 +41,7 @@ targets:
       ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
       - apt-get install -y libssl-dev
     after_build:
-      - rbenv global 2.5.0
+      - rbenv global 2.5.1
       - ruby --version
       - gem --version
       - gem install bundler --version 1.16.1 -N
@@ -64,33 +64,33 @@ targets:
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
-    version: 2.5.0
+    version: 2.5.1
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
-      - rbenv global 2.5.0
+      - rbenv global 2.5.1
       - ruby --version
       - gem --version
       - gem install bundler --version 1.16.1 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
-    version: 2.5.0
+    version: 2.5.1
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
-      - rbenv global 2.5.0
+      - rbenv global 2.5.1
       - ruby --version
       - gem --version
       - gem install bundler --version 1.16.1 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-wheezy:latest
     platform: wheezy-amd64
-    version: 2.5.0
+    version: 2.5.1
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
-      - rbenv global 2.5.0
+      - rbenv global 2.5.1
       - ruby --version
       - gem --version
       - gem install bundler --version 1.16.1 -N
