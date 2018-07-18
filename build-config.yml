@@ -12,7 +12,7 @@ targets:
       - rbenv global 2.3.7
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.16.2 -N
+      - gem install bundler --version 1.16.3 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -28,7 +28,7 @@ targets:
       - rbenv global 2.4.4
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.16.2 -N
+      - gem install bundler --version 1.16.3 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -44,7 +44,7 @@ targets:
       - rbenv global 2.5.1
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.16.2 -N
+      - gem install bundler --version 1.16.3 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -60,7 +60,7 @@ targets:
       - rbenv global 2.6.0-preview2
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.16.2 -N
+      - gem install bundler --version 1.16.3 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
@@ -71,7 +71,7 @@ targets:
       - rbenv global 2.5.1
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.16.2 -N
+      - gem install bundler --version 1.16.3 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
@@ -82,6 +82,6 @@ targets:
       - rbenv global 2.5.1
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.16.2 -N
+      - gem install bundler --version 1.16.3 -N
       - gem install pry pry-doc pry-coolline -N
 
