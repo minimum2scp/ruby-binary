@@ -15,7 +15,7 @@ describe "platform=sid-amd64 version=2.6.0-preview2" do
 
   describe command("RBENV_VERSION=2.6.0-preview2 bundle -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "Bundler version 1.16.4\n" }
+    its(:stdout){ should eq "Bundler version 1.16.5\n" }
   end
 
   describe command("RBENV_VERSION=2.6.0-preview2 gem list") do
@@ -25,7 +25,7 @@ describe "platform=sid-amd64 version=2.6.0-preview2" do
 
   describe command("RBENV_VERSION=2.6.0-preview2 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
     let(:login_shell){ true }
-    its(:stdout){ should match /^OpenSSL 1\.1\.0/ }
+    its(:stdout){ should match /^OpenSSL 1\.1\.1/ }
   end
 end
 
