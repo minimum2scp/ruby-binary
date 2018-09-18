@@ -25,7 +25,7 @@ describe "platform=sid-amd64 version=2.4.4" do
 
   describe command("RBENV_VERSION=2.4.4 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
     let(:login_shell){ true }
-    its(:stdout){ should match /^OpenSSL 1\.1\.0/ }
+    its(:stdout){ should match /^OpenSSL 1\.1\.1/ }
   end
 end
 
