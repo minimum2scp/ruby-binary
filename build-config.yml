@@ -3,7 +3,7 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.3.8
-    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.3.8.tar.bz2#4d1a3a88e8cf9aea624eb73843fbfc60a9a281582660f86d5e4e00870397407c"
+    src: "https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.8.tar.bz2#4d1a3a88e8cf9aea624eb73843fbfc60a9a281582660f86d5e4e00870397407c"
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     before_build:
@@ -18,7 +18,7 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.4.5
-    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.4.5.tar.bz2#276c8e73e51e4ba6a0fe81fb92669734e741ccea86f01c45e99f2c7ef7bcd1e3"
+    src: "https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.5.tar.bz2#276c8e73e51e4ba6a0fe81fb92669734e741ccea86f01c45e99f2c7ef7bcd1e3"
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     before_build:
@@ -35,7 +35,7 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.5.2
-    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.5.2.tar.bz2#ea3bcecc3b30cee271b4decde5e9ff3e17369d5fd1ed828d321c198307c9f0df"
+    src: "https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.2.tar.bz2#ea3bcecc3b30cee271b4decde5e9ff3e17369d5fd1ed828d321c198307c9f0df"
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     before_build:
@@ -68,7 +68,7 @@ targets:
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
     version: 2.5.2
-    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.5.2.tar.bz2#ea3bcecc3b30cee271b4decde5e9ff3e17369d5fd1ed828d321c198307c9f0df"
+    src: "https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.2.tar.bz2#ea3bcecc3b30cee271b4decde5e9ff3e17369d5fd1ed828d321c198307c9f0df"
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
@@ -80,7 +80,7 @@ targets:
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
     version: 2.5.2
-    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.5.2.tar.bz2#ea3bcecc3b30cee271b4decde5e9ff3e17369d5fd1ed828d321c198307c9f0df"
+    src: "https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.2.tar.bz2#ea3bcecc3b30cee271b4decde5e9ff3e17369d5fd1ed828d321c198307c9f0df"
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
