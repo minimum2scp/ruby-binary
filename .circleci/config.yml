@@ -30,17 +30,17 @@ jobs:
     <<: *build_job
     environment:
       - target_platform: sid-amd64
-      - target_version: 2.3.7
+      - target_version: 2.3.8
   build_sid_2.4:
     <<: *build_job
     environment:
       - target_platform: sid-amd64
-      - target_version: 2.4.4
+      - target_version: 2.4.5
   build_sid_2.5:
     <<: *build_job
     environment:
       - target_platform: sid-amd64
-      - target_version: 2.5.1
+      - target_version: 2.5.2
   build_sid_2.6:
     <<: *build_job
     environment:
@@ -50,12 +50,12 @@ jobs:
     <<: *build_job
     environment:
       - target_platform: stretch-amd64
-      - target_version: 2.5.1
+      - target_version: 2.5.2
   build_jessie_2.5:
     <<: *build_job
     environment:
       - target_platform: jessie-amd64
-      - target_version: 2.5.1
+      - target_version: 2.5.2
   release:
     working_directory: /tmp/ruby-binary
     docker:
