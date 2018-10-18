@@ -33,7 +33,6 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.5.3
-    src: "https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.3.tar.bz2#228a787ba68a7b20ac6e1d5af3d176d36e8ed600eb754d6325da341c3088ed76"
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     before_build:
@@ -66,7 +65,6 @@ targets:
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
     version: 2.5.3
-    src: "https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.3.tar.bz2#228a787ba68a7b20ac6e1d5af3d176d36e8ed600eb754d6325da341c3088ed76"
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
@@ -78,7 +76,6 @@ targets:
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
     version: 2.5.3
-    src: "https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.3.tar.bz2#228a787ba68a7b20ac6e1d5af3d176d36e8ed600eb754d6325da341c3088ed76"
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
