@@ -60,7 +60,6 @@ targets:
       - rbenv global 2.6.0-preview3
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.17.1 -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
