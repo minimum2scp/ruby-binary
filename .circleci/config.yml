@@ -45,7 +45,7 @@ jobs:
     <<: *build_job
     environment:
       - target_platform: sid-amd64
-      - target_version: 2.6.0-preview3
+      - target_version: 2.6.0-rc1
   build_stretch_2.5:
     <<: *build_job
     environment:
