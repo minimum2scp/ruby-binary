@@ -51,6 +51,7 @@ targets:
     version: 2.6.0-rc2
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
+    src: "https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-rc2.tar.bz2#b3d03e471e3136f43bb948013d4f4974abb63d478e8ff7ec2741b22750a3ec50"
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
