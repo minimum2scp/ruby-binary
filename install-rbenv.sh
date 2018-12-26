@@ -20,6 +20,11 @@ if [ ! -d ${RBENV_ROOT}/plugins/rbenv-update ]; then
   sudo git clone https://github.com/rkh/rbenv-update.git ${RBENV_ROOT}/plugins/rbenv-update
 fi
 
+## install rbenv-aliases
+if [ ! -d ${RBENV_ROOT}/plugins/rbenv-aliases ]; then
+  sudo git clone https://github.com/tpope/rbenv-aliases.git ${RBENV_ROOT}/plugins/rbenv-aliases
+fi
+
 ## install /etc/profile.d/rbenv.sh
 if [ ! -f /etc/profile.d/rbenv.sh ]; then
   profile=`mktemp`
