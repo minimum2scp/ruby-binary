@@ -122,7 +122,7 @@ namespace :build do
       task version, [] => ["build:#{platform}:prepare", build_script[:local]] do |t,args|
         container_name = "ruby_#{platform}_#{version}"
         data_volume_name = "data_ruby_#{platform}_#{version}"
-        opts = [ "--name=#{container_name}", "-t", "-v #{data_volume_name}:/data" ]
+        opts = [ "--name=#{container_name}", "-v #{data_volume_name}:/data" ]
         opts += envs.map{|k,v| "-e #{k}=\"#{v}\""}
         sh "docker volume create #{data_volume_name}"
         sh "docker run --rm #{opts.join(' ')} #{image} mkdir /data/binary /data/log /data/tmp"

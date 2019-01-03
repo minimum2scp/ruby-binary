@@ -12,7 +12,9 @@ targets:
       - rbenv global 2.3.8
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.17.3 -N
+      - gem update --system 3.0.2 -N
+      - gem --version
+      - gem install bundler --version 2.0.0 -f -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -28,7 +30,9 @@ targets:
       - rbenv global 2.4.5
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.17.3 -N
+      - gem update --system 3.0.2 -N
+      - gem --version
+      - gem install bundler --version 2.0.0 -f -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -44,7 +48,9 @@ targets:
       - rbenv global 2.5.3
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.17.3 -N
+      - gem update --system 3.0.2 -N
+      - gem --version
+      - gem install bundler --version 2.0.0 -f -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -60,7 +66,9 @@ targets:
       - rbenv global 2.6.0
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.17.3 -N
+      - gem update --system 3.0.2 -N
+      - gem --version
+      - gem install bundler --version 2.0.0 -f -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
@@ -74,7 +82,9 @@ targets:
       - rbenv global 2.6.0
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.17.3 -N
+      - gem update --system 3.0.2 -N
+      - gem --version
+      - gem install bundler --version 2.0.0 -f -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
@@ -85,6 +95,8 @@ targets:
       - rbenv global 2.6.0
       - ruby --version
       - gem --version
-      - gem install bundler --version 1.17.3 -N
+      - gem update --system 3.0.2 -N
+      - gem --version
+      - gem install bundler --version 2.0.0 -f -N
       - gem install pry pry-doc pry-coolline -N
 
