@@ -66,8 +66,6 @@ targets:
       - rbenv global 2.6.0
       - ruby --version
       - gem --version
-      - gem update --system 3.0.2 -N
-      - gem --version
       - gem install bundler --version 2.0.1 -f -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-stretch:latest
@@ -82,8 +80,6 @@ targets:
       - rbenv global 2.6.0
       - ruby --version
       - gem --version
-      - gem update --system 3.0.2 -N
-      - gem --version
       - gem install bundler --version 2.0.1 -f -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
@@ -94,8 +90,6 @@ targets:
     after_build:
       - rbenv global 2.6.0
       - ruby --version
-      - gem --version
-      - gem update --system 3.0.2 -N
       - gem --version
       - gem install bundler --version 2.0.1 -f -N
       - gem install pry pry-doc pry-coolline -N
