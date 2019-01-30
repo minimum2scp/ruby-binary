@@ -54,7 +54,7 @@ targets:
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.6.0
+    version: 2.6.1
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     before_build:
@@ -63,7 +63,7 @@ targets:
       ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
       - apt-get install -y libssl-dev
     after_build:
-      - rbenv global 2.6.0
+      - rbenv global 2.6.1
       - ruby --version
       - gem --version
       - gem update --system 3.0.2 -N
@@ -72,14 +72,14 @@ targets:
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
-    version: 2.6.0
+    version: 2.6.1
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     before_build:
       ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
       - apt-get install -y libssl-dev
     after_build:
-      - rbenv global 2.6.0
+      - rbenv global 2.6.1
       - ruby --version
       - gem --version
       - gem update --system 3.0.2 -N
@@ -88,11 +88,11 @@ targets:
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
-    version: 2.6.0
+    version: 2.6.1
     envs:
       RUBY_CONFIGURE_OPTS: "--disable-install-doc"
     after_build:
-      - rbenv global 2.6.0
+      - rbenv global 2.6.1
       - ruby --version
       - gem --version
       - gem update --system 3.0.2 -N
