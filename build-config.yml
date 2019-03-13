@@ -21,7 +21,6 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.5.4
-    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.5.4.tar.bz2#8a16566207b2334a6904a10a1f093befc3aaf9b2e6cf01c62b1c4ac15cb7d8fc"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
     before_build:
@@ -40,7 +39,6 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.6.2
-    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.6.2.tar.bz2#d126ada7f4147ce1029a80c2a37a0c4bfb37e9e82da8816662241a43faeb8915"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
     before_build:
@@ -59,7 +57,6 @@ targets:
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
     version: 2.6.2
-    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.6.2.tar.bz2#d126ada7f4147ce1029a80c2a37a0c4bfb37e9e82da8816662241a43faeb8915"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
     before_build:
@@ -76,7 +73,6 @@ targets:
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
     version: 2.6.2
-    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.6.2.tar.bz2#d126ada7f4147ce1029a80c2a37a0c4bfb37e9e82da8816662241a43faeb8915"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
     after_build:
