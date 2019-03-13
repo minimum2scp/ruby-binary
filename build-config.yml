@@ -38,57 +38,51 @@ targets:
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.6.1
+    version: 2.6.2
+    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.6.2.tar.bz2#d126ada7f4147ce1029a80c2a37a0c4bfb37e9e82da8816662241a43faeb8915"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
-    patches:
-      - { url: "https://bugs.ruby-lang.org/attachments/download/7631/15582-bundler-gemspec.patch" }
-      - { url: "https://bugs.ruby-lang.org/attachments/download/7635/r15469-bundler-final.patch" }
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
       ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
       - apt-get install -y libssl-dev
     after_build:
-      - rbenv global 2.6.1
+      - rbenv global 2.6.2
       - ruby --version
       - gem --version
-      - gem update --system 3.0.3 -N
+      # - gem update --system 3.0.3 -N
       - gem --version
       - gem install bundler --version 2.0.1 -f -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
-    version: 2.6.1
+    version: 2.6.2
+    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.6.2.tar.bz2#d126ada7f4147ce1029a80c2a37a0c4bfb37e9e82da8816662241a43faeb8915"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
-    patches:
-      - { url: "https://bugs.ruby-lang.org/attachments/download/7631/15582-bundler-gemspec.patch" }
-      - { url: "https://bugs.ruby-lang.org/attachments/download/7635/r15469-bundler-final.patch" }
     before_build:
       ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
       - apt-get install -y libssl-dev
     after_build:
-      - rbenv global 2.6.1
+      - rbenv global 2.6.2
       - ruby --version
       - gem --version
-      - gem update --system 3.0.3 -N
+      #- gem update --system 3.0.3 -N
       - gem --version
       - gem install bundler --version 2.0.1 -f -N
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby-jessie:latest
     platform: jessie-amd64
-    version: 2.6.1
+    version: 2.6.2
+    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.6.2.tar.bz2#d126ada7f4147ce1029a80c2a37a0c4bfb37e9e82da8816662241a43faeb8915"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
-    patches:
-      - { url: "https://bugs.ruby-lang.org/attachments/download/7631/15582-bundler-gemspec.patch" }
-      - { url: "https://bugs.ruby-lang.org/attachments/download/7635/r15469-bundler-final.patch" }
     after_build:
-      - rbenv global 2.6.1
+      - rbenv global 2.6.2
       - ruby --version
       - gem --version
-      - gem update --system 3.0.3 -N
+      #- gem update --system 3.0.3 -N
       - gem --version
       - gem install bundler --version 2.0.1 -f -N
       - gem install pry pry-doc pry-coolline -N
