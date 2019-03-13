@@ -20,7 +20,8 @@ targets:
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.5.3
+    version: 2.5.4
+    src: "https://ftp.ruby-lang.org/pub/tmp/ruby-2.5.4.tar.bz2#8a16566207b2334a6904a10a1f093befc3aaf9b2e6cf01c62b1c4ac15cb7d8fc"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
     before_build:
@@ -29,7 +30,7 @@ targets:
       ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
       - apt-get install -y libssl-dev
     after_build:
-      - rbenv global 2.5.3
+      - rbenv global 2.5.4
       - ruby --version
       - gem --version
       - gem update --system 3.0.3 -N
