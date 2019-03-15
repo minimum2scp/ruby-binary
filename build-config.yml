@@ -21,6 +21,7 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.5.5
+    src: "https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.5.tar.bz2#1f2567a55dad6e50911ce42fcc705cf686924b897f597cabf803d88192024dcb"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
     before_build:
