@@ -49,8 +49,6 @@ if [ -z "${platform}" ]; then
 
   debian_version=`cat /etc/debian_version`
   case ${debian_version} in
-    8.*)
-      platform=jessie-${arch};;
     9.*)
       platform=stretch-${arch};;
     10.0|*/sid)
