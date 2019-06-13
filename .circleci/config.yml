@@ -54,10 +54,10 @@ jobs:
   release:
     working_directory: /tmp/ruby-binary
     docker:
-      - image: circleci/ruby:2.6.0
+      - image: circleci/ruby:2.6.3
     steps:
       - checkout
-      - run: curl -o /tmp/ghr.tar.gz -L https://github.com/tcnksm/ghr/releases/download/v0.12.0/ghr_v0.12.0_linux_amd64.tar.gz
+      - run: curl -o /tmp/ghr.tar.gz -L https://github.com/tcnksm/ghr/releases/download/v0.12.1/ghr_v0.12.1_linux_amd64.tar.gz
       - run: mkdir /tmp/ghr
       - run: tar xf /tmp/ghr.tar.gz -C /tmp/ghr --strip-components=1
       - run: sudo install -m 755 -o root -g root -p /tmp/ghr/ghr /usr/local/bin/ghr
