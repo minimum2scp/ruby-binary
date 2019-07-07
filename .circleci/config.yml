@@ -46,6 +46,11 @@ jobs:
     environment:
       - target_platform: sid-amd64
       - target_version: 2.7.0-preview1
+  build_buster_2.6:
+    <<: *build_job
+    environment:
+      - target_platform: buster-amd64
+      - target_version: 2.6.3
   build_stretch_2.6:
     <<: *build_job
     environment:
@@ -73,6 +78,7 @@ workflows:
       - build_sid_2.5
       - build_sid_2.6
       - build_sid_2.7
+      - build_buster_2.6
       - build_stretch_2.6
       - hold:
           type: approval
@@ -85,6 +91,7 @@ workflows:
             - build_sid_2.5
             - build_sid_2.6
             - build_sid_2.7
+            - build_buster_2.6
             - build_stretch_2.6
       - release:
           requires:
