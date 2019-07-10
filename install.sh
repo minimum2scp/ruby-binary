@@ -51,7 +51,9 @@ if [ -z "${platform}" ]; then
   case ${debian_version} in
     9.*)
       platform=stretch-${arch};;
-    10.0|*/sid)
+    10.*)
+      platform=buster-${arch};;
+    11.0|*/sid)
       platform=sid-${arch};;
     *)
       echo "debian_version ${debian_version} is not supported"
