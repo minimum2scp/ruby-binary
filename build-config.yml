@@ -14,7 +14,7 @@ targets:
       - rbenv global 2.4.6
       - ruby --version
       - gem --version
-      - gem update --system 3.0.4 -N
+      - gem update --system 3.0.6 -N
       - gem --version
       - gem install bundler --version 2.0.2 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -32,7 +32,7 @@ targets:
       - rbenv global 2.5.5
       - ruby --version
       - gem --version
-      - gem update --system 3.0.4 -N
+      - gem update --system 3.0.6 -N
       - gem --version
       - gem install bundler --version 2.0.2 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -50,7 +50,7 @@ targets:
       - rbenv global 2.6.3
       - ruby --version
       - gem --version
-      - gem update --system 3.0.4 -N
+      - gem update --system 3.0.6 -N
       - gem --version
       - gem install bundler --version 2.0.2 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -86,7 +86,7 @@ targets:
       - rbenv global 2.6.3
       - ruby --version
       - gem --version
-      - gem update --system 3.0.4 -N
+      - gem update --system 3.0.6 -N
       - gem --version
       - gem install bundler --version 2.0.2 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -102,7 +102,7 @@ targets:
       - rbenv global 2.6.3
       - ruby --version
       - gem --version
-      - gem update --system 3.0.4 -N
+      - gem update --system 3.0.6 -N
       - gem --version
       - gem install bundler --version 2.0.2 -f -N
       - gem install pry pry-doc pry-coolline -N
