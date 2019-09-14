@@ -216,6 +216,9 @@ namespace :install do
           name = asset['name']
           url = asset['browser_download_url']
           sh "curl -L -o #{name} #{url}"
+          unless File.directory?("/opt/rbenv/versions")
+            sh "sudo mkdir /opt/rbenv/versions"
+          end
           if File.directory?("/opt/rbenv/versions/#{args.version}")
             if ENV['RUBY_BINARY_INSTALL_FORCE'] =~ /^(1|on|true|yes)$/
               sh "sudo rm -rf /opt/rbenv/versions/#{args.version}"
