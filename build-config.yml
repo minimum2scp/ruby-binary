@@ -3,7 +3,6 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.4.8
-    src: "https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.8.tar.bz2#e30eedd91386bec81489d2637522c9017aebba46f98e8b502f679df6b2f6a469"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
     before_build:
@@ -22,7 +21,6 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.5.7
-    src: "https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.7.tar.bz2#e67c69b141ed27158e47d9a4fe7e59749135b0f138dce06c8c15c3214543f56f"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
     before_build:
@@ -41,7 +39,6 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.6.5
-    src: "https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.5.tar.bz2#97ddf1b922f83c1f5c50e75bf54e27bba768d75fea7cda903b886c6745e60f0a"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
     before_build:
@@ -78,7 +75,6 @@ targets:
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
     version: 2.6.5
-    src: "https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.5.tar.bz2#97ddf1b922f83c1f5c50e75bf54e27bba768d75fea7cda903b886c6745e60f0a"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
     before_build:
@@ -97,7 +93,6 @@ targets:
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
     version: 2.6.5
-    src: "https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.5.tar.bz2#97ddf1b922f83c1f5c50e75bf54e27bba768d75fea7cda903b886c6745e60f0a"
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
     before_build:
