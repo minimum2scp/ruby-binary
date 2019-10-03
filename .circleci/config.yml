@@ -30,7 +30,7 @@ jobs:
     <<: *build_job
     environment:
       - target_platform: sid-amd64
-      - target_version: 2.4.8
+      - target_version: 2.4.9
   build_sid_2.5:
     <<: *build_job
     environment:
