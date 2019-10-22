@@ -57,6 +57,7 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.7.0-preview2
+    src: 'https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0-preview2.tar.bz2#417c84346ba84d664a13833c94c6d9f888c89bb9bee9adf469580441eaede30b'
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
     before_build:
