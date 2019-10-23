@@ -56,7 +56,7 @@ targets:
       - gem install pry pry-doc pry-coolline -N
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.7.0-preview1
+    version: 2.7.0-preview2
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
     before_build:
@@ -65,7 +65,7 @@ targets:
       ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
       - apt-get install -y libssl-dev
     after_build:
-      - rbenv global 2.7.0-preview1
+      - rbenv global 2.7.0-preview2
       - ruby --version
       - gem --version
       # - gem update --system 3.0.3 -N
