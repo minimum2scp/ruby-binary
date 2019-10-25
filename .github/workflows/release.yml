@@ -10,16 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        debian_version: [sid, buster, stretch]
-        arch: [amd64]
+        platform: [sid-amd64, buster-amd64, stretch-amd64]
         version: [2.4.9, 2.5.7, 2.6.5, 2.7.0-preview2]
         exclude:
-          - { debian_version: buster,  arch: amd64, version: 2.4.9 }
-          - { debian_version: buster,  arch: amd64, version: 2.5.7 }
-          - { debian_version: buster,  arch: amd64, version: 2.7.0-preview2 }
-          - { debian_version: stretch, arch: amd64, version: 2.4.9 }
-          - { debian_version: stretch, arch: amd64, version: 2.5.7 }
-          - { debian_version: stretch, arch: amd64, version: 2.7.0-preview2 }
+          - { platform: buster-amd64,  version: 2.4.9 }
+          - { platform: buster-amd64,  version: 2.5.7 }
+          - { platform: buster-amd64,  version: 2.7.0-preview2 }
+          - { platform: stretch-amd64, version: 2.4.9 }
+          - { platform: stretch-amd64, version: 2.5.7 }
+          - { platform: stretch-amd64, version: 2.7.0-preview2 }
       fail-fast: false
     steps:
       - run: export -p
@@ -53,21 +52,21 @@ jobs:
         with:
           ruby-version: 2.6.x
       - run: bundle install --jobs=4 --retry=3 --path=vendor/bundle
-      - run: rake build:${{ matrix.debian_version }}-${{ matrix.arch }}:prepare
-      - run: rake build:${{ matrix.debian_version }}-${{ matrix.arch }}:${{ matrix.version }}
-      - run: rake test:${{ matrix.debian_version }}-${{ matrix.arch }}:${{ matrix.version }}
+      - run: rake build:${{ matrix.platform }}:prepare
+      - run: rake build:${{ matrix.platform }}:${{ matrix.version }}
+      - run: rake test:${{ matrix.platform }}:${{ matrix.version }}
       - run: rm files/binary/.gitkeep files/log/.gitkeep
       - uses: actions/upload-artifact@v1
-        with: { name: "binary_${{ matrix.debian_version }}-${{ matrix.arch }}_${{ matrix.version }}", path: files/binary }
+        with: { name: "binary_${{ matrix.platform }}_${{ matrix.version }}", path: files/binary }
       - uses: actions/upload-artifact@v1
-        with: { name: "log_${{ matrix.debian_version }}-${{ matrix.arch }}_${{ matrix.version }}", path: files/log }
+        with: { name: "log_${{ matrix.platform }}_${{ matrix.version }}", path: files/log }
 
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: files/binary/ruby-binary_${{ matrix.debian_version }}-${{ matrix.arch }}_${{ matrix.version }}.tar.gz
-          asset_name: ruby-binary_${{ matrix.debian_version }}-${{ matrix.arch }}_${{ matrix.version }}.tar.gz
+          asset_path: files/binary/ruby-binary_${{ matrix.platform }}_${{ matrix.version }}.tar.gz
+          asset_name: ruby-binary_${{ matrix.platform }}_${{ matrix.version }}.tar.gz
           asset_content_type: application/gzip
 
