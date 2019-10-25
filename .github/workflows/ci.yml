@@ -3,124 +3,34 @@ name: CI
 on: [push]
 
 jobs:
-  sid_2_4:
-    name: Build sid 2.4
+  build:
+    name: Build
     runs-on: ubuntu-latest
-    env:
-      target_platform: sid-amd64
-      target_version: 2.4.9
+    strategy:
+      matrix:
+        debian_version: [sid, buster, stretch]
+        arch: [amd64]
+        version: [2.4.9, 2.5.7, 2.6.5, 2.7.0-preview2]
+        exclude:
+          - { debian_version: buster,  arch: amd64, version: 2.4.9 }
+          - { debian_version: buster,  arch: amd64, version: 2.5.7 }
+          - { debian_version: buster,  arch: amd64, version: 2.7.0-preview2 }
+          - { debian_version: stretch, arch: amd64, version: 2.4.9 }
+          - { debian_version: stretch, arch: amd64, version: 2.5.7 }
+          - { debian_version: stretch, arch: amd64, version: 2.7.0-preview2 }
+      fail-fast: false
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.6.x
       - run: bundle install --jobs=4 --retry=3 --path=vendor/bundle
-      - run: rake build:${target_platform}:prepare
-      - run: rake build:${target_platform}:${target_version}
-      - run: rake test:${target_platform}:${target_version}
+      - run: rake build:${{ matrix.debian_version }}-${{ matrix.arch }}:prepare
+      - run: rake build:${{ matrix.debian_version }}-${{ matrix.arch }}:${{ matrix.version }}
+      - run: rake test:${{ matrix.debian_version }}-${{ matrix.arch }}:${{ matrix.version }}
       - run: rm files/binary/.gitkeep files/log/.gitkeep
       - uses: actions/upload-artifact@v1
-        with: { name: binary_sid_2.4, path: files/binary }
+        with: { name: "binary_${{ matrix.debian_version }}-${{ matrix.arch }}_${{ matrix.version }}", path: files/binary }
       - uses: actions/upload-artifact@v1
-        with: { name: log_sid_2.4, path: files/log }
-  sid_2_5:
-    name: Build sid 2.5
-    runs-on: ubuntu-latest
-    env:
-      target_platform: sid-amd64
-      target_version: 2.5.7
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6.x
-      - run: bundle install --jobs=4 --retry=3 --path=vendor/bundle
-      - run: rake build:${target_platform}:prepare
-      - run: rake build:${target_platform}:${target_version}
-      - run: rake test:${target_platform}:${target_version}
-      - run: rm files/binary/.gitkeep files/log/.gitkeep
-      - uses: actions/upload-artifact@v1
-        with: { name: binary_sid_2.5, path: files/binary }
-      - uses: actions/upload-artifact@v1
-        with: { name: log_sid_2.5, path: files/log }
-  sid_2_6:
-    name: Build sid 2.6
-    runs-on: ubuntu-latest
-    env:
-      target_platform: sid-amd64
-      target_version: 2.6.5
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6.x
-      - run: bundle install --jobs=4 --retry=3 --path=vendor/bundle
-      - run: rake build:${target_platform}:prepare
-      - run: rake build:${target_platform}:${target_version}
-      - run: rake test:${target_platform}:${target_version}
-      - run: rm files/binary/.gitkeep files/log/.gitkeep
-      - uses: actions/upload-artifact@v1
-        with: { name: binary_sid_2.6, path: files/binary }
-      - uses: actions/upload-artifact@v1
-        with: { name: log_sid_2.6, path: files/log }
-  sid_2_7:
-    name: Build sid 2.7
-    runs-on: ubuntu-latest
-    env:
-      target_platform: sid-amd64
-      target_version: 2.7.0-preview2
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6.x
-      - run: bundle install --jobs=4 --retry=3 --path=vendor/bundle
-      - run: rake build:${target_platform}:prepare
-      - run: rake build:${target_platform}:${target_version}
-      - run: rake test:${target_platform}:${target_version}
-      - run: rm files/binary/.gitkeep files/log/.gitkeep
-      - uses: actions/upload-artifact@v1
-        with: { name: binary_sid_2.7, path: files/binary }
-      - uses: actions/upload-artifact@v1
-        with: { name: log_sid_2.7, path: files/log }
-  buster_2_6:
-    name: Build buster 2.6
-    runs-on: ubuntu-latest
-    env:
-      target_platform: buster-amd64
-      target_version: 2.6.5
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6.x
-      - run: bundle install --jobs=4 --retry=3 --path=vendor/bundle
-      - run: rake build:${target_platform}:prepare
-      - run: rake build:${target_platform}:${target_version}
-      - run: rake test:${target_platform}:${target_version}
-      - run: rm files/binary/.gitkeep files/log/.gitkeep
-      - uses: actions/upload-artifact@v1
-        with: { name: binary_buster_2.6, path: files/binary }
-      - uses: actions/upload-artifact@v1
-        with: { name: log_buster_2.6, path: files/log }
-  stretch_2_6:
-    name: Build stretch 2.6
-    runs-on: ubuntu-latest
-    env:
-      target_platform: stretch-amd64
-      target_version: 2.6.5
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6.x
-      - run: bundle install --jobs=4 --retry=3 --path=vendor/bundle
-      - run: rake build:${target_platform}:prepare
-      - run: rake build:${target_platform}:${target_version}
-      - run: rake test:${target_platform}:${target_version}
-      - run: rm files/binary/.gitkeep files/log/.gitkeep
-      - uses: actions/upload-artifact@v1
-        with: { name: binary_stretch_2.6, path: files/binary }
-      - uses: actions/upload-artifact@v1
-        with: { name: log_stretch_2.6, path: files/log }
+        with: { name: "log_${{ matrix.debian_version }}-${{ matrix.arch }}_${{ matrix.version }}", path: files/log }
 
