@@ -29,7 +29,7 @@ describe "platform=stretch-amd64 version=2.4.9" do
 
   describe command("RBENV_VERSION=2.4.9 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
     let(:login_shell){ true }
-    its(:stdout){ should match /^OpenSSL 1\.1\.1/ }
+    its(:stdout){ should match /^OpenSSL 1\.1\.0/ }
   end
 
   describe command("RBENV_VERSION=2.4.9 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
