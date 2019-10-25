@@ -11,7 +11,8 @@ require 'erb'
 TARBALLS = FileList["files/binary/*.tar.gz", "files/log/*.log"]
 CLEAN.include(TARBALLS)
 CLEAN.include(FileList['files/tmp/**'])
-BUILD_CONFIG = YAML.load(File.read "build-config.yml")
+BUILD_CONFIG_PLAIN = ERB.new(File.read("build-config.yml.erb"), nil, '-').result
+BUILD_CONFIG = YAML.load(BUILD_CONFIG_PLAIN)
 
 ## colorize: see lib/rake/file_utils_ext.rb
 def Rake.rake_output_message(message)
@@ -29,6 +30,11 @@ module FileUtils
 end
 
 task :default => "build:all"
+
+desc "Dump build-config (expand ERB template)"
+task :dump_build_config do
+  puts BUILD_CONFIG_PLAIN
+end
 
 namespace :build do
   desc "prepare all docker containers"
@@ -67,7 +73,7 @@ namespace :build do
         sh "docker pull #{image}"
       end
 
-      file build_script[:local] => ['files/scripts/build.sh.erb', 'build-config.yml'] do |t, args|
+      file build_script[:local] => ['files/scripts/build.sh.erb', 'build-config.yml.erb'] do |t, args|
         File.open(t.name, 'w') do |fh|
           build_config = {
             version:      version,
@@ -124,7 +130,7 @@ namespace :test do
     test_image    = "minimum2scp/ruby-binary:test_#{platform}_#{version}"
 
     namespace platform do
-      file dockerfile[:local] => ['files/scripts/Dockerfile.erb', 'build-config.yml'] do |t, args|
+      file dockerfile[:local] => ['files/scripts/Dockerfile.erb', 'build-config.yml.erb'] do |t, args|
         File.open(t.name, 'w') do |fh|
           fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result(binding)
         end
