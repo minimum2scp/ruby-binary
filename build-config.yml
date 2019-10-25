@@ -72,7 +72,7 @@ targets:
       - gem --version
       # - gem install bundler --version 2.0.2 -f -N
       - gem install pry pry-doc pry-coolline -N
-  - image: minimum2scp/ruby:latest
+  - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
     version: 2.4.9
     envs:
@@ -90,7 +90,7 @@ targets:
       - gem --version
       - gem install bundler --version 2.0.2 -f -N
       - gem install pry pry-doc pry-coolline -N
-  - image: minimum2scp/ruby:latest
+  - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
     version: 2.5.7
     envs:
@@ -126,7 +126,7 @@ targets:
       - gem --version
       - gem install bundler --version 2.0.2 -f -N
       - gem install pry pry-doc pry-coolline -N
-  - image: minimum2scp/ruby:latest
+  - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
     version: 2.7.0-preview2
     envs:
@@ -144,7 +144,7 @@ targets:
       - gem --version
       # - gem install bundler --version 2.0.2 -f -N
       - gem install pry pry-doc pry-coolline -N
-  - image: minimum2scp/ruby:latest
+  - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
     version: 2.4.9
     envs:
@@ -162,7 +162,7 @@ targets:
       - gem --version
       - gem install bundler --version 2.0.2 -f -N
       - gem install pry pry-doc pry-coolline -N
-  - image: minimum2scp/ruby:latest
+  - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
     version: 2.5.7
     envs:
@@ -196,7 +196,7 @@ targets:
       - gem --version
       - gem install bundler --version 2.0.2 -f -N
       - gem install pry pry-doc pry-coolline -N
-  - image: minimum2scp/ruby:latest
+  - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
     version: 2.7.0-preview2
     envs:
