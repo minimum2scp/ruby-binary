@@ -1,7 +1,7 @@
 # ruby-binary
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE.txt)
-[![Circle CI](https://circleci.com/gh/minimum2scp/ruby-binary/tree/master.svg?style=shield)](https://circleci.com/gh/minimum2scp/ruby-binary/tree/master)
+[![](https://github.com/minimum2scp/ruby-binary-20191023-tmp/workflows/CI/badge.svg)](https://github.com/minimum2scp/ruby-binary-20191023-tmp/actions?workflow=CI)
 
 Ruby binary for Debian buster/sid, stretch amd64
 

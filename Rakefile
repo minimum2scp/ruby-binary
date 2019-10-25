@@ -30,35 +30,6 @@ end
 
 task :default => "build:all"
 
-desc "download artifacts from Circle CI, and create release on Github"
-task :release do |t, args|
-  dir = Dir.mktmpdir
-  version = File.read("VERSION").chomp
-  token = ENV['CIRCLECI_TOKEN']
-  branch = ENV['CIRCLECI_BRANCH'] || 'master'
-  build_jobs = YAML.load(File.read(".circleci/config.yml"))["jobs"].keys
-  recent_builds = JSON.parse(open("https://circleci.com/api/v1.1/project/github/minimum2scp/ruby-binary/tree/#{branch}?circle-token=#{token}&limit=20&offset=0&filter=completed").read)
-  build_nums = build_jobs.map{|job_name|
-    recent_builds.select{|b| b.dig("workflows", "job_name") == job_name}.map{|b| b["build_num"] }.max
-  }
-  build_nums.each do |build_num|
-    artifacts = JSON.parse(open("https://circleci.com/api/v1.1/project/github/minimum2scp/ruby-binary/#{build_num}/artifacts?circle-token=#{token}").read)
-    artifacts.each do |a|
-      local_name = File.basename(a["path"])
-      next if local_name !~ /\.tar\.gz$/
-      loop do
-        dest = "#{dir}/#{File.basename(a["path"])}"
-        sh "curl -L -o #{dest} #{a["url"]}"
-        if File.size(dest) > 0
-          break
-        end
-      end
-    end
-  end
-  sh "ghr -u minimum2scp -r ruby-binary --draft #{version} #{dir}"
-  remove_entry_secure dir
-end
-
 namespace :build do
   desc "prepare all docker containers"
   task :prepare do
@@ -73,13 +44,7 @@ namespace :build do
     BUILD_CONFIG["targets"].each.with_index do |target, idx|
       platform = target['platform']
       version = target['version']
-      if ENV['CIRCLECI'] && ENV['CIRCLE_NODE_TOTAL'].to_i > 1
-        if idx % ENV['CIRCLE_NODE_TOTAL'].to_i == ENV['CIRCLE_NODE_INDEX'].to_i
-          Rake::Task["build:#{platform}:#{version}"].invoke
-        end
-      else
-        Rake::Task["build:#{platform}:#{version}"].invoke
-      end
+      Rake::Task["build:#{platform}:#{version}"].invoke
     end
   end
 
