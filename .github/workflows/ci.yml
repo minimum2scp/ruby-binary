@@ -47,7 +47,6 @@ jobs:
         with:
           ruby-version: 2.6.x
       - run: bundle install --jobs=4 --retry=3 --path=vendor/bundle
-      - run: rake build:${{ matrix.platform }}:prepare
       - run: rake build:${{ matrix.platform }}:${{ matrix.version }}
       - run: rake test:${{ matrix.platform }}:${{ matrix.version }}
       - run: rm files/binary/.gitkeep files/log/.gitkeep
