@@ -42,10 +42,9 @@ file 'build-config.yml' => ['build-config.yml.erb'] do |t,args|
 end
 
 namespace :build do
-  desc "prepare all docker containers"
+  desc "prepare all docker images"
   task :prepare do
-    BUILD_CONFIG['targets'].each do |build_target|
-      platform      = build_target['platform']
+    BUILD_CONFIG['targets'].map{|target| target['platform']}.uniq.each do |platform|
       Rake::Task["build:#{platform}:prepare"].invoke
     end
   end
@@ -59,64 +58,68 @@ namespace :build do
     end
   end
 
-  BUILD_CONFIG['targets'].each do |target|
-    platform      = target['platform']
-    image         = target['image']
-    version       = target['version']
-    envs          = target['envs'] || {}
-    src           = target['src']
-    patches       = target['patches'] || []
-    before_build  = target['before_build'] || []
-    after_build   = target['after_build'] || []
-    tarball       = {remote: "/data/binary/ruby-binary_#{platform}_#{version}.tar.gz", local: "files/binary/ruby-binary_#{platform}_#{version}.tar.gz"}
-    log           = {remote: "/data/log/ruby-binary_#{platform}_#{version}.log",       local: "files/log/ruby-binary_#{platform}_#{version}.log"}
-    build_script  = {remote: "/data/tmp/build_#{platform}_#{version}",                 local: "files/tmp/build_#{platform}_#{version}" }
-
+  BUILD_CONFIG['targets'].group_by{ |target| target['platform'] }.each do |platform, targets|
     namespace platform do
-      desc "prepare docker container #{image}"
+      desc "prepare docker image for #{platform}"
       task :prepare do
-        sh "docker pull #{image}"
-      end
-
-      file build_script[:local] => ['files/scripts/build.sh.erb', 'build-config.yml'] do |t, args|
-        File.open(t.name, 'w') do |fh|
-          build_config = {
-            version:      version,
-            log:          log,
-            tarball:      tarball,
-            src:          src,
-            patches:      patches,
-            before_build: before_build,
-            after_build:  after_build,
-          }
-          fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result(binding)
+        images = targets.map{|target| target['image']}.uniq
+        images.each do |image|
+          sh "docker pull #{image}"
         end
-        chmod "u+x", t.name
       end
 
-      desc "build ruby #{version} with docker container #{image} (platform: #{platform})"
-      task version, [] => ["build:#{platform}:prepare", build_script[:local]] do |t,args|
-        container_name = "ruby_#{platform}_#{version}"
-        data_volume_name = "data_ruby_#{platform}_#{version}"
-        opts = [ "--name=#{container_name}", "-v #{data_volume_name}:/data" ]
-        opts += envs.map{|k,v| "-e #{k}=\"#{v}\""}
-        sh "docker volume create #{data_volume_name}"
-        sh "docker run --rm #{opts.join(' ')} #{image} mkdir /data/binary /data/log /data/tmp"
-        sh "docker create #{opts.join(' ')} #{image} #{build_script[:remote]}"
-        sh "docker cp #{build_script[:local]} #{container_name}:#{build_script[:remote]}"
-        sh "docker cp files/patches/ #{container_name}:/data/patches/"
-        begin
-          sh "docker start -a #{container_name}"
-        ensure
-          sh "docker cp #{container_name}:#{log[:remote]} #{log[:local]}"
+      targets.each do |target|
+        image         = target['image']
+        version       = target['version']
+        envs          = target['envs'] || {}
+        src           = target['src']
+        patches       = target['patches'] || []
+        before_build  = target['before_build'] || []
+        after_build   = target['after_build'] || []
+        tarball       = {remote: "/data/binary/ruby-binary_#{platform}_#{version}.tar.gz", local: "files/binary/ruby-binary_#{platform}_#{version}.tar.gz"}
+        log           = {remote: "/data/log/ruby-binary_#{platform}_#{version}.log",       local: "files/log/ruby-binary_#{platform}_#{version}.log"}
+        build_script  = {remote: "/data/tmp/build_#{platform}_#{version}",                 local: "files/tmp/build_#{platform}_#{version}" }
+
+        file build_script[:local] => ['files/scripts/build.sh.erb', 'build-config.yml'] do |t, args|
+          File.open(t.name, 'w') do |fh|
+            build_config = {
+              version:      version,
+              log:          log,
+              tarball:      tarball,
+              src:          src,
+              patches:      patches,
+              before_build: before_build,
+              after_build:  after_build,
+            }
+            fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result(binding)
+          end
+          chmod "u+x", t.name
         end
-        sh "docker cp #{container_name}:#{tarball[:remote]} #{tarball[:local]}"
-        sh "docker rm #{container_name}"
-        sh "docker volume rm #{data_volume_name}"
-      end
 
-      file tarball[:local] do
-        Rake::Task["build:#{platform}:#{version}"].invoke
+        file tarball[:local] do
+          Rake::Task["build:#{platform}:#{version}"].invoke
+        end
+
+        desc "build ruby #{version} with docker image #{image} (platform: #{platform})"
+        task version, [] => ["build:#{platform}:prepare", build_script[:local]] do |t,args|
+          container_name = "ruby_#{platform}_#{version}"
+          data_volume_name = "data_ruby_#{platform}_#{version}"
+          opts = [ "--name=#{container_name}", "-v #{data_volume_name}:/data" ]
+          opts += envs.map{|k,v| "-e #{k}=\"#{v}\""}
+          sh "docker volume create #{data_volume_name}"
+          sh "docker run --rm #{opts.join(' ')} #{image} mkdir /data/binary /data/log /data/tmp"
+          sh "docker create #{opts.join(' ')} #{image} #{build_script[:remote]}"
+          sh "docker cp #{build_script[:local]} #{container_name}:#{build_script[:remote]}"
+          sh "docker cp files/patches/ #{container_name}:/data/patches/"
+          begin
+            sh "docker start -a #{container_name}"
+          ensure
+            sh "docker cp #{container_name}:#{log[:remote]} #{log[:local]}"
+          end
+          sh "docker cp #{container_name}:#{tarball[:remote]} #{tarball[:local]}"
+          sh "docker rm #{container_name}"
+          sh "docker volume rm #{data_volume_name}"
+        end
       end
     end
   end
@@ -126,25 +129,26 @@ namespace :test do
   desc "test all binaries with container"
   task :all => BUILD_CONFIG["targets"].map{|target| "test:#{target['platform']}:#{target['version']}" }
 
-  BUILD_CONFIG['targets'].each do |target|
-    platform      = target['platform']
-    image         = target['image']
-    version       = target['version']
-    tarball       = {local: "files/binary/ruby-binary_#{platform}_#{version}.tar.gz"}
-    dockerfile    = {local: "files/tmp/Dockerfile_#{platform}_#{version}" }
-    test_image    = "minimum2scp/ruby-binary:test_#{platform}_#{version}"
-
+  BUILD_CONFIG['targets'].group_by{ |target| target['platform'] }.each do |platform, targets|
     namespace platform do
-      file dockerfile[:local] => ['files/scripts/Dockerfile.erb', 'build-config.yml'] do |t, args|
-        File.open(t.name, 'w') do |fh|
-          fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result(binding)
-        end
-      end
+      targets.each do |target|
+        image         = target['image']
+        version       = target['version']
+        tarball       = {local: "files/binary/ruby-binary_#{platform}_#{version}.tar.gz"}
+        dockerfile    = {local: "files/tmp/Dockerfile_#{platform}_#{version}" }
+        test_image    = "minimum2scp/ruby-binary:test_#{platform}_#{version}"
 
-      desc "test ruby #{version} (platform: #{platform})"
-      task version, [] => [tarball[:local], dockerfile[:local]] do
-        sh "docker build -t #{test_image} -f #{dockerfile[:local]} ."
-        sh "bundle exec rspec -f d spec/#{platform}_#{version}_spec.rb"
+        file dockerfile[:local] => ['files/scripts/Dockerfile.erb', 'build-config.yml'] do |t, args|
+          File.open(t.name, 'w') do |fh|
+            fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result(binding)
+          end
+        end
+
+        desc "test ruby #{version} (platform: #{platform})"
+        task version, [] => [tarball[:local], dockerfile[:local]] do
+          sh "docker build -t #{test_image} -f #{dockerfile[:local]} ."
+          sh "bundle exec rspec -f d spec/#{platform}_#{version}_spec.rb"
+        end
       end
     end
   end
