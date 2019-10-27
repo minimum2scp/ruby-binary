@@ -10,8 +10,6 @@ targets:
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
-      - apt-get install -y libssl-dev
 
     after_build:
       - rbenv global 2.4.9
@@ -32,8 +30,6 @@ targets:
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
-      - apt-get install -y libssl-dev
 
     after_build:
       - rbenv global 2.5.7
@@ -54,8 +50,6 @@ targets:
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
-      - apt-get install -y libssl-dev
 
     after_build:
       - rbenv global 2.6.5
@@ -76,8 +70,6 @@ targets:
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
-      - apt-get install -y libssl-dev
 
     after_build:
       - rbenv global 2.7.0-preview2
@@ -95,8 +87,6 @@ targets:
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
-      - apt-get install -y libssl-dev
 
     after_build:
       - rbenv global 2.4.9
@@ -117,8 +107,6 @@ targets:
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
-      - apt-get install -y libssl-dev
 
     after_build:
       - rbenv global 2.5.7
@@ -139,8 +127,6 @@ targets:
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
-      - apt-get install -y libssl-dev
 
     after_build:
       - rbenv global 2.6.5
@@ -161,8 +147,6 @@ targets:
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
-      - apt-get install -y libssl-dev
 
     after_build:
       - rbenv global 2.7.0-preview2
@@ -180,8 +164,6 @@ targets:
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
-      - apt-get install -y libssl-dev
 
     after_build:
       - rbenv global 2.4.9
@@ -202,8 +184,6 @@ targets:
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
-      - apt-get install -y libssl-dev
 
     after_build:
       - rbenv global 2.5.7
@@ -224,8 +204,6 @@ targets:
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
-      - apt-get install -y libssl-dev
 
     after_build:
       - rbenv global 2.6.5
@@ -246,8 +224,6 @@ targets:
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-      ## Install libssl-dev (OpenSSL 1.1.0 development files) instead of libssl1.0-dev (OpenSSL 1.0.2)
-      - apt-get install -y libssl-dev
 
     after_build:
       - rbenv global 2.7.0-preview2
