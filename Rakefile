@@ -11,7 +11,11 @@ require 'erb'
 TARBALLS = FileList["files/binary/*.tar.gz", "files/log/*.log"]
 CLEAN.include(TARBALLS)
 CLEAN.include(FileList['files/tmp/**'])
-BUILD_CONFIG = YAML.load(File.read "build-config.yml")
+BUILD_CONFIG = if File.exist? 'build-config.yml'
+                 YAML.load(File.read('build-config.yml'))
+               else
+                 { 'targets' => [] }
+               end
 
 ## colorize: see lib/rake/file_utils_ext.rb
 def Rake.rake_output_message(message)
@@ -29,6 +33,13 @@ module FileUtils
 end
 
 task :default => "build:all"
+
+desc 'Generate build-config.yml from build-config.yml.erb'
+file 'build-config.yml' => ['build-config.yml.erb'] do |t,args|
+  File.open(t.name, 'w') do |fh|
+    fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result
+  end
+end
 
 namespace :build do
   desc "prepare all docker images"

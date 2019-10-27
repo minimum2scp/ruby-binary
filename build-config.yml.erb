@@ -1,0 +1,54 @@
+---
+targets:
+<%
+  platforms = %w[sid-amd64 buster-amd64 stretch-amd64]
+  versions = %w[2.4.9 2.5.7 2.6.5 2.7.0-preview2]
+  matrix = platforms.product(versions)
+
+  matrix.each do |platform, version|
+    case platform
+    when 'sid-amd64'
+      image = 'minimum2scp/ruby:latest'
+    when 'buster-amd64'
+      image = 'minimum2scp/ruby-buster:latest'
+    when 'stretch-amd64'
+      image = 'minimum2scp/ruby-stretch:latest'
+    end
+
+    case version
+    when '2.7.0-preview2'
+      install_bundler = false
+      update_rubygems = false
+      ruby_configure_opts = '--enable-load-relative'
+    else
+      install_bundler = '2.0.2'
+      update_rubygems = '3.0.6'
+      ruby_configure_opts = '--enable-load-relative --disable-install-doc'
+    end
+
+-%>
+  - image: <%= image %>
+    platform: <%= platform %>
+    version: <%= version %>
+
+    envs:
+      RUBY_CONFIGURE_OPTS: <%= ruby_configure_opts.dump %>
+
+    before_build:
+      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
+      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
+
+    after_build:
+      - rbenv global <%= version %>
+      - ruby --version
+      - gem --version
+      <%- if update_rubygems -%>
+      - gem update --system <%= update_rubygems %> -N
+      - gem --version
+      <%- end -%>
+      <%- if install_bundler -%>
+      - gem install bundler --version <%= install_bundler %> -f -N
+      <%- end -%>
+      - gem install pry pry-doc pry-coolline -N
+
+<% end %>
