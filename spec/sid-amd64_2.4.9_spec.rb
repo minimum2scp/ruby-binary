@@ -19,7 +19,7 @@ describe "platform=sid-amd64 version=2.4.9" do
 
   describe command("RBENV_VERSION=2.4.9 bundle -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "Bundler version 2.1.0\n" }
+    its(:stdout){ should eq "Bundler version 2.1.1\n" }
   end
 
   describe command("RBENV_VERSION=2.4.9 gem list") do
