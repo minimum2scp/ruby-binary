@@ -14,7 +14,7 @@ describe "platform=sid-amd64 version=2.5.7" do
 
   describe command("RBENV_VERSION=2.5.7 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.1.1\n" }
+    its(:stdout){ should eq "3.1.2\n" }
   end
 
   describe command("RBENV_VERSION=2.5.7 bundle -v") do

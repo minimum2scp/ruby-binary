@@ -17,12 +17,12 @@ targets:
 
     case version
     when '2.7.0-rc1'
-      install_bundler = '2.1.2'
-      update_rubygems = false
+      install_bundler = false
+      update_rubygems = '3.1.2'
       ruby_configure_opts = '--enable-load-relative'
     else
-      install_bundler = '2.1.2'
-      update_rubygems = '3.1.1'
+      install_bundler = false
+      update_rubygems = '3.1.2'
       ruby_configure_opts = '--enable-load-relative --disable-install-doc'
     end
 
