@@ -17,9 +17,9 @@ describe "platform=buster-amd64 version=2.4.9" do
     its(:stdout){ should eq "3.1.2\n" }
   end
 
-  describe command("RBENV_VERSION=2.4.9 bundle -v") do
+  describe command("RBENV_VERSION=2.4.9 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "Bundler version 2.1.2\n" }
+    its(:stdout){ should eq "bundler (default: 2.1.2, 1.17.3)\n" }
   end
 
   describe command("RBENV_VERSION=2.4.9 gem list") do

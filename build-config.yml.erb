@@ -17,12 +17,14 @@ targets:
 
     case version
     when '2.7.0-rc2'
-      install_bundler = '2.1.2'
       update_rubygems = false
+      install_bundler = '2.1.2'
+      install_legacy_bundler = '1.17.3'
       ruby_configure_opts = '--enable-load-relative'
     else
-      install_bundler = false
       update_rubygems = '3.1.2'
+      install_bundler = false
+      install_legacy_bundler = '1.17.3'
       ruby_configure_opts = '--enable-load-relative --disable-install-doc'
     end
 
@@ -45,6 +47,9 @@ targets:
       <%- if update_rubygems -%>
       - gem update --system <%= update_rubygems %> -N
       - gem --version
+      <%- end -%>
+      <%- if install_legacy_bundler -%>
+      - gem install bundler --version <%= install_legacy_bundler %> -f -N
       <%- end -%>
       <%- if install_bundler -%>
       - gem install bundler --version <%= install_bundler %> -f -N
