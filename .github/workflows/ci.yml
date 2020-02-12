@@ -43,9 +43,9 @@ jobs:
         run: echo "$MATRIX_CONTEXT"
 
       - uses: actions/checkout@master
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6.x
+          ruby-version: 2.6
       - run: bundle install --jobs=4 --retry=3 --path=vendor/bundle
       - run: rake build:${{ matrix.platform }}:${{ matrix.version }}
       - run: rake test:${{ matrix.platform }}:${{ matrix.version }}
