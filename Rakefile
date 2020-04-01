@@ -156,12 +156,12 @@ end
 
 def get_github_release(user, repos, tag, prerelease=false)
   if prerelease
-    releases = JSON.parse open("https://api.github.com/repos/#{user}/#{repos}/releases").read
+    releases = JSON.parse URI.open("https://api.github.com/repos/#{user}/#{repos}/releases").read
     releases.sort_by{|rel| rel['published_at']}.last
   elsif tag && !tag.empty?
-    JSON.parse open("https://api.github.com/repos/#{user}/#{repos}/releases/tags/#{tag}").read
+    JSON.parse URI.open("https://api.github.com/repos/#{user}/#{repos}/releases/tags/#{tag}").read
   else
-    JSON.parse open("https://api.github.com/repos/#{user}/#{repos}/releases/latest").read
+    JSON.parse URI.open("https://api.github.com/repos/#{user}/#{repos}/releases/latest").read
   end
 end
 
@@ -169,7 +169,7 @@ namespace :install do
   namespace :github_release do
     desc "list releases on github"
     task :list_releases do
-      releases = JSON.parse open('https://api.github.com/repos/minimum2scp/ruby-binary/releases').read
+      releases = JSON.parse URI.open('https://api.github.com/repos/minimum2scp/ruby-binary/releases').read
       releases.each do |rel|
         puts "%s (%s) assets: %s" % [
           rel['tag_name'], rel['published_at'],
