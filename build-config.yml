@@ -2,27 +2,6 @@
 targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.4.10
-
-    envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
-
-    before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-
-    after_build:
-      - rbenv global 2.4.10
-      - ruby --version
-      - gem --version
-      - gem update --system 3.1.2 -N
-      - gem --version
-      - gem install bundler --version 1.17.3 -f -N
-      - gem install bundler --version 2.1.4 -f -N
-      - gem install pry pry-doc pry-coolline -N
-
-  - image: minimum2scp/ruby:latest
-    platform: sid-amd64
     version: 2.5.8
 
     envs:
@@ -83,27 +62,6 @@ targets:
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
-    version: 2.4.10
-
-    envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
-
-    before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-
-    after_build:
-      - rbenv global 2.4.10
-      - ruby --version
-      - gem --version
-      - gem update --system 3.1.2 -N
-      - gem --version
-      - gem install bundler --version 1.17.3 -f -N
-      - gem install bundler --version 2.1.4 -f -N
-      - gem install pry pry-doc pry-coolline -N
-
-  - image: minimum2scp/ruby-buster:latest
-    platform: buster-amd64
     version: 2.5.8
 
     envs:
@@ -160,27 +118,6 @@ targets:
       - ruby --version
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
-      - gem install pry pry-doc pry-coolline -N
-
-  - image: minimum2scp/ruby-stretch:latest
-    platform: stretch-amd64
-    version: 2.4.10
-
-    envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
-
-    before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-
-    after_build:
-      - rbenv global 2.4.10
-      - ruby --version
-      - gem --version
-      - gem update --system 3.1.2 -N
-      - gem --version
-      - gem install bundler --version 1.17.3 -f -N
-      - gem install bundler --version 2.1.4 -f -N
       - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-stretch:latest
