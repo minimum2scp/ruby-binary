@@ -14,12 +14,12 @@ describe "platform=sid-amd64 version=2.5.8" do
 
   describe command("RBENV_VERSION=2.5.8 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.1.2\n" }
+    its(:stdout){ should eq "3.1.3\n" }
   end
 
   describe command("RBENV_VERSION=2.5.8 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (2.1.4, default: 2.1.2, 1.17.3)\n" }
+    its(:stdout){ should eq "bundler (default: 2.1.4, 1.17.3)\n" }
   end
 
   describe command("RBENV_VERSION=2.5.8 gem list") do
