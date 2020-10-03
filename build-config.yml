@@ -42,7 +42,7 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.7.1
+    version: 2.7.2
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
@@ -52,10 +52,8 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.7.1
+      - rbenv global 2.7.2
       - ruby --version
-      - gem --version
-      - gem update --system 3.1.4 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -120,7 +118,7 @@ targets:
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
-    version: 2.7.1
+    version: 2.7.2
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
@@ -130,10 +128,8 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.7.1
+      - rbenv global 2.7.2
       - ruby --version
-      - gem --version
-      - gem update --system 3.1.4 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -198,7 +194,7 @@ targets:
 
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
-    version: 2.7.1
+    version: 2.7.2
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
@@ -208,10 +204,8 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.7.1
+      - rbenv global 2.7.2
       - ruby --version
-      - gem --version
-      - gem update --system 3.1.4 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
