@@ -2,7 +2,7 @@
 targets:
 <%
   platforms = %w[sid-amd64 buster-amd64 stretch-amd64]
-  versions = %w[2.5.8 2.6.6 2.7.1]
+  versions = %w[2.5.8 2.6.6 2.7.2]
   matrix = platforms.product(versions)
 
   matrix.each do |platform, version|
@@ -16,8 +16,8 @@ targets:
     end
 
     case version
-    when '2.7.1'
-      update_rubygems = '3.1.4'
+    when '2.7.2'
+      update_rubygems = false
       install_bundler = false
       install_legacy_bundler = '1.17.3'
       ruby_configure_opts = '--enable-load-relative'
