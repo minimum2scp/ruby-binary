@@ -23,6 +23,11 @@ RSpec.shared_examples 'ruby 3.0.0-preview2' do
     let(:login_shell){ true }
     its(:stdout){ should eq "yes\n" }
   end
+
+  describe command("RBENV_VERSION=3.0.0-preview2 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
+    let(:login_shell){ true }
+    its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
+  end
 end
 
 RSpec.shared_examples 'ruby 2.7.2' do
@@ -49,6 +54,11 @@ RSpec.shared_examples 'ruby 2.7.2' do
   describe command("RBENV_VERSION=2.7.2 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "yes\n" }
+  end
+
+  describe command("RBENV_VERSION=2.7.2 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
+    let(:login_shell){ true }
+    its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
   end
 end
 
@@ -77,6 +87,11 @@ RSpec.shared_examples 'ruby 2.6.6' do
     let(:login_shell){ true }
     its(:stdout){ should eq "yes\n" }
   end
+
+  describe command("RBENV_VERSION=2.6.6 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
+    let(:login_shell){ true }
+    its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
+  end
 end
 
 RSpec.shared_examples 'ruby 2.5.8' do
@@ -103,6 +118,11 @@ RSpec.shared_examples 'ruby 2.5.8' do
   describe command("RBENV_VERSION=2.5.8 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "yes\n" }
+  end
+
+  describe command("RBENV_VERSION=2.5.8 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
+    let(:login_shell){ true }
+    its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
   end
 end
 
