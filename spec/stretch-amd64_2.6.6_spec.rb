@@ -14,12 +14,12 @@ describe "platform=stretch-amd64 version=2.6.6" do
 
   describe command("RBENV_VERSION=2.6.6 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.1.5\n" }
+    its(:stdout){ should eq "3.2.0\n" }
   end
 
   describe command("RBENV_VERSION=2.6.6 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.1.4, 1.17.3)\n" }
+    its(:stdout){ should eq "bundler (default: 2.2.0, 1.17.3)\n" }
   end
 
   describe command("RBENV_VERSION=2.6.6 gem list") do
