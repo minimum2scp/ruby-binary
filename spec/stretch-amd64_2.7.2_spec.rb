@@ -1,5 +1,3 @@
-require "spec_helper"
-
 set :docker_image, "minimum2scp/ruby-binary:test_stretch-amd64_2.7.2"
 
 describe "platform=stretch-amd64 version=2.7.2" do

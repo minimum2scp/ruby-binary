@@ -1,5 +1,3 @@
-require "spec_helper"
-
 set :docker_image, "minimum2scp/ruby-binary:test_buster-amd64_3.0.0-preview2"
 
 describe "platform=buster-amd64 version=3.0.0-preview2" do

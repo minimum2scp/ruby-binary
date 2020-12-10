@@ -1,5 +1,3 @@
-require "spec_helper"
-
 set :docker_image, "minimum2scp/ruby-binary:test_sid-amd64_2.5.8"
 
 describe "platform=sid-amd64 version=2.5.8" do
