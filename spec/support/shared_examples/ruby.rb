@@ -1,30 +1,30 @@
-RSpec.shared_examples 'ruby 3.0.0-preview2' do
-  describe command("RBENV_VERSION=3.0.0-preview2 ruby -v") do
+RSpec.shared_examples 'ruby 3.0.0-rc1' do
+  describe command("RBENV_VERSION=3.0.0-rc1 ruby -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "ruby 3.0.0preview2 (2020-12-08 master d7a16670c3) [x86_64-linux]\n" }
+    its(:stdout){ should eq "ruby 3.0.0rc1 (2020-12-20 master 8680ae9cbd) [x86_64-linux]\n" }
   end
 
-  describe command("RBENV_VERSION=3.0.0-preview2 gem -v") do
+  describe command("RBENV_VERSION=3.0.0-rc1 gem -v") do
     let(:login_shell){ true }
     its(:stdout){ should eq "3.2.2\n" }
   end
 
-  describe command("RBENV_VERSION=3.0.0-preview2 gem list --exact bundler") do
+  describe command("RBENV_VERSION=3.0.0-rc1 gem list --exact bundler") do
     let(:login_shell){ true }
     its(:stdout){ should eq "bundler (default: 2.2.2, 1.17.3)\n" }
   end
 
-  describe command("RBENV_VERSION=3.0.0-preview2 gem list") do
+  describe command("RBENV_VERSION=3.0.0-rc1 gem list") do
     let(:login_shell){ true }
     its(:stdout){ should match /^pry \(/ }
   end
 
-  describe command("RBENV_VERSION=3.0.0-preview2 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
+  describe command("RBENV_VERSION=3.0.0-rc1 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "yes\n" }
   end
 
-  describe command("RBENV_VERSION=3.0.0-preview2 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
+  describe command("RBENV_VERSION=3.0.0-rc1 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
     let(:login_shell){ true }
     its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
   end
