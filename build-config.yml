@@ -2,7 +2,7 @@
 targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.5.8
+    version: 2.5.9
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
@@ -12,7 +12,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.5.8
+      - rbenv global 2.5.9
       - ruby --version
       - gem --version
       - gem update --system 3.2.15 -N
@@ -22,7 +22,7 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.6.6
+    version: 2.6.7
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
@@ -32,7 +32,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.6.6
+      - rbenv global 2.6.7
       - ruby --version
       - gem --version
       - gem update --system 3.2.15 -N
@@ -42,17 +42,17 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.7.2
+    version: 2.7.3
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.7.2
+      - rbenv global 2.7.3
       - ruby --version
       - gem --version
       - gem update --system 3.2.15 -N
@@ -62,27 +62,7 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 3.0.0
-
-    envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-
-    before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-
-    after_build:
-      - rbenv global 3.0.0
-      - ruby --version
-      - gem --version
-      - gem update --system 3.2.15 -N
-      - gem --version
-      - gem install bundler --version 1.17.3 -f -N
-      - gem install pry pry-doc pry-coolline -N
-
-  - image: minimum2scp/ruby-buster:latest
-    platform: buster-amd64
-    version: 2.5.8
+    version: 3.0.1
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
@@ -92,7 +72,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.5.8
+      - rbenv global 3.0.1
       - ruby --version
       - gem --version
       - gem update --system 3.2.15 -N
@@ -102,7 +82,7 @@ targets:
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
-    version: 2.6.6
+    version: 2.5.9
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
@@ -112,7 +92,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.6.6
+      - rbenv global 2.5.9
       - ruby --version
       - gem --version
       - gem update --system 3.2.15 -N
@@ -122,17 +102,17 @@ targets:
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
-    version: 2.7.2
+    version: 2.6.7
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.7.2
+      - rbenv global 2.6.7
       - ruby --version
       - gem --version
       - gem update --system 3.2.15 -N
@@ -142,27 +122,7 @@ targets:
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
-    version: 3.0.0
-
-    envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-
-    before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-
-    after_build:
-      - rbenv global 3.0.0
-      - ruby --version
-      - gem --version
-      - gem update --system 3.2.15 -N
-      - gem --version
-      - gem install bundler --version 1.17.3 -f -N
-      - gem install pry pry-doc pry-coolline -N
-
-  - image: minimum2scp/ruby-stretch:latest
-    platform: stretch-amd64
-    version: 2.5.8
+    version: 2.7.3
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
@@ -172,7 +132,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.5.8
+      - rbenv global 2.7.3
       - ruby --version
       - gem --version
       - gem update --system 3.2.15 -N
@@ -180,9 +140,9 @@ targets:
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
-  - image: minimum2scp/ruby-stretch:latest
-    platform: stretch-amd64
-    version: 2.6.6
+  - image: minimum2scp/ruby-buster:latest
+    platform: buster-amd64
+    version: 3.0.1
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
@@ -192,7 +152,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.6.6
+      - rbenv global 3.0.1
       - ruby --version
       - gem --version
       - gem update --system 3.2.15 -N
@@ -202,17 +162,17 @@ targets:
 
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
-    version: 2.7.2
+    version: 2.5.9
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.7.2
+      - rbenv global 2.5.9
       - ruby --version
       - gem --version
       - gem update --system 3.2.15 -N
@@ -222,17 +182,57 @@ targets:
 
   - image: minimum2scp/ruby-stretch:latest
     platform: stretch-amd64
-    version: 3.0.0
+    version: 2.6.7
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.0.0
+      - rbenv global 2.6.7
+      - ruby --version
+      - gem --version
+      - gem update --system 3.2.15 -N
+      - gem --version
+      - gem install bundler --version 1.17.3 -f -N
+      - gem install pry pry-doc pry-coolline -N
+
+  - image: minimum2scp/ruby-stretch:latest
+    platform: stretch-amd64
+    version: 2.7.3
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
+
+    before_build:
+      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
+      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
+
+    after_build:
+      - rbenv global 2.7.3
+      - ruby --version
+      - gem --version
+      - gem update --system 3.2.15 -N
+      - gem --version
+      - gem install bundler --version 1.17.3 -f -N
+      - gem install pry pry-doc pry-coolline -N
+
+  - image: minimum2scp/ruby-stretch:latest
+    platform: stretch-amd64
+    version: 3.0.1
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
+
+    before_build:
+      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
+      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
+
+    after_build:
+      - rbenv global 3.0.1
       - ruby --version
       - gem --version
       - gem update --system 3.2.15 -N
