@@ -15,7 +15,7 @@ targets:
       - rbenv global 2.5.9
       - ruby --version
       - gem --version
-      - gem update --system 3.2.15 -N
+      - gem update --system 3.2.16 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -35,7 +35,7 @@ targets:
       - rbenv global 2.6.7
       - ruby --version
       - gem --version
-      - gem update --system 3.2.15 -N
+      - gem update --system 3.2.16 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -45,7 +45,7 @@ targets:
     version: 2.7.3
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
@@ -55,7 +55,7 @@ targets:
       - rbenv global 2.7.3
       - ruby --version
       - gem --version
-      - gem update --system 3.2.15 -N
+      - gem update --system 3.2.16 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -65,7 +65,7 @@ targets:
     version: 3.0.1
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
@@ -75,7 +75,7 @@ targets:
       - rbenv global 3.0.1
       - ruby --version
       - gem --version
-      - gem update --system 3.2.15 -N
+      - gem update --system 3.2.16 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -95,7 +95,7 @@ targets:
       - rbenv global 2.5.9
       - ruby --version
       - gem --version
-      - gem update --system 3.2.15 -N
+      - gem update --system 3.2.16 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -115,7 +115,7 @@ targets:
       - rbenv global 2.6.7
       - ruby --version
       - gem --version
-      - gem update --system 3.2.15 -N
+      - gem update --system 3.2.16 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -125,7 +125,7 @@ targets:
     version: 2.7.3
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
@@ -135,7 +135,7 @@ targets:
       - rbenv global 2.7.3
       - ruby --version
       - gem --version
-      - gem update --system 3.2.15 -N
+      - gem update --system 3.2.16 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -145,7 +145,7 @@ targets:
     version: 3.0.1
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
@@ -155,7 +155,7 @@ targets:
       - rbenv global 3.0.1
       - ruby --version
       - gem --version
-      - gem update --system 3.2.15 -N
+      - gem update --system 3.2.16 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -175,7 +175,7 @@ targets:
       - rbenv global 2.5.9
       - ruby --version
       - gem --version
-      - gem update --system 3.2.15 -N
+      - gem update --system 3.2.16 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -195,7 +195,7 @@ targets:
       - rbenv global 2.6.7
       - ruby --version
       - gem --version
-      - gem update --system 3.2.15 -N
+      - gem update --system 3.2.16 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -205,7 +205,7 @@ targets:
     version: 2.7.3
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
@@ -215,7 +215,7 @@ targets:
       - rbenv global 2.7.3
       - ruby --version
       - gem --version
-      - gem update --system 3.2.15 -N
+      - gem update --system 3.2.16 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -225,7 +225,7 @@ targets:
     version: 3.0.1
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
@@ -235,7 +235,7 @@ targets:
       - rbenv global 3.0.1
       - ruby --version
       - gem --version
-      - gem update --system 3.2.15 -N
+      - gem update --system 3.2.16 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
