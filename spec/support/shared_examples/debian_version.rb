@@ -1,6 +1,6 @@
 RSpec.shared_examples 'debian sid' do
   describe file('/etc/debian_version') do
-    its(:content){ should eq "bullseye/sid\n" }
+    its(:content){ should match a_string_starting_with('11.') }
   end
 end
 
