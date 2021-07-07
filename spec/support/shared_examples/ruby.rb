@@ -6,12 +6,12 @@ RSpec.shared_examples 'ruby 3.0.1' do
 
   describe command("RBENV_VERSION=3.0.1 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.2.21\n" }
+    its(:stdout){ should eq "3.2.22\n" }
   end
 
   describe command("RBENV_VERSION=3.0.1 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.2.21, 1.17.3)\n" }
+    its(:stdout){ should eq "bundler (default: 2.2.22, 1.17.3)\n" }
   end
 
   describe command("RBENV_VERSION=3.0.1 gem list") do
@@ -38,12 +38,12 @@ RSpec.shared_examples 'ruby 2.7.3' do
 
   describe command("RBENV_VERSION=2.7.3 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.2.21\n" }
+    its(:stdout){ should eq "3.2.22\n" }
   end
 
   describe command("RBENV_VERSION=2.7.3 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.2.21, 1.17.3)\n" }
+    its(:stdout){ should eq "bundler (default: 2.2.22, 1.17.3)\n" }
   end
 
   describe command("RBENV_VERSION=2.7.3 gem list") do
@@ -70,12 +70,12 @@ RSpec.shared_examples 'ruby 2.6.7' do
 
   describe command("RBENV_VERSION=2.6.7 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.2.21\n" }
+    its(:stdout){ should eq "3.2.22\n" }
   end
 
   describe command("RBENV_VERSION=2.6.7 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.2.21, 1.17.3)\n" }
+    its(:stdout){ should eq "bundler (default: 2.2.22, 1.17.3)\n" }
   end
 
   describe command("RBENV_VERSION=2.6.7 gem list") do
@@ -102,12 +102,12 @@ RSpec.shared_examples 'ruby 2.5.9' do
 
   describe command("RBENV_VERSION=2.5.9 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.2.21\n" }
+    its(:stdout){ should eq "3.2.22\n" }
   end
 
   describe command("RBENV_VERSION=2.5.9 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.2.21, 1.17.3)\n" }
+    its(:stdout){ should eq "bundler (default: 2.2.22, 1.17.3)\n" }
   end
 
   describe command("RBENV_VERSION=2.5.9 gem list") do
