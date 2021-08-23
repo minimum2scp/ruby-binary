@@ -53,7 +53,9 @@ if [ -z "${platform}" ]; then
       platform=stretch-${arch};;
     10.*)
       platform=buster-${arch};;
-    11.0|*/sid)
+    11.*)
+      platform=bullseye-${arch};;
+    12.0|*/sid)
       platform=sid-${arch};;
     *)
       echo "debian_version ${debian_version} is not supported"
