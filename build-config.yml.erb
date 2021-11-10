@@ -1,7 +1,7 @@
 ---
 targets:
 <%
-  platforms = %w[sid-amd64 bullseye-amd64 buster-amd64 stretch-amd64]
+  platforms = %w[sid-amd64 bullseye-amd64 buster-amd64]
   versions = %w[2.5.9 2.6.8 2.7.4 3.0.2]
   matrix = platforms.product(versions)
 
@@ -13,8 +13,6 @@ targets:
       image = 'minimum2scp/ruby-bullseye:latest'
     when 'buster-amd64'
       image = 'minimum2scp/ruby-buster:latest'
-    when 'stretch-amd64'
-      image = 'minimum2scp/ruby-stretch:latest'
     end
 
     case version
