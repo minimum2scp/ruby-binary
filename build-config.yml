@@ -2,7 +2,7 @@
 targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.6.8
+    version: 2.6.9
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
@@ -12,7 +12,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.6.8
+      - rbenv global 2.6.9
       - ruby --version
       - gem --version
       - gem update --system 3.2.32 -N
@@ -22,7 +22,7 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 2.7.4
+    version: 2.7.5
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
@@ -32,7 +32,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.7.4
+      - rbenv global 2.7.5
       - ruby --version
       - gem --version
       - gem update --system 3.2.32 -N
@@ -42,7 +42,7 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 3.0.2
+    version: 3.0.3
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
@@ -52,10 +52,8 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.0.2
+      - rbenv global 3.0.3
       - ruby --version
-      - gem --version
-      - gem update --system 3.2.32 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -80,7 +78,7 @@ targets:
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
-    version: 2.6.8
+    version: 2.6.9
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
@@ -90,7 +88,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.6.8
+      - rbenv global 2.6.9
       - ruby --version
       - gem --version
       - gem update --system 3.2.32 -N
@@ -100,7 +98,7 @@ targets:
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
-    version: 2.7.4
+    version: 2.7.5
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
@@ -110,7 +108,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.7.4
+      - rbenv global 2.7.5
       - ruby --version
       - gem --version
       - gem update --system 3.2.32 -N
@@ -120,7 +118,7 @@ targets:
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
-    version: 3.0.2
+    version: 3.0.3
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
@@ -130,10 +128,8 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.0.2
+      - rbenv global 3.0.3
       - ruby --version
-      - gem --version
-      - gem update --system 3.2.32 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -158,7 +154,7 @@ targets:
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
-    version: 2.6.8
+    version: 2.6.9
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative --disable-install-doc"
@@ -168,7 +164,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.6.8
+      - rbenv global 2.6.9
       - ruby --version
       - gem --version
       - gem update --system 3.2.32 -N
@@ -178,7 +174,7 @@ targets:
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
-    version: 2.7.4
+    version: 2.7.5
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
@@ -188,7 +184,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 2.7.4
+      - rbenv global 2.7.5
       - ruby --version
       - gem --version
       - gem update --system 3.2.32 -N
@@ -198,7 +194,7 @@ targets:
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
-    version: 3.0.2
+    version: 3.0.3
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
@@ -208,10 +204,8 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.0.2
+      - rbenv global 3.0.3
       - ruby --version
-      - gem --version
-      - gem update --system 3.2.32 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
