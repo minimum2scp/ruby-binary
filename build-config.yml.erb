@@ -2,7 +2,7 @@
 targets:
 <%
   platforms = %w[sid-amd64 bullseye-amd64 buster-amd64]
-  versions = %w[2.5.9 2.6.8 2.7.4 3.0.2]
+  versions = %w[2.6.8 2.7.4 3.0.2]
   matrix = platforms.product(versions)
 
   matrix.each do |platform, version|

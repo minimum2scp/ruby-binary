@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         platform: [sid-amd64, bullseye-amd64, buster-amd64]
-        version: [2.5.9, 2.6.8, 2.7.4, 3.0.2]
+        version: [2.6.8, 2.7.4, 3.0.2]
       fail-fast: false
     steps:
       - run: export -p
