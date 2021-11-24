@@ -33,10 +33,24 @@ targets:
       ruby_configure_opts = '--enable-load-relative --disable-install-doc'
     end
 
+    definition = case version
+                 when '3.0.3'
+                   'https://cache.ruby-lang.org/pub/ruby/3.0/ruby-3.0.3.tar.gz#3586861cb2df56970287f0fd83f274bd92058872d830d15570b36def7f1a92ac'
+                 when '2.7.5'
+                   'https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.5.tar.bz2#d6b444341a5e06fcd6eaf1feb83a1c0c2da4705dbe4f275ee851761b185f4bd1'
+                 when '2.6.9'
+                   'https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.9.tar.bz2#a0639060c4519572e51828eb742f09dd40f154c820f6007246de7a2090e3ee45'
+                 else
+                   nil
+                 end
+
 -%>
   - image: <%= image %>
     platform: <%= platform %>
     version: <%= version %>
+    <%- if definition -%>
+    src: '<%= definition %>'
+    <%- end -%>
 
     envs:
       RUBY_CONFIGURE_OPTS: <%= ruby_configure_opts.dump %>
