@@ -37,7 +37,7 @@ task :default => "build:all"
 desc 'Generate build-config.yml from build-config.yml.erb'
 file 'build-config.yml' => ['build-config.yml.erb'] do |t,args|
   File.open(t.name, 'w') do |fh|
-    fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result
+    fh << ERB.new(File.read(t.prerequisites[0]), trim_mode: '-').result
   end
 end
 
@@ -91,7 +91,7 @@ namespace :build do
               before_build: before_build,
               after_build:  after_build,
             }
-            fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result(binding)
+            fh << ERB.new(File.read(t.prerequisites[0]), trim_mode: '-').result(binding)
           end
           chmod "u+x", t.name
         end
@@ -140,7 +140,7 @@ namespace :test do
 
         file dockerfile[:local] => ['files/scripts/Dockerfile.erb', 'build-config.yml'] do |t, args|
           File.open(t.name, 'w') do |fh|
-            fh << ERB.new(File.read(t.prerequisites[0]), nil, '-').result(binding)
+            fh << ERB.new(File.read(t.prerequisites[0]), trim_mode: '-').result(binding)
           end
         end
 
