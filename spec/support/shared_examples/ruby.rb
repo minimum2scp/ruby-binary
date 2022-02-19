@@ -1,30 +1,30 @@
-RSpec.shared_examples 'ruby 3.1.0' do
-  describe command("RBENV_VERSION=3.1.0 ruby -v") do
+RSpec.shared_examples 'ruby 3.1.1' do
+  describe command("RBENV_VERSION=3.1.1 ruby -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) [x86_64-linux]\n" }
+    its(:stdout){ should eq "ruby 3.1.1p18 (2022-02-18 revision 53f5fc4236) [x86_64-linux]\n" }
   end
 
-  describe command("RBENV_VERSION=3.1.0 gem -v") do
+  describe command("RBENV_VERSION=3.1.1 gem -v") do
     let(:login_shell){ true }
     its(:stdout){ should eq "3.3.7\n" }
   end
 
-  describe command("RBENV_VERSION=3.1.0 gem list --exact bundler") do
+  describe command("RBENV_VERSION=3.1.1 gem list --exact bundler") do
     let(:login_shell){ true }
     its(:stdout){ should eq "bundler (default: 2.3.7, 1.17.3)\n" }
   end
 
-  describe command("RBENV_VERSION=3.1.0 gem list") do
+  describe command("RBENV_VERSION=3.1.1 gem list") do
     let(:login_shell){ true }
     its(:stdout){ should match /^pry \(/ }
   end
 
-  describe command("RBENV_VERSION=3.1.0 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
+  describe command("RBENV_VERSION=3.1.1 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "yes\n" }
   end
 
-  describe command("RBENV_VERSION=3.1.0 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
+  describe command("RBENV_VERSION=3.1.1 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
     let(:login_shell){ true }
     its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
   end
