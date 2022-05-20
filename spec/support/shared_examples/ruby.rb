@@ -94,35 +94,3 @@ RSpec.shared_examples 'ruby 2.7.6' do
   end
 end
 
-RSpec.shared_examples 'ruby 2.6.10' do
-  describe command("RBENV_VERSION=2.6.10 ruby -v") do
-    let(:login_shell){ true }
-    its(:stdout){ should eq "ruby 2.6.10p210 (2022-04-12 revision 67958) [x86_64-linux]\n" }
-  end
-
-  describe command("RBENV_VERSION=2.6.10 gem -v") do
-    let(:login_shell){ true }
-    its(:stdout){ should eq "3.3.13\n" }
-  end
-
-  describe command("RBENV_VERSION=2.6.10 gem list --exact bundler") do
-    let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.3.13, 1.17.3)\n" }
-  end
-
-  describe command("RBENV_VERSION=2.6.10 gem list") do
-    let(:login_shell){ true }
-    its(:stdout){ should match /^pry \(/ }
-  end
-
-  describe command("RBENV_VERSION=2.6.10 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
-    let(:login_shell){ true }
-    its(:stdout){ should eq "yes\n" }
-  end
-
-  describe command("RBENV_VERSION=2.6.10 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
-    let(:login_shell){ true }
-    its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
-  end
-end
-
