@@ -80,6 +80,16 @@ namespace :build do
         log           = {remote: "/data/log/ruby-binary_#{platform}_#{version}.log",       local: "files/log/ruby-binary_#{platform}_#{version}.log"}
         build_script  = {remote: "/data/tmp/build_#{platform}_#{version}",                 local: "files/tmp/build_#{platform}_#{version}" }
 
+        if target['openssl']
+          openssl = {
+            version: target['openssl']['version'],
+            remote: "/data/binary/openssl-#{target['openssl']['version']}_#{platform}_#{version}.tar.gz",
+            local: "files/binary/openssl-#{target['openssl']['version']}_#{platform}_#{version}.tar.gz",
+          }
+        else
+          openssl = nil
+        end
+
         file build_script[:local] => ['files/scripts/build.sh.erb', 'build-config.yml'] do |t, args|
           File.open(t.name, 'w') do |fh|
             build_config = {
@@ -90,6 +100,7 @@ namespace :build do
               patches:      patches,
               before_build: before_build,
               after_build:  after_build,
+              openssl:      openssl,
             }
             fh << ERB.new(File.read(t.prerequisites[0]), trim_mode: '-').result(binding)
           end
@@ -117,6 +128,9 @@ namespace :build do
             sh "docker cp #{container_name}:#{log[:remote]} #{log[:local]}"
           end
           sh "docker cp #{container_name}:#{tarball[:remote]} #{tarball[:local]}"
+          if openssl
+            sh "docker cp #{container_name}:#{openssl[:remote]} #{openssl[:local]}"
+          end
           sh "docker rm #{container_name}"
           sh "docker volume rm #{data_volume_name}"
         end
@@ -137,6 +151,14 @@ namespace :test do
         tarball       = {local: "files/binary/ruby-binary_#{platform}_#{version}.tar.gz"}
         dockerfile    = {local: "files/tmp/Dockerfile_#{platform}_#{version}" }
         test_image    = "minimum2scp/ruby-binary:test_#{platform}_#{version}"
+
+        if target['openssl']
+          openssl = {
+            local: "files/binary/openssl-#{target['openssl']['version']}_#{platform}_#{version}.tar.gz",
+          }
+        else
+          openssl = nil
+        end
 
         file dockerfile[:local] => ['files/scripts/Dockerfile.erb', 'build-config.yml'] do |t, args|
           File.open(t.name, 'w') do |fh|
