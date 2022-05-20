@@ -28,10 +28,20 @@ targets:
       ruby_configure_opts = '--enable-load-relative --disable-install-doc'
     end
 
+    if platform == 'sid-amd64' && ( version == '3.0.4' || version == '2.7.6' )
+      openssl = { version: '1.1.1o' }
+    else
+      openssl = nil
+    end
+
 -%>
   - image: <%= image %>
     platform: <%= platform %>
     version: <%= version %>
+    <%- if openssl -%>
+    openssl:
+      version: <%= openssl[:version] %>
+    <%- end -%>
 
     envs:
       RUBY_CONFIGURE_OPTS: <%= ruby_configure_opts.dump %>

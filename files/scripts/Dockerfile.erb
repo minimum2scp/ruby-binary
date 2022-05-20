@@ -2,5 +2,9 @@ FROM <%= image %>
 
 COPY <%= tarball[:local] %> /tmp/
 RUN tar xf /tmp/<%= File.basename tarball[:local] %> -C /opt/rbenv/versions
+<% if openssl %>
+COPY <%= openssl[:local] %> /tmp/
+RUN tar xf /tmp/<%= File.basename openssl[:local] %> -C /opt/
+<% end %>
 RUN bash -lc 'rbenv rehash'
 

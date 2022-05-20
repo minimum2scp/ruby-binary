@@ -3,6 +3,8 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 2.7.6
+    openssl:
+      version: 1.1.1o
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
@@ -23,6 +25,8 @@ targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
     version: 3.0.4
+    openssl:
+      version: 1.1.1o
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
