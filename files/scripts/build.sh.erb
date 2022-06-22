@@ -59,7 +59,7 @@ curl -sSf -o /tmp/openssl-${openssl_version}.tar.gz https://www.openssl.org/sour
   cd openssl-${openssl_version}
   ./config --prefix=/opt/openssl-${openssl_version} --openssldir=/opt/openssl-${openssl_version} shared zlib
   make
-  make install
+  make install_sw
   rm -rf /opt/openssl-${openssl_version}/certs
   ln -s /etc/ssl/certs /opt/openssl-${openssl_version}
 )
