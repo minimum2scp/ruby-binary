@@ -2,7 +2,7 @@
 targets:
 <%
   platforms = %w[sid-amd64 bullseye-amd64 buster-amd64]
-  versions = %w[2.7.6 3.0.4 3.1.2]
+  versions = %w[2.7.7 3.0.5 3.1.3]
   matrix = platforms.product(versions)
 
   matrix.each do |platform, version|
@@ -16,23 +16,27 @@ targets:
     end
 
     case version
-    when '3.1.2', '3.0.4', '2.7.6'
+    when '3.1.3'
+      update_rubygems = false
+      install_bundler = false
+      install_legacy_bundler = '1.17.3'
+      ruby_configure_opts = '--enable-load-relative'
+    when '3.0.5', '2.7.7'
       update_rubygems = '3.3.26'
       install_bundler = false
       install_legacy_bundler = '1.17.3'
       ruby_configure_opts = '--enable-load-relative'
-    else
-      update_rubygems = '3.3.26'
-      install_bundler = false
-      install_legacy_bundler = '1.17.3'
-      ruby_configure_opts = '--enable-load-relative --disable-install-doc'
     end
 
-    if platform == 'sid-amd64' && ( version == '3.0.4' || version == '2.7.6' )
+    if platform == 'sid-amd64' && ( version == '3.0.5' || version == '2.7.7' )
       openssl = { version: '1.1.1s' }
     else
       openssl = nil
     end
+
+    definition = {
+      # 'x.x.x' => '(url)#(sha256sum)'
+    }[version]
 
 -%>
   - image: <%= image %>
@@ -41,6 +45,9 @@ targets:
     <%- if openssl -%>
     openssl:
       version: <%= openssl[:version] %>
+    <%- end -%>
+    <%- if definition -%>
+    src: '<%= definition %>'
     <%- end -%>
 
     envs:
