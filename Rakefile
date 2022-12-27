@@ -69,16 +69,18 @@ namespace :build do
       end
 
       targets.each do |target|
-        image         = target['image']
-        version       = target['version']
-        envs          = target['envs'] || {}
-        src           = target['src']
-        patches       = target['patches'] || []
-        before_build  = target['before_build'] || []
-        after_build   = target['after_build'] || []
-        tarball       = {remote: "/data/binary/ruby-binary_#{platform}_#{version}.tar.gz", local: "files/binary/ruby-binary_#{platform}_#{version}.tar.gz"}
-        log           = {remote: "/data/log/ruby-binary_#{platform}_#{version}.log",       local: "files/log/ruby-binary_#{platform}_#{version}.log"}
-        build_script  = {remote: "/data/tmp/build_#{platform}_#{version}",                 local: "files/tmp/build_#{platform}_#{version}" }
+        image              = target['image']
+        version            = target['version']
+        envs               = target['envs'] || {}
+        src                = target['src']
+        patches            = target['patches'] || []
+        before_build       = target['before_build'] || []
+        after_build        = target['after_build'] || []
+        tarball            = {remote: "/data/binary/ruby-binary_#{platform}_#{version}.tar.gz", local: "files/binary/ruby-binary_#{platform}_#{version}.tar.gz"}
+        log                = {remote: "/data/log/ruby-binary_#{platform}_#{version}.log",       local: "files/log/ruby-binary_#{platform}_#{version}.log"}
+        build_script       = {remote: "/data/tmp/build_#{platform}_#{version}",                 local: "files/tmp/build_#{platform}_#{version}" }
+
+        build_dep_packages = target['build_dep_packages']
 
         if target['openssl']
           openssl = {
@@ -93,14 +95,15 @@ namespace :build do
         file build_script[:local] => ['files/scripts/build.sh.erb', 'build-config.yml'] do |t, args|
           File.open(t.name, 'w') do |fh|
             build_config = {
-              version:      version,
-              log:          log,
-              tarball:      tarball,
-              src:          src,
-              patches:      patches,
-              before_build: before_build,
-              after_build:  after_build,
-              openssl:      openssl,
+              version:            version,
+              log:                log,
+              tarball:            tarball,
+              src:                src,
+              patches:            patches,
+              before_build:       before_build,
+              after_build:        after_build,
+              build_dep_packages: build_dep_packages,
+              openssl:            openssl,
             }
             fh << ERB.new(File.read(t.prerequisites[0]), trim_mode: '-').result(binding)
           end
