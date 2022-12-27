@@ -28,6 +28,30 @@ RSpec.shared_examples 'ruby 3.2.0' do
     let(:login_shell){ true }
     its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
   end
+
+  describe command("RBENV_VERSION=3.2.0 ruby --mjit -e 'p RubyVM::MJIT.enabled?'") do
+    let(:login_shell){ true }
+    its(:stdout){ should eq "true\n" }
+    its(:stderr){ should eq '' }
+  end
+
+  describe command("RBENV_VERSION=3.2.0 ruby --yjit -e 'p RubyVM::YJIT.enabled?'") do
+    let(:login_shell){ true }
+    its(:stdout){
+      if have_rust_1_58_or_later
+        should eq "true\n"
+      else
+        should eq ''
+      end
+    }
+    its(:stderr){
+      if have_rust_1_58_or_later
+        should eq ''
+      else
+        should include 'Ruby was built without YJIT support.'
+      end
+    }
+  end
 end
 
 RSpec.shared_examples 'ruby 3.1.3' do
@@ -59,6 +83,18 @@ RSpec.shared_examples 'ruby 3.1.3' do
   describe command("RBENV_VERSION=3.1.3 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
     let(:login_shell){ true }
     its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
+  end
+
+  describe command("RBENV_VERSION=3.1.3 ruby --mjit -e 'p RubyVM::MJIT.enabled?'") do
+    let(:login_shell){ true }
+    its(:stdout){ should eq "true\n" }
+    its(:stderr){ should eq '' }
+  end
+
+  describe command("RBENV_VERSION=3.1.3 ruby --yjit -e 'p RubyVM::YJIT.enabled?'") do
+    let(:login_shell){ true }
+    its(:stdout){ should eq "true\n" }
+    its(:stderr){ should eq '' }
   end
 end
 
