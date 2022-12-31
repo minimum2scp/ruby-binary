@@ -50,12 +50,12 @@ RSpec.shared_examples 'ruby 3.1.3' do
 
   describe command("RBENV_VERSION=3.1.3 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.3.26\n" }
+    its(:stdout){ should eq "3.4.1\n" }
   end
 
   describe command("RBENV_VERSION=3.1.3 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.3.26, 1.17.3)\n" }
+    its(:stdout){ should eq "bundler (default: 2.4.1, 1.17.3)\n" }
   end
 
   describe command("RBENV_VERSION=3.1.3 gem list") do
@@ -94,12 +94,12 @@ RSpec.shared_examples 'ruby 3.0.5' do
 
   describe command("RBENV_VERSION=3.0.5 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.3.26\n" }
+    its(:stdout){ should eq "3.4.1\n" }
   end
 
   describe command("RBENV_VERSION=3.0.5 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.3.26, 1.17.3)\n" }
+    its(:stdout){ should eq "bundler (default: 2.4.1, 1.17.3)\n" }
   end
 
   describe command("RBENV_VERSION=3.0.5 gem list") do
@@ -126,12 +126,12 @@ RSpec.shared_examples 'ruby 2.7.7' do
 
   describe command("RBENV_VERSION=2.7.7 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.3.26\n" }
+    its(:stdout){ should eq "3.4.1\n" }
   end
 
   describe command("RBENV_VERSION=2.7.7 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.3.26, 1.17.3)\n" }
+    its(:stdout){ should eq "bundler (default: 2.4.1, 1.17.3)\n" }
   end
 
   describe command("RBENV_VERSION=2.7.7 gem list") do
