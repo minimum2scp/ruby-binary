@@ -21,20 +21,16 @@ targets:
       install_bundler = false
       install_legacy_bundler = '1.17.3'
       ruby_configure_opts = '--enable-load-relative'
-      ## YJIT needs Rust 1.58+
-      build_dep_packages = platform == 'sid-amd64' ? ['rustc'] : []
     when '3.1.3'
       update_rubygems = false
       install_bundler = false
       install_legacy_bundler = '1.17.3'
       ruby_configure_opts = '--enable-load-relative'
-      build_dep_packages = []
     when '3.0.5', '2.7.7'
       update_rubygems = '3.3.26'
       install_bundler = false
       install_legacy_bundler = '1.17.3'
       ruby_configure_opts = '--enable-load-relative'
-      build_dep_packages = []
     end
 
     if platform == 'sid-amd64' && ( version == '3.0.5' || version == '2.7.7' )
@@ -54,12 +50,6 @@ targets:
     <%- if openssl -%>
     openssl:
       version: <%= openssl[:version] %>
-    <%- end -%>
-    <%- if !build_dep_packages.empty? -%>
-    build_dep_packages:
-    <%- build_dep_packages.each do |pkg| -%>
-      - <%= pkg %>
-    <%- end -%>
     <%- end -%>
     <%- if definition -%>
     src: '<%= definition %>'
