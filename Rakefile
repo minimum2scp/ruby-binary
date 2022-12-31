@@ -79,6 +79,7 @@ namespace :build do
         tarball       = {remote: "/data/binary/ruby-binary_#{platform}_#{version}.tar.gz", local: "files/binary/ruby-binary_#{platform}_#{version}.tar.gz"}
         log           = {remote: "/data/log/ruby-binary_#{platform}_#{version}.log",       local: "files/log/ruby-binary_#{platform}_#{version}.log"}
         build_script  = {remote: "/data/tmp/build_#{platform}_#{version}",                 local: "files/tmp/build_#{platform}_#{version}" }
+        install_rust  = target["install_rust"]
 
         if target['openssl']
           openssl = {
@@ -101,6 +102,7 @@ namespace :build do
               before_build: before_build,
               after_build:  after_build,
               openssl:      openssl,
+              install_rust: install_rust,
             }
             fh << ERB.new(File.read(t.prerequisites[0]), trim_mode: '-').result(binding)
           end

@@ -8,6 +8,14 @@ apt-get update
 apt-get dist-upgrade -y
 unset DEBIAN_FRONTEND
 
+## install rust for YJIT (ruby 3.2+)
+<% if build_config[:install_rust] %>
+export RUSTUP_HOME=/opt/rust/rustup
+export CARGO_HOME=/opt/rust/cargo
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile minimal -q -y --no-modify-path
+. /opt/rust/cargo/env
+<% end %>
+
 ## before build hook
 <% build_config[:before_build].each do |cmd| -%>
 <%= cmd %>
