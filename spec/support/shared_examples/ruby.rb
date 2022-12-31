@@ -37,20 +37,8 @@ RSpec.shared_examples 'ruby 3.2.0' do
 
   describe command("RBENV_VERSION=3.2.0 ruby --yjit -e 'p RubyVM::YJIT.enabled?'") do
     let(:login_shell){ true }
-    its(:stdout){
-      if have_rust_1_58_or_later
-        should eq "true\n"
-      else
-        should eq ''
-      end
-    }
-    its(:stderr){
-      if have_rust_1_58_or_later
-        should eq ''
-      else
-        should include 'Ruby was built without YJIT support.'
-      end
-    }
+    its(:stdout){ should eq "true\n" }
+    its(:stderr){ should eq '' }
   end
 end
 
