@@ -1,41 +1,41 @@
-RSpec.shared_examples 'ruby 3.2.0' do
-  describe command("RBENV_VERSION=3.2.0 ruby -v") do
+RSpec.shared_examples 'ruby 3.2.1' do
+  describe command("RBENV_VERSION=3.2.1 ruby -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "ruby 3.2.0 (2022-12-25 revision a528908271) [x86_64-linux]\n" }
+    its(:stdout){ should eq "ruby 3.2.1 (2023-02-08 revision 31819e82c8) [x86_64-linux]\n" }
   end
 
-  describe command("RBENV_VERSION=3.2.0 gem -v") do
+  describe command("RBENV_VERSION=3.2.1 gem -v") do
     let(:login_shell){ true }
     its(:stdout){ should eq "3.4.6\n" }
   end
 
-  describe command("RBENV_VERSION=3.2.0 gem list --exact bundler") do
+  describe command("RBENV_VERSION=3.2.1 gem list --exact bundler") do
     let(:login_shell){ true }
     its(:stdout){ should eq "bundler (default: 2.4.6, 1.17.3)\n" }
   end
 
-  describe command("RBENV_VERSION=3.2.0 gem list") do
+  describe command("RBENV_VERSION=3.2.1 gem list") do
     let(:login_shell){ true }
     its(:stdout){ should match /^pry \(/ }
   end
 
-  describe command("RBENV_VERSION=3.2.0 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
+  describe command("RBENV_VERSION=3.2.1 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "yes\n" }
   end
 
-  describe command("RBENV_VERSION=3.2.0 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
+  describe command("RBENV_VERSION=3.2.1 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
     let(:login_shell){ true }
     its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
   end
 
-  describe command("RBENV_VERSION=3.2.0 ruby --mjit -e 'p RubyVM::MJIT.enabled?'") do
+  describe command("RBENV_VERSION=3.2.1 ruby --mjit -e 'p RubyVM::MJIT.enabled?'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "true\n" }
     its(:stderr){ should eq '' }
   end
 
-  describe command("RBENV_VERSION=3.2.0 ruby --yjit -e 'p RubyVM::YJIT.enabled?'") do
+  describe command("RBENV_VERSION=3.2.1 ruby --yjit -e 'p RubyVM::YJIT.enabled?'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "true\n" }
     its(:stderr){ should eq '' }
