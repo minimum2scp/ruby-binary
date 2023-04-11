@@ -18,7 +18,7 @@ targets:
       - rbenv global 2.7.8
       - ruby --version
       - gem --version
-      - gem update --system 3.4.10 -N
+      - gem update --system 3.4.11 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -41,7 +41,7 @@ targets:
       - rbenv global 3.0.6
       - ruby --version
       - gem --version
-      - gem update --system 3.4.10 -N
+      - gem update --system 3.4.11 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -62,7 +62,7 @@ targets:
       - rbenv global 3.1.4
       - ruby --version
       - gem --version
-      - gem update --system 3.4.10 -N
+      - gem update --system 3.4.11 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -83,6 +83,8 @@ targets:
       - rbenv global 3.2.2
       - ruby --version
       - gem --version
+      - gem update --system 3.4.11 -N
+      - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
@@ -102,7 +104,7 @@ targets:
       - rbenv global 2.7.8
       - ruby --version
       - gem --version
-      - gem update --system 3.4.10 -N
+      - gem update --system 3.4.11 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -123,7 +125,7 @@ targets:
       - rbenv global 3.0.6
       - ruby --version
       - gem --version
-      - gem update --system 3.4.10 -N
+      - gem update --system 3.4.11 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -144,7 +146,7 @@ targets:
       - rbenv global 3.1.4
       - ruby --version
       - gem --version
-      - gem update --system 3.4.10 -N
+      - gem update --system 3.4.11 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -164,6 +166,8 @@ targets:
     after_build:
       - rbenv global 3.2.2
       - ruby --version
+      - gem --version
+      - gem update --system 3.4.11 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -184,7 +188,7 @@ targets:
       - rbenv global 2.7.8
       - ruby --version
       - gem --version
-      - gem update --system 3.4.10 -N
+      - gem update --system 3.4.11 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -205,7 +209,7 @@ targets:
       - rbenv global 3.0.6
       - ruby --version
       - gem --version
-      - gem update --system 3.4.10 -N
+      - gem update --system 3.4.11 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -226,7 +230,7 @@ targets:
       - rbenv global 3.1.4
       - ruby --version
       - gem --version
-      - gem update --system 3.4.10 -N
+      - gem update --system 3.4.11 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
@@ -246,6 +250,8 @@ targets:
     after_build:
       - rbenv global 3.2.2
       - ruby --version
+      - gem --version
+      - gem update --system 3.4.11 -N
       - gem --version
       - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
