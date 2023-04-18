@@ -19,19 +19,16 @@ targets:
     when '3.2.2'
       update_rubygems = '3.4.12'
       install_bundler = false
-      install_legacy_bundler = '1.17.3'
       ruby_configure_opts = '--enable-load-relative'
       install_rust = true
     when '3.1.4'
       update_rubygems = '3.4.12'
       install_bundler = false
-      install_legacy_bundler = '1.17.3'
       ruby_configure_opts = '--enable-load-relative'
       install_rust = false
     when '3.0.6', '2.7.8'
       update_rubygems = '3.4.12'
       install_bundler = false
-      install_legacy_bundler = '1.17.3'
       ruby_configure_opts = '--enable-load-relative'
       install_rust = false
     end
@@ -73,9 +70,6 @@ targets:
       <%- if update_rubygems -%>
       - gem update --system <%= update_rubygems %> -N
       - gem --version
-      <%- end -%>
-      <%- if install_legacy_bundler -%>
-      - gem install bundler --version <%= install_legacy_bundler %> -f -N
       <%- end -%>
       <%- if install_bundler -%>
       - gem install bundler --version <%= install_bundler %> -f -N
