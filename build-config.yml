@@ -20,7 +20,6 @@ targets:
       - gem --version
       - gem update --system 3.4.12 -N
       - gem --version
-      - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby:latest
@@ -43,7 +42,6 @@ targets:
       - gem --version
       - gem update --system 3.4.12 -N
       - gem --version
-      - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby:latest
@@ -64,7 +62,6 @@ targets:
       - gem --version
       - gem update --system 3.4.12 -N
       - gem --version
-      - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby:latest
@@ -85,7 +82,6 @@ targets:
       - gem --version
       - gem update --system 3.4.12 -N
       - gem --version
-      - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bullseye:latest
@@ -106,7 +102,6 @@ targets:
       - gem --version
       - gem update --system 3.4.12 -N
       - gem --version
-      - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bullseye:latest
@@ -127,7 +122,6 @@ targets:
       - gem --version
       - gem update --system 3.4.12 -N
       - gem --version
-      - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bullseye:latest
@@ -148,7 +142,6 @@ targets:
       - gem --version
       - gem update --system 3.4.12 -N
       - gem --version
-      - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bullseye:latest
@@ -169,7 +162,6 @@ targets:
       - gem --version
       - gem update --system 3.4.12 -N
       - gem --version
-      - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-buster:latest
@@ -190,7 +182,6 @@ targets:
       - gem --version
       - gem update --system 3.4.12 -N
       - gem --version
-      - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-buster:latest
@@ -211,7 +202,6 @@ targets:
       - gem --version
       - gem update --system 3.4.12 -N
       - gem --version
-      - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-buster:latest
@@ -232,7 +222,6 @@ targets:
       - gem --version
       - gem update --system 3.4.12 -N
       - gem --version
-      - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-buster:latest
@@ -253,7 +242,6 @@ targets:
       - gem --version
       - gem update --system 3.4.12 -N
       - gem --version
-      - gem install bundler --version 1.17.3 -f -N
       - gem install pry pry-doc pry-coolline -N
 
 
