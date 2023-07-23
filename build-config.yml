@@ -84,6 +84,90 @@ targets:
       - gem --version
       - gem install pry pry-doc pry-coolline -N
 
+  - image: minimum2scp/ruby-bookworm:latest
+    platform: bookworm-amd64
+    version: 2.7.8
+    openssl:
+      version: 1.1.1u
+    install_rust: false
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+
+    before_build:
+      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
+      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
+
+    after_build:
+      - rbenv global 2.7.8
+      - ruby --version
+      - gem --version
+      - gem update --system 3.4.17 -N
+      - gem --version
+      - gem install pry pry-doc pry-coolline -N
+
+  - image: minimum2scp/ruby-bookworm:latest
+    platform: bookworm-amd64
+    version: 3.0.6
+    openssl:
+      version: 1.1.1u
+    install_rust: false
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+
+    before_build:
+      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
+      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
+
+    after_build:
+      - rbenv global 3.0.6
+      - ruby --version
+      - gem --version
+      - gem update --system 3.4.17 -N
+      - gem --version
+      - gem install pry pry-doc pry-coolline -N
+
+  - image: minimum2scp/ruby-bookworm:latest
+    platform: bookworm-amd64
+    version: 3.1.4
+    install_rust: false
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+
+    before_build:
+      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
+      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
+
+    after_build:
+      - rbenv global 3.1.4
+      - ruby --version
+      - gem --version
+      - gem update --system 3.4.17 -N
+      - gem --version
+      - gem install pry pry-doc pry-coolline -N
+
+  - image: minimum2scp/ruby-bookworm:latest
+    platform: bookworm-amd64
+    version: 3.2.2
+    install_rust: true
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+
+    before_build:
+      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
+      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
+
+    after_build:
+      - rbenv global 3.2.2
+      - ruby --version
+      - gem --version
+      - gem update --system 3.4.17 -N
+      - gem --version
+      - gem install pry pry-doc pry-coolline -N
+
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
     version: 2.7.8
