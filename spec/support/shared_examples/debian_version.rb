@@ -1,5 +1,11 @@
 RSpec.shared_examples 'debian sid' do
-  xdescribe file('/etc/debian_version') do
+  describe file('/etc/debian_version') do
+    its(:content){ should eq "trixie/sid\n" }
+  end
+end
+
+RSpec.shared_examples 'debian bookworm' do
+  describe file('/etc/debian_version') do
     its(:content){ should match a_string_starting_with('12.') }
   end
 end

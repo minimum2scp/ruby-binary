@@ -1,7 +1,7 @@
 ---
 targets:
 <%
-  platforms = %w[sid-amd64 bullseye-amd64 buster-amd64]
+  platforms = %w[sid-amd64 bookworm-amd64 bullseye-amd64 buster-amd64]
   versions = %w[2.7.8 3.0.6 3.1.4 3.2.2]
   matrix = platforms.product(versions)
 
@@ -9,6 +9,8 @@ targets:
     case platform
     when 'sid-amd64'
       image = 'minimum2scp/ruby:latest'
+    when 'bookworm-amd64'
+      image = 'minimum2scp/ruby-bookworm:latest'
     when 'bullseye-amd64'
       image = 'minimum2scp/ruby-bullseye:latest'
     when 'buster-amd64'
@@ -33,7 +35,7 @@ targets:
       install_rust = false
     end
 
-    if platform == 'sid-amd64' && ( version == '3.0.6' || version == '2.7.8' )
+    if ( platform == 'sid-amd64' || platform == 'bookworm-amd64' ) && ( version == '3.0.6' || version == '2.7.8' )
       openssl = { version: '1.1.1u' }
     else
       openssl = nil
