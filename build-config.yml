@@ -4,15 +4,13 @@ targets:
     platform: sid-amd64
     version: 2.7.8
     openssl:
-      version: 1.1.1v
+      version: 1.1.1w
     install_rust: false
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
       - rbenv global 2.7.8
@@ -26,15 +24,13 @@ targets:
     platform: sid-amd64
     version: 3.0.6
     openssl:
-      version: 1.1.1v
+      version: 1.1.1w
     install_rust: false
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
       - rbenv global 3.0.6
@@ -53,8 +49,6 @@ targets:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
       - rbenv global 3.1.4
@@ -73,8 +67,6 @@ targets:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
       - rbenv global 3.2.2
@@ -88,7 +80,7 @@ targets:
     platform: bookworm-amd64
     version: 2.7.8
     openssl:
-      version: 1.1.1v
+      version: 1.1.1w
     install_rust: false
 
     envs:
@@ -110,7 +102,7 @@ targets:
     platform: bookworm-amd64
     version: 3.0.6
     openssl:
-      version: 1.1.1v
+      version: 1.1.1w
     install_rust: false
 
     envs:
