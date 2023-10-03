@@ -62,8 +62,10 @@ targets:
       RUBY_CONFIGURE_OPTS: <%= ruby_configure_opts.dump %>
 
     before_build:
+      <%- if platform == 'buster-amd64' || platform == 'bullseye-amd64' || platform == 'bookworm-amd64' -%>
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
+      <%- end -%>
 
     after_build:
       - rbenv global <%= version %>
