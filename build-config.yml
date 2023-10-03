@@ -4,7 +4,7 @@ targets:
     platform: sid-amd64
     version: 2.7.8
     openssl:
-      version: 1.1.1v
+      version: 1.1.1w
     install_rust: false
 
     envs:
@@ -24,7 +24,7 @@ targets:
     platform: sid-amd64
     version: 3.0.6
     openssl:
-      version: 1.1.1v
+      version: 1.1.1w
     install_rust: false
 
     envs:
@@ -80,7 +80,7 @@ targets:
     platform: bookworm-amd64
     version: 2.7.8
     openssl:
-      version: 1.1.1v
+      version: 1.1.1w
     install_rust: false
 
     envs:
@@ -102,7 +102,7 @@ targets:
     platform: bookworm-amd64
     version: 3.0.6
     openssl:
-      version: 1.1.1v
+      version: 1.1.1w
     install_rust: false
 
     envs:
