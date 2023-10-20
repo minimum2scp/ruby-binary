@@ -6,7 +6,3 @@ RSpec.shared_context 'openssl 3.0.11' do
   let(:openssl_version){ '3.0.11' }
 end
 
-RSpec.shared_context 'openssl 3.1.3' do
-  let(:openssl_version){ '3.1.3' }
-end
-
