@@ -46,7 +46,7 @@ targets:
     install_rust: false
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative --with-openssl-dir=/usr"
 
     before_build:
 
@@ -64,7 +64,7 @@ targets:
     install_rust: true
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative --with-openssl-dir=/usr"
 
     before_build:
 
