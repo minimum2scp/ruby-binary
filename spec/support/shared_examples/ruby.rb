@@ -24,6 +24,10 @@ RSpec.shared_examples 'ruby 3.2.2' do
     its(:stdout){ should eq "yes\n" }
   end
 
+  describe file("/opt/rbenv/versions/3.2.2/openssl") do
+    it { should_not exist }
+  end
+
   describe command("RBENV_VERSION=3.2.2 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
     let(:login_shell){ true }
     its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
@@ -61,6 +65,10 @@ RSpec.shared_examples 'ruby 3.1.4' do
   describe command("RBENV_VERSION=3.1.4 gem list") do
     let(:login_shell){ true }
     its(:stdout){ should match /^pry \(/ }
+  end
+
+  describe file("/opt/rbenv/versions/3.1.4/openssl") do
+    it { should_not exist }
   end
 
   describe command("RBENV_VERSION=3.1.4 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
@@ -107,6 +115,10 @@ RSpec.shared_examples 'ruby 3.0.6' do
     its(:stdout){ should match /^pry \(/ }
   end
 
+  describe file("/opt/rbenv/versions/3.0.6/openssl") do
+    it { should_not exist }
+  end
+
   describe command("RBENV_VERSION=3.0.6 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "yes\n" }
@@ -142,6 +154,10 @@ RSpec.shared_examples 'ruby 2.7.8' do
   describe command("RBENV_VERSION=2.7.8 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "yes\n" }
+  end
+
+  describe file("/opt/rbenv/versions/2.7.8/openssl") do
+    it { should_not exist }
   end
 
   describe command("RBENV_VERSION=2.7.8 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
