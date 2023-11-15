@@ -46,7 +46,7 @@ targets:
     install_rust: false
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative --with-openssl-dir=/usr"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
 
@@ -64,7 +64,7 @@ targets:
     install_rust: true
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative --with-openssl-dir=/usr"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
 
@@ -126,7 +126,7 @@ targets:
     install_rust: false
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative --with-openssl-dir=/usr"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
@@ -146,7 +146,7 @@ targets:
     install_rust: true
 
     envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative --with-openssl-dir=/usr"
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
