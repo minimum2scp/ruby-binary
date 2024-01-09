@@ -1,3 +1,51 @@
+RSpec.shared_examples 'ruby 3.3.0' do
+  describe command("RBENV_VERSION=3.3.0 ruby -v") do
+    let(:login_shell){ true }
+    its(:stdout){ should eq "ruby 3.3.0 (2023-12-25 revision 5124f9ac75) [x86_64-linux]\n" }
+  end
+
+  describe command("RBENV_VERSION=3.3.0 gem -v") do
+    let(:login_shell){ true }
+    its(:stdout){ should eq "3.5.4\n" }
+  end
+
+  describe command("RBENV_VERSION=3.3.0 gem list --exact bundler") do
+    let(:login_shell){ true }
+    its(:stdout){ should eq "bundler (default: 2.5.4)\n" }
+  end
+
+  describe command("RBENV_VERSION=3.3.0 gem list") do
+    let(:login_shell){ true }
+    its(:stdout){ should match /^pry \(/ }
+  end
+
+  describe command("RBENV_VERSION=3.3.0 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
+    let(:login_shell){ true }
+    its(:stdout){ should eq "yes\n" }
+  end
+
+  describe file("/opt/rbenv/versions/3.3.0/openssl") do
+    it { should_not exist }
+  end
+
+  describe command("RBENV_VERSION=3.3.0 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
+    let(:login_shell){ true }
+    its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
+  end
+
+  describe command("RBENV_VERSION=3.3.0 ruby --mjit -e 'p RubyVM::MJIT.enabled?'") do
+    let(:login_shell){ true }
+    its(:stdout){ should eq "true\n" }
+    its(:stderr){ should eq '' }
+  end
+
+  describe command("RBENV_VERSION=3.3.0 ruby --yjit -e 'p RubyVM::YJIT.enabled?'") do
+    let(:login_shell){ true }
+    its(:stdout){ should eq "true\n" }
+    its(:stderr){ should eq '' }
+  end
+end
+
 RSpec.shared_examples 'ruby 3.2.2' do
   describe command("RBENV_VERSION=3.2.2 ruby -v") do
     let(:login_shell){ true }
