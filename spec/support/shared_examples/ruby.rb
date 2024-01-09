@@ -33,12 +33,6 @@ RSpec.shared_examples 'ruby 3.3.0' do
     its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
   end
 
-  describe command("RBENV_VERSION=3.3.0 ruby --mjit -e 'p RubyVM::MJIT.enabled?'") do
-    let(:login_shell){ true }
-    its(:stdout){ should eq "true\n" }
-    its(:stderr){ should eq '' }
-  end
-
   describe command("RBENV_VERSION=3.3.0 ruby --yjit -e 'p RubyVM::YJIT.enabled?'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "true\n" }
