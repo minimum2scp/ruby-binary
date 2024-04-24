@@ -22,7 +22,7 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 3.0.6
+    version: 3.0.7
     openssl:
       version: 1.1.1w
     install_rust: false
@@ -33,7 +33,7 @@ targets:
     before_build:
 
     after_build:
-      - rbenv global 3.0.6
+      - rbenv global 3.0.7
       - ruby --version
       - gem --version
       - gem update --system 3.5.9 -N
@@ -42,7 +42,7 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 3.1.4
+    version: 3.1.5
     install_rust: false
 
     envs:
@@ -51,7 +51,7 @@ targets:
     before_build:
 
     after_build:
-      - rbenv global 3.1.4
+      - rbenv global 3.1.5
       - ruby --version
       - gem --version
       - gem update --system 3.5.9 -N
@@ -60,7 +60,7 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 3.2.3
+    version: 3.2.4
     install_rust: true
 
     envs:
@@ -69,7 +69,7 @@ targets:
     before_build:
 
     after_build:
-      - rbenv global 3.2.3
+      - rbenv global 3.2.4
       - ruby --version
       - gem --version
       - gem update --system 3.5.9 -N
@@ -78,7 +78,7 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 3.3.0
+    version: 3.3.1
     install_rust: true
 
     envs:
@@ -87,10 +87,8 @@ targets:
     before_build:
 
     after_build:
-      - rbenv global 3.3.0
+      - rbenv global 3.3.1
       - ruby --version
-      - gem --version
-      - gem update --system 3.5.9 -N
       - gem --version
       - gem install pry pry-doc pry-coolline -N
 
@@ -118,7 +116,7 @@ targets:
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
-    version: 3.0.6
+    version: 3.0.7
     openssl:
       version: 1.1.1w
     install_rust: false
@@ -131,7 +129,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.0.6
+      - rbenv global 3.0.7
       - ruby --version
       - gem --version
       - gem update --system 3.5.9 -N
@@ -140,7 +138,7 @@ targets:
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
-    version: 3.1.4
+    version: 3.1.5
     install_rust: false
 
     envs:
@@ -151,7 +149,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.1.4
+      - rbenv global 3.1.5
       - ruby --version
       - gem --version
       - gem update --system 3.5.9 -N
@@ -160,7 +158,7 @@ targets:
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
-    version: 3.2.3
+    version: 3.2.4
     install_rust: true
 
     envs:
@@ -171,7 +169,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.2.3
+      - rbenv global 3.2.4
       - ruby --version
       - gem --version
       - gem update --system 3.5.9 -N
@@ -180,7 +178,7 @@ targets:
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
-    version: 3.3.0
+    version: 3.3.1
     install_rust: true
 
     envs:
@@ -191,10 +189,8 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.3.0
+      - rbenv global 3.3.1
       - ruby --version
-      - gem --version
-      - gem update --system 3.5.9 -N
       - gem --version
       - gem install pry pry-doc pry-coolline -N
 
@@ -220,7 +216,7 @@ targets:
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
-    version: 3.0.6
+    version: 3.0.7
     install_rust: false
 
     envs:
@@ -231,7 +227,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.0.6
+      - rbenv global 3.0.7
       - ruby --version
       - gem --version
       - gem update --system 3.5.9 -N
@@ -240,7 +236,7 @@ targets:
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
-    version: 3.1.4
+    version: 3.1.5
     install_rust: false
 
     envs:
@@ -251,7 +247,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.1.4
+      - rbenv global 3.1.5
       - ruby --version
       - gem --version
       - gem update --system 3.5.9 -N
@@ -260,7 +256,7 @@ targets:
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
-    version: 3.2.3
+    version: 3.2.4
     install_rust: true
 
     envs:
@@ -271,7 +267,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.2.3
+      - rbenv global 3.2.4
       - ruby --version
       - gem --version
       - gem update --system 3.5.9 -N
@@ -280,7 +276,7 @@ targets:
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
-    version: 3.3.0
+    version: 3.3.1
     install_rust: true
 
     envs:
@@ -291,10 +287,8 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.3.0
+      - rbenv global 3.3.1
       - ruby --version
-      - gem --version
-      - gem update --system 3.5.9 -N
       - gem --version
       - gem install pry pry-doc pry-coolline -N
 
@@ -320,7 +314,7 @@ targets:
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
-    version: 3.0.6
+    version: 3.0.7
     install_rust: false
 
     envs:
@@ -331,7 +325,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.0.6
+      - rbenv global 3.0.7
       - ruby --version
       - gem --version
       - gem update --system 3.5.9 -N
@@ -340,7 +334,7 @@ targets:
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
-    version: 3.1.4
+    version: 3.1.5
     install_rust: false
 
     envs:
@@ -351,7 +345,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.1.4
+      - rbenv global 3.1.5
       - ruby --version
       - gem --version
       - gem update --system 3.5.9 -N
@@ -360,7 +354,7 @@ targets:
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
-    version: 3.2.3
+    version: 3.2.4
     install_rust: true
 
     envs:
@@ -371,7 +365,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.2.3
+      - rbenv global 3.2.4
       - ruby --version
       - gem --version
       - gem update --system 3.5.9 -N
@@ -380,7 +374,7 @@ targets:
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
-    version: 3.3.0
+    version: 3.3.1
     install_rust: true
 
     envs:
@@ -391,10 +385,8 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.3.0
+      - rbenv global 3.3.1
       - ruby --version
-      - gem --version
-      - gem update --system 3.5.9 -N
       - gem --version
       - gem install pry pry-doc pry-coolline -N
 
