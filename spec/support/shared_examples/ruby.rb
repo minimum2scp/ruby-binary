@@ -1,39 +1,39 @@
-RSpec.shared_examples 'ruby 3.3.3' do
-  describe command("RBENV_VERSION=3.3.3 ruby -v") do
+RSpec.shared_examples 'ruby 3.3.4' do
+  describe command("RBENV_VERSION=3.3.4 ruby -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "ruby 3.3.3 (2024-06-12 revision f1c7b6f435) [x86_64-linux]\n" }
+    its(:stdout){ should eq "ruby 3.3.4 (2024-07-09 revision be1089c8ec) [x86_64-linux]\n" }
   end
 
-  describe command("RBENV_VERSION=3.3.3 gem -v") do
+  describe command("RBENV_VERSION=3.3.4 gem -v") do
     let(:login_shell){ true }
     its(:stdout){ should eq "3.5.15\n" }
   end
 
-  describe command("RBENV_VERSION=3.3.3 gem list --exact bundler") do
+  describe command("RBENV_VERSION=3.3.4 gem list --exact bundler") do
     let(:login_shell){ true }
     its(:stdout){ should eq "bundler (default: 2.5.15)\n" }
   end
 
-  describe command("RBENV_VERSION=3.3.3 gem list") do
+  describe command("RBENV_VERSION=3.3.4 gem list") do
     let(:login_shell){ true }
     its(:stdout){ should match /^pry \(/ }
   end
 
-  describe command("RBENV_VERSION=3.3.3 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
+  describe command("RBENV_VERSION=3.3.4 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "yes\n" }
   end
 
-  describe file("/opt/rbenv/versions/3.3.3/openssl") do
+  describe file("/opt/rbenv/versions/3.3.4/openssl") do
     it { should_not exist }
   end
 
-  describe command("RBENV_VERSION=3.3.3 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
+  describe command("RBENV_VERSION=3.3.4 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
     let(:login_shell){ true }
     its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
   end
 
-  describe command("RBENV_VERSION=3.3.3 ruby --yjit -e 'p RubyVM::YJIT.enabled?'") do
+  describe command("RBENV_VERSION=3.3.4 ruby --yjit -e 'p RubyVM::YJIT.enabled?'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "true\n" }
     its(:stderr){ should eq '' }
