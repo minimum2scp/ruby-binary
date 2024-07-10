@@ -6,12 +6,12 @@ RSpec.shared_examples 'ruby 3.3.3' do
 
   describe command("RBENV_VERSION=3.3.3 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.5.14\n" }
+    its(:stdout){ should eq "3.5.15\n" }
   end
 
   describe command("RBENV_VERSION=3.3.3 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.5.14)\n" }
+    its(:stdout){ should eq "bundler (default: 2.5.15)\n" }
   end
 
   describe command("RBENV_VERSION=3.3.3 gem list") do
@@ -48,12 +48,12 @@ RSpec.shared_examples 'ruby 3.2.4' do
 
   describe command("RBENV_VERSION=3.2.4 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.5.14\n" }
+    its(:stdout){ should eq "3.5.15\n" }
   end
 
   describe command("RBENV_VERSION=3.2.4 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.5.14)\n" }
+    its(:stdout){ should eq "bundler (default: 2.5.15)\n" }
   end
 
   describe command("RBENV_VERSION=3.2.4 gem list") do
@@ -96,12 +96,12 @@ RSpec.shared_examples 'ruby 3.1.6' do
 
   describe command("RBENV_VERSION=3.1.6 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.5.14\n" }
+    its(:stdout){ should eq "3.5.15\n" }
   end
 
   describe command("RBENV_VERSION=3.1.6 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.5.14)\n" }
+    its(:stdout){ should eq "bundler (default: 2.5.15)\n" }
   end
 
   describe command("RBENV_VERSION=3.1.6 gem list") do
@@ -144,12 +144,12 @@ RSpec.shared_examples 'ruby 3.0.7' do
 
   describe command("RBENV_VERSION=3.0.7 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.5.14\n" }
+    its(:stdout){ should eq "3.5.15\n" }
   end
 
   describe command("RBENV_VERSION=3.0.7 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.5.14)\n" }
+    its(:stdout){ should eq "bundler (default: 2.5.15)\n" }
   end
 
   describe command("RBENV_VERSION=3.0.7 gem list") do
