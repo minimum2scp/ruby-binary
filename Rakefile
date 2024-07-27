@@ -84,6 +84,7 @@ namespace :build do
         if target['openssl']
           openssl = {
             version: target['openssl']['version'],
+            tarball_url: target['openssl']['tarball_url'],
             remote: "/data/binary/openssl-#{target['openssl']['version']}_#{platform}_#{version}.tar.gz",
             local: "files/binary/openssl-#{target['openssl']['version']}_#{platform}_#{version}.tar.gz",
           }

@@ -46,7 +46,10 @@ targets:
     end
 
     if ( platform == 'sid-amd64' || platform == 'bookworm-amd64' ) && ( version.start_with?('3.0.') || version.start_with?('2.7.') )
-      openssl = { version: '1.1.1w' }
+      openssl = {
+        version: '1.1.1w',
+        tarball_url: 'https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz',
+      }
     else
       openssl = nil
     end
@@ -62,6 +65,7 @@ targets:
     <%- if openssl -%>
     openssl:
       version: <%= openssl[:version] %>
+      tarball_url: <%= openssl[:tarball_url] %>
     <%- end -%>
     install_rust: <%= install_rust %>
     <%- if definition -%>

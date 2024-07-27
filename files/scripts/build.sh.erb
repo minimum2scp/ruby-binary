@@ -60,7 +60,8 @@ echo "<%= patch['file'] %>" >> /tmp/patches/series
 ## install openssl if necessary
 <% if build_config[:openssl] -%>
 openssl_version=<%= build_config[:openssl][:version] %>
-curl -sSf -o /tmp/openssl-${openssl_version}.tar.gz https://www.openssl.org/source/openssl-${openssl_version}.tar.gz
+openssl_tarball_url=<%= build_config[:openssl][:tarball_url] %>
+curl -sSfL -o /tmp/openssl-${openssl_version}.tar.gz ${openssl_tarball_url}
 (
   cd /tmp
   tar xf openssl-${openssl_version}.tar.gz
