@@ -1,7 +1,7 @@
 RSpec.shared_examples 'ruby 3.4.1' do
   describe command("RBENV_VERSION=3.4.1 ruby -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "ruby 3.4.1 (2024-12-25 revision 48d4efcb85) [x86_64-linux]\n" }
+    its(:stdout){ should eq "ruby 3.4.1 (2024-12-25 revision 48d4efcb85) +PRISM [x86_64-linux]\n" }
   end
 
   describe command("RBENV_VERSION=3.4.1 gem -v") do
