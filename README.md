@@ -3,7 +3,7 @@
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE.txt)
 [![](https://github.com/minimum2scp/ruby-binary-20191023-tmp/workflows/CI/badge.svg)](https://github.com/minimum2scp/ruby-binary-20191023-tmp/actions?workflow=CI)
 
-Ruby binary for Debian trixie/sid, bookworm, bullseye, buster amd64
+Ruby binary for Debian trixie/sid, bookworm, bullseye amd64
 
 ## install rbenv
 
