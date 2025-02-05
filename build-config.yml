@@ -19,7 +19,6 @@ targets:
       - gem --version
       - gem update --system 3.4.22 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -40,7 +39,6 @@ targets:
       - gem --version
       - gem update --system 3.5.23 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -58,7 +56,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -76,7 +73,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -94,7 +90,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
@@ -112,7 +107,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
@@ -135,7 +129,6 @@ targets:
       - gem --version
       - gem update --system 3.4.22 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
@@ -158,7 +151,6 @@ targets:
       - gem --version
       - gem update --system 3.5.23 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
@@ -178,7 +170,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
@@ -198,7 +189,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
@@ -218,7 +208,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
@@ -238,7 +227,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
@@ -258,7 +246,6 @@ targets:
       - gem --version
       - gem update --system 3.4.22 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
@@ -278,7 +265,6 @@ targets:
       - gem --version
       - gem update --system 3.5.23 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
@@ -298,7 +284,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
@@ -318,7 +303,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
@@ -338,7 +322,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
@@ -358,7 +341,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
@@ -378,7 +360,6 @@ targets:
       - gem --version
       - gem update --system 3.4.22 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
@@ -398,7 +379,6 @@ targets:
       - gem --version
       - gem update --system 3.5.23 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
@@ -418,7 +398,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
@@ -438,7 +417,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
@@ -458,7 +436,6 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
   - image: minimum2scp/ruby-buster:latest
     platform: buster-amd64
@@ -478,6 +455,5 @@ targets:
       - gem --version
       - gem update --system 3.6.3 -N
       - gem --version
-      - gem install pry pry-doc pry-coolline -N
 
 
