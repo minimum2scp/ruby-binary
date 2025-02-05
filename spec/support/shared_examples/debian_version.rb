@@ -16,9 +16,3 @@ RSpec.shared_examples 'debian bullseye' do
   end
 end
 
-RSpec.shared_examples 'debian buster' do
-  describe file('/etc/debian_version') do
-    its(:content){ should match a_string_starting_with('10.') }
-  end
-end
-
