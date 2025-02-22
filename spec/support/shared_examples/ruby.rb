@@ -6,12 +6,12 @@ RSpec.shared_examples 'ruby 3.4.2' do
 
   describe command("RBENV_VERSION=3.4.2 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.6.4\n" }
+    its(:stdout){ should eq "3.6.5\n" }
   end
 
   describe command("RBENV_VERSION=3.4.2 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.6.4)\n" }
+    its(:stdout){ should eq "bundler (default: 2.6.5)\n" }
   end
 
   describe command("RBENV_VERSION=3.4.2 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
@@ -43,12 +43,12 @@ RSpec.shared_examples 'ruby 3.3.7' do
 
   describe command("RBENV_VERSION=3.3.7 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.6.4\n" }
+    its(:stdout){ should eq "3.6.5\n" }
   end
 
   describe command("RBENV_VERSION=3.3.7 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.6.4)\n" }
+    its(:stdout){ should eq "bundler (default: 2.6.5)\n" }
   end
 
   describe command("RBENV_VERSION=3.3.7 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
@@ -80,12 +80,12 @@ RSpec.shared_examples 'ruby 3.2.7' do
 
   describe command("RBENV_VERSION=3.2.7 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.6.4\n" }
+    its(:stdout){ should eq "3.6.5\n" }
   end
 
   describe command("RBENV_VERSION=3.2.7 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.6.4)\n" }
+    its(:stdout){ should eq "bundler (default: 2.6.5)\n" }
   end
 
   describe command("RBENV_VERSION=3.2.7 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
@@ -123,12 +123,12 @@ RSpec.shared_examples 'ruby 3.1.6' do
 
   describe command("RBENV_VERSION=3.1.6 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.6.4\n" }
+    its(:stdout){ should eq "3.6.5\n" }
   end
 
   describe command("RBENV_VERSION=3.1.6 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.6.4)\n" }
+    its(:stdout){ should eq "bundler (default: 2.6.5)\n" }
   end
 
   describe file("/opt/rbenv/versions/3.1.6/openssl") do

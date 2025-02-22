@@ -54,7 +54,7 @@ targets:
       - rbenv global 3.1.6
       - ruby --version
       - gem --version
-      - gem update --system 3.6.4 -N
+      - gem update --system 3.6.5 -N
       - gem --version
 
   - image: minimum2scp/ruby:latest
@@ -71,7 +71,7 @@ targets:
       - rbenv global 3.2.7
       - ruby --version
       - gem --version
-      - gem update --system 3.6.4 -N
+      - gem update --system 3.6.5 -N
       - gem --version
 
   - image: minimum2scp/ruby:latest
@@ -88,7 +88,7 @@ targets:
       - rbenv global 3.3.7
       - ruby --version
       - gem --version
-      - gem update --system 3.6.4 -N
+      - gem update --system 3.6.5 -N
       - gem --version
 
   - image: minimum2scp/ruby:latest
@@ -105,7 +105,7 @@ targets:
       - rbenv global 3.4.2
       - ruby --version
       - gem --version
-      - gem update --system 3.6.4 -N
+      - gem update --system 3.6.5 -N
       - gem --version
 
   - image: minimum2scp/ruby-bookworm:latest
@@ -168,7 +168,7 @@ targets:
       - rbenv global 3.1.6
       - ruby --version
       - gem --version
-      - gem update --system 3.6.4 -N
+      - gem update --system 3.6.5 -N
       - gem --version
 
   - image: minimum2scp/ruby-bookworm:latest
@@ -187,7 +187,7 @@ targets:
       - rbenv global 3.2.7
       - ruby --version
       - gem --version
-      - gem update --system 3.6.4 -N
+      - gem update --system 3.6.5 -N
       - gem --version
 
   - image: minimum2scp/ruby-bookworm:latest
@@ -206,7 +206,7 @@ targets:
       - rbenv global 3.3.7
       - ruby --version
       - gem --version
-      - gem update --system 3.6.4 -N
+      - gem update --system 3.6.5 -N
       - gem --version
 
   - image: minimum2scp/ruby-bookworm:latest
@@ -225,7 +225,7 @@ targets:
       - rbenv global 3.4.2
       - ruby --version
       - gem --version
-      - gem update --system 3.6.4 -N
+      - gem update --system 3.6.5 -N
       - gem --version
 
   - image: minimum2scp/ruby-bullseye:latest
@@ -282,7 +282,7 @@ targets:
       - rbenv global 3.1.6
       - ruby --version
       - gem --version
-      - gem update --system 3.6.4 -N
+      - gem update --system 3.6.5 -N
       - gem --version
 
   - image: minimum2scp/ruby-bullseye:latest
@@ -301,7 +301,7 @@ targets:
       - rbenv global 3.2.7
       - ruby --version
       - gem --version
-      - gem update --system 3.6.4 -N
+      - gem update --system 3.6.5 -N
       - gem --version
 
   - image: minimum2scp/ruby-bullseye:latest
@@ -320,7 +320,7 @@ targets:
       - rbenv global 3.3.7
       - ruby --version
       - gem --version
-      - gem update --system 3.6.4 -N
+      - gem update --system 3.6.5 -N
       - gem --version
 
   - image: minimum2scp/ruby-bullseye:latest
@@ -339,7 +339,7 @@ targets:
       - rbenv global 3.4.2
       - ruby --version
       - gem --version
-      - gem update --system 3.6.4 -N
+      - gem update --system 3.6.5 -N
       - gem --version
 
 
