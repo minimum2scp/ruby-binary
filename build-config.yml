@@ -22,7 +22,7 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 3.1.6
+    version: 3.1.7
     install_rust: false
 
     envs:
@@ -31,7 +31,7 @@ targets:
     before_build:
 
     after_build:
-      - rbenv global 3.1.6
+      - rbenv global 3.1.7
       - ruby --version
       - gem --version
       - gem update --system 3.6.6 -N
@@ -39,7 +39,7 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 3.2.7
+    version: 3.2.8
     install_rust: true
 
     envs:
@@ -48,7 +48,7 @@ targets:
     before_build:
 
     after_build:
-      - rbenv global 3.2.7
+      - rbenv global 3.2.8
       - ruby --version
       - gem --version
       - gem update --system 3.6.6 -N
@@ -112,7 +112,7 @@ targets:
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
-    version: 3.1.6
+    version: 3.1.7
     install_rust: false
 
     envs:
@@ -123,7 +123,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.1.6
+      - rbenv global 3.1.7
       - ruby --version
       - gem --version
       - gem update --system 3.6.6 -N
@@ -131,7 +131,7 @@ targets:
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
-    version: 3.2.7
+    version: 3.2.8
     install_rust: true
 
     envs:
@@ -142,7 +142,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.2.7
+      - rbenv global 3.2.8
       - ruby --version
       - gem --version
       - gem update --system 3.6.6 -N
@@ -207,7 +207,7 @@ targets:
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
-    version: 3.1.6
+    version: 3.1.7
     install_rust: false
 
     envs:
@@ -218,7 +218,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.1.6
+      - rbenv global 3.1.7
       - ruby --version
       - gem --version
       - gem update --system 3.6.6 -N
@@ -226,7 +226,7 @@ targets:
 
   - image: minimum2scp/ruby-bullseye:latest
     platform: bullseye-amd64
-    version: 3.2.7
+    version: 3.2.8
     install_rust: true
 
     envs:
@@ -237,7 +237,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.2.7
+      - rbenv global 3.2.8
       - ruby --version
       - gem --version
       - gem update --system 3.6.6 -N
