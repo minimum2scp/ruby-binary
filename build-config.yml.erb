@@ -2,7 +2,7 @@
 targets:
 <%
   platforms = %w[sid-amd64 bookworm-amd64 bullseye-amd64]
-  versions = %w[2.7.8 3.0.7 3.1.6 3.2.7 3.3.7 3.4.2]
+  versions = %w[3.0.7 3.1.6 3.2.7 3.3.7 3.4.2]
   matrix = platforms.product(versions)
 
   matrix.each do |platform, version|
@@ -41,14 +41,9 @@ targets:
       install_bundler = false
       ruby_configure_opts = '--enable-load-relative'
       install_rust = false
-    when '2.7.8'
-      update_rubygems = '3.4.22'
-      install_bundler = false
-      ruby_configure_opts = '--enable-load-relative'
-      install_rust = false
     end
 
-    if ( platform == 'sid-amd64' || platform == 'bookworm-amd64' ) && ( version.start_with?('3.0.') || version.start_with?('2.7.') )
+    if ( platform == 'sid-amd64' || platform == 'bookworm-amd64' ) && version.start_with?('3.0.')
       openssl = {
         version: '1.1.1w',
         tarball_url: 'https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz',
