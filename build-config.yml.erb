@@ -52,6 +52,10 @@ targets:
       openssl = nil
     end
 
+    if platform == 'bullseye-amd64'
+      ruby_configure_opts += ' --with-openssl-dir=/usr'
+    end
+
     definition = {
       # 'x.x.x' => '(url)#(sha256sum)'
     }[version]
