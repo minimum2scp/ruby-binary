@@ -6,12 +6,12 @@ RSpec.shared_examples 'ruby 3.4.5' do
 
   describe command("RBENV_VERSION=3.4.5 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.7.1\n" }
+    its(:stdout){ should eq "3.7.2\n" }
   end
 
   describe command("RBENV_VERSION=3.4.5 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.7.1)\n" }
+    its(:stdout){ should eq "bundler (default: 2.7.2)\n" }
   end
 
   describe command("RBENV_VERSION=3.4.5 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
@@ -43,12 +43,12 @@ RSpec.shared_examples 'ruby 3.3.9' do
 
   describe command("RBENV_VERSION=3.3.9 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.7.1\n" }
+    its(:stdout){ should eq "3.7.2\n" }
   end
 
   describe command("RBENV_VERSION=3.3.9 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.7.1)\n" }
+    its(:stdout){ should eq "bundler (default: 2.7.2)\n" }
   end
 
   describe command("RBENV_VERSION=3.3.9 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
@@ -80,12 +80,12 @@ RSpec.shared_examples 'ruby 3.2.9' do
 
   describe command("RBENV_VERSION=3.2.9 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "3.7.1\n" }
+    its(:stdout){ should eq "3.7.2\n" }
   end
 
   describe command("RBENV_VERSION=3.2.9 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 2.7.1)\n" }
+    its(:stdout){ should eq "bundler (default: 2.7.2)\n" }
   end
 
   describe command("RBENV_VERSION=3.2.9 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
