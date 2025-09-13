@@ -10,6 +10,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      RUBY_CFLAGS: "-std=gnu17"
 
     before_build:
 
@@ -27,6 +28,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      RUBY_CFLAGS: "-std=gnu17"
 
     before_build:
 

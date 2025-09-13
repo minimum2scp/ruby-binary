@@ -76,6 +76,9 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: <%= ruby_configure_opts.dump %>
+      <%- if platform == 'sid-amd64' && (version.start_with?('3.0.') || version.start_with?('3.1.')) -%>
+      RUBY_CFLAGS: "-std=gnu17"
+      <%- end -%>
 
     before_build:
       <%- if platform == 'bullseye-amd64' || platform == 'bookworm-amd64' -%>
