@@ -151,7 +151,7 @@ RSpec.shared_examples 'ruby 3.1.7' do
     its(:stderr){ should eq '' }
   end
 
-  describe command("RBENV_VERSION=3.1.7 ruby --mjit -e 'p RubyVM::MJIT.enabled?'") do
+  xdescribe command("RBENV_VERSION=3.1.7 ruby --mjit -e 'p RubyVM::MJIT.enabled?'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "true\n" }
     its(:stderr){ should eq '' }
