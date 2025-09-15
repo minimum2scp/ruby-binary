@@ -53,7 +53,9 @@ if [ -z "${platform}" ]; then
       platform=bullseye-${arch};;
     12.*)
       platform=bookworm-${arch};;
-    13.0|*/sid)
+    13.*)
+      platform=trixie-${arch};;
+    14.0|*/sid)
       platform=sid-${arch};;
     *)
       echo "debian_version ${debian_version} is not supported"

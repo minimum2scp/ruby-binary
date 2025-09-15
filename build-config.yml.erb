@@ -1,7 +1,7 @@
 ---
 targets:
 <%
-  platforms = %w[sid-amd64 bookworm-amd64 bullseye-amd64]
+  platforms = %w[sid-amd64 trixie-amd64 bookworm-amd64 bullseye-amd64]
   versions = %w[3.0.7 3.1.7 3.2.9 3.3.9 3.4.5]
   matrix = platforms.product(versions)
 
@@ -9,6 +9,8 @@ targets:
     case platform
     when 'sid-amd64'
       image = 'minimum2scp/ruby:latest'
+    when 'trixie-amd64'
+      image = 'minimum2scp/ruby-trixie:latest'
     when 'bookworm-amd64'
       image = 'minimum2scp/ruby-bookworm:latest'
     when 'bullseye-amd64'
@@ -43,7 +45,7 @@ targets:
       install_rust = false
     end
 
-    if ( platform == 'sid-amd64' || platform == 'bookworm-amd64' ) && version.start_with?('3.0.')
+    if ( platform == 'sid-amd64' || platform == 'trixie-amd64' || platform == 'bookworm-amd64' ) && version.start_with?('3.0.')
       openssl = {
         version: '1.1.1w',
         tarball_url: 'https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz',
