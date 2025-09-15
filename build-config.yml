@@ -2,24 +2,6 @@
 targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 3.1.7
-    install_rust: false
-
-    envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      RUBY_CFLAGS: "-std=gnu17"
-
-    before_build:
-
-    after_build:
-      - rbenv global 3.1.7
-      - ruby --version
-      - gem --version
-      - gem update --system 3.6.9 -N
-      - gem --version
-
-  - image: minimum2scp/ruby:latest
-    platform: sid-amd64
     version: 3.2.9
     install_rust: true
 
@@ -71,23 +53,6 @@ targets:
 
   - image: minimum2scp/ruby-trixie:latest
     platform: trixie-amd64
-    version: 3.1.7
-    install_rust: false
-
-    envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-
-    before_build:
-
-    after_build:
-      - rbenv global 3.1.7
-      - ruby --version
-      - gem --version
-      - gem update --system 3.6.9 -N
-      - gem --version
-
-  - image: minimum2scp/ruby-trixie:latest
-    platform: trixie-amd64
     version: 3.2.9
     install_rust: true
 
@@ -135,25 +100,6 @@ targets:
       - ruby --version
       - gem --version
       - gem update --system 3.7.2 -N
-      - gem --version
-
-  - image: minimum2scp/ruby-bookworm:latest
-    platform: bookworm-amd64
-    version: 3.1.7
-    install_rust: false
-
-    envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-
-    before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-
-    after_build:
-      - rbenv global 3.1.7
-      - ruby --version
-      - gem --version
-      - gem update --system 3.6.9 -N
       - gem --version
 
   - image: minimum2scp/ruby-bookworm:latest
