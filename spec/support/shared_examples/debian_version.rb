@@ -4,6 +4,12 @@ RSpec.shared_examples 'debian sid' do
   end
 end
 
+RSpec.shared_examples 'debian trixie' do
+  describe file('/etc/debian_version') do
+    its(:content){ should match a_string_starting_with('13.') }
+  end
+end
+
 RSpec.shared_examples 'debian bookworm' do
   describe file('/etc/debian_version') do
     its(:content){ should match a_string_starting_with('12.') }

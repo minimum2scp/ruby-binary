@@ -90,6 +90,94 @@ targets:
       - gem update --system 3.7.2 -N
       - gem --version
 
+  - image: minimum2scp/ruby-trixie:latest
+    platform: trixie-amd64
+    version: 3.0.7
+    openssl:
+      version: 1.1.1w
+      tarball_url: https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz
+    install_rust: false
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+
+    before_build:
+
+    after_build:
+      - rbenv global 3.0.7
+      - ruby --version
+      - gem --version
+      - gem update --system 3.5.23 -N
+      - gem --version
+
+  - image: minimum2scp/ruby-trixie:latest
+    platform: trixie-amd64
+    version: 3.1.7
+    install_rust: false
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+
+    before_build:
+
+    after_build:
+      - rbenv global 3.1.7
+      - ruby --version
+      - gem --version
+      - gem update --system 3.6.9 -N
+      - gem --version
+
+  - image: minimum2scp/ruby-trixie:latest
+    platform: trixie-amd64
+    version: 3.2.9
+    install_rust: true
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+
+    before_build:
+
+    after_build:
+      - rbenv global 3.2.9
+      - ruby --version
+      - gem --version
+      - gem update --system 3.7.2 -N
+      - gem --version
+
+  - image: minimum2scp/ruby-trixie:latest
+    platform: trixie-amd64
+    version: 3.3.9
+    install_rust: true
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+
+    before_build:
+
+    after_build:
+      - rbenv global 3.3.9
+      - ruby --version
+      - gem --version
+      - gem update --system 3.7.2 -N
+      - gem --version
+
+  - image: minimum2scp/ruby-trixie:latest
+    platform: trixie-amd64
+    version: 3.4.5
+    install_rust: true
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+
+    before_build:
+
+    after_build:
+      - rbenv global 3.4.5
+      - ruby --version
+      - gem --version
+      - gem update --system 3.7.2 -N
+      - gem --version
+
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
     version: 3.0.7
