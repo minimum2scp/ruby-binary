@@ -1,7 +1,7 @@
 ---
 targets:
 <%
-  platforms = %w[sid-amd64 trixie-amd64 bookworm-amd64 bullseye-amd64]
+  platforms = %w[sid-amd64 trixie-amd64 bookworm-amd64]
   versions = %w[3.0.7 3.1.7 3.2.9 3.3.9 3.4.5]
   matrix = platforms.product(versions)
 
@@ -13,8 +13,6 @@ targets:
       image = 'minimum2scp/ruby-trixie:latest'
     when 'bookworm-amd64'
       image = 'minimum2scp/ruby-bookworm:latest'
-    when 'bullseye-amd64'
-      image = 'minimum2scp/ruby-bullseye:latest'
     end
 
     case version
@@ -54,10 +52,6 @@ targets:
       openssl = nil
     end
 
-    if platform == 'bullseye-amd64'
-      ruby_configure_opts += ' --with-openssl-dir=/usr'
-    end
-
     definition = {
       # 'x.x.x' => '(url)#(sha256sum)'
     }[version]
@@ -83,7 +77,7 @@ targets:
       <%- end -%>
 
     before_build:
-      <%- if platform == 'bullseye-amd64' || platform == 'bookworm-amd64' -%>
+      <%- if platform == 'bookworm-amd64' -%>
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
       <%- end -%>
