@@ -2,27 +2,6 @@
 targets:
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 3.0.7
-    openssl:
-      version: 1.1.1w
-      tarball_url: https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz
-    install_rust: false
-
-    envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      RUBY_CFLAGS: "-std=gnu17"
-
-    before_build:
-
-    after_build:
-      - rbenv global 3.0.7
-      - ruby --version
-      - gem --version
-      - gem update --system 3.5.23 -N
-      - gem --version
-
-  - image: minimum2scp/ruby:latest
-    platform: sid-amd64
     version: 3.1.7
     install_rust: false
 
@@ -92,26 +71,6 @@ targets:
 
   - image: minimum2scp/ruby-trixie:latest
     platform: trixie-amd64
-    version: 3.0.7
-    openssl:
-      version: 1.1.1w
-      tarball_url: https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz
-    install_rust: false
-
-    envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-
-    before_build:
-
-    after_build:
-      - rbenv global 3.0.7
-      - ruby --version
-      - gem --version
-      - gem update --system 3.5.23 -N
-      - gem --version
-
-  - image: minimum2scp/ruby-trixie:latest
-    platform: trixie-amd64
     version: 3.1.7
     install_rust: false
 
@@ -176,28 +135,6 @@ targets:
       - ruby --version
       - gem --version
       - gem update --system 3.7.2 -N
-      - gem --version
-
-  - image: minimum2scp/ruby-bookworm:latest
-    platform: bookworm-amd64
-    version: 3.0.7
-    openssl:
-      version: 1.1.1w
-      tarball_url: https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz
-    install_rust: false
-
-    envs:
-      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-
-    before_build:
-      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
-      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
-
-    after_build:
-      - rbenv global 3.0.7
-      - ruby --version
-      - gem --version
-      - gem update --system 3.5.23 -N
       - gem --version
 
   - image: minimum2scp/ruby-bookworm:latest
