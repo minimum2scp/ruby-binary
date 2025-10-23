@@ -19,7 +19,7 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 3.3.9
+    version: 3.3.10
     install_rust: true
 
     envs:
@@ -28,7 +28,7 @@ targets:
     before_build:
 
     after_build:
-      - rbenv global 3.3.9
+      - rbenv global 3.3.10
       - ruby --version
       - gem --version
       - gem update --system 3.7.2 -N
@@ -70,7 +70,7 @@ targets:
 
   - image: minimum2scp/ruby-trixie:latest
     platform: trixie-amd64
-    version: 3.3.9
+    version: 3.3.10
     install_rust: true
 
     envs:
@@ -79,7 +79,7 @@ targets:
     before_build:
 
     after_build:
-      - rbenv global 3.3.9
+      - rbenv global 3.3.10
       - ruby --version
       - gem --version
       - gem update --system 3.7.2 -N
@@ -123,7 +123,7 @@ targets:
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
-    version: 3.3.9
+    version: 3.3.10
     install_rust: true
 
     envs:
@@ -134,7 +134,7 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 3.3.9
+      - rbenv global 3.3.10
       - ruby --version
       - gem --version
       - gem update --system 3.7.2 -N
