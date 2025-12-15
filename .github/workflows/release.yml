@@ -49,9 +49,9 @@ jobs:
       - run: rake build:${{ matrix.platform }}:${{ matrix.version }}
       - run: rake test:${{ matrix.platform }}:${{ matrix.version }}
       - run: rm files/binary/.gitkeep files/log/.gitkeep
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with: { name: "binary_${{ matrix.platform }}_${{ matrix.version }}", path: files/binary }
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with: { name: "log_${{ matrix.platform }}_${{ matrix.version }}", path: files/log }
 
       - name: Upload asset
