@@ -51,6 +51,21 @@ targets:
       - gem update --system 4.0.3 -N
       - gem --version
 
+  - image: minimum2scp/ruby:latest
+    platform: sid-amd64
+    version: 4.0.0
+    install_rust: true
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+
+    before_build:
+
+    after_build:
+      - rbenv global 4.0.0
+      - ruby --version
+      - gem --version
+
   - image: minimum2scp/ruby-trixie:latest
     platform: trixie-amd64
     version: 3.2.9
@@ -102,6 +117,21 @@ targets:
       - gem update --system 4.0.3 -N
       - gem --version
 
+  - image: minimum2scp/ruby-trixie:latest
+    platform: trixie-amd64
+    version: 4.0.0
+    install_rust: true
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+
+    before_build:
+
+    after_build:
+      - rbenv global 4.0.0
+      - ruby --version
+      - gem --version
+
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
     version: 3.2.9
@@ -157,6 +187,23 @@ targets:
       - ruby --version
       - gem --version
       - gem update --system 4.0.3 -N
+      - gem --version
+
+  - image: minimum2scp/ruby-bookworm:latest
+    platform: bookworm-amd64
+    version: 4.0.0
+    install_rust: true
+
+    envs:
+      RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+
+    before_build:
+      ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
+      - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
+
+    after_build:
+      - rbenv global 4.0.0
+      - ruby --version
       - gem --version
 
 
