@@ -8,7 +8,7 @@ apt-get update
 apt-get dist-upgrade -y
 unset DEBIAN_FRONTEND
 
-## install rust for YJIT (ruby 3.2+)
+## install rust for YJIT (ruby 3.2+), ZJIT (ruby 4.0+)
 <% if build_config[:install_rust] %>
 export RUSTUP_HOME=/opt/rust/rustup
 export CARGO_HOME=/opt/rust/cargo
