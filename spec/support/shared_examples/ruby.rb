@@ -33,6 +33,12 @@ RSpec.shared_examples 'ruby 4.0.0' do
     its(:stdout){ should eq "true\n" }
     its(:stderr){ should eq '' }
   end
+
+  describe command("RBENV_VERSION=4.0.0 ruby --zjit -e 'p RubyVM::ZJIT.enabled?'") do
+    let(:login_shell){ true }
+    its(:stdout){ should eq "true\n" }
+    its(:stderr){ should eq '' }
+  end
 end
 
 RSpec.shared_examples 'ruby 3.4.8' do
