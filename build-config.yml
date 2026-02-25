@@ -14,7 +14,7 @@ targets:
       - rbenv global 3.2.10
       - ruby --version
       - gem --version
-      - gem update --system 4.0.6 -N
+      - gem update --system 4.0.7 -N
       - gem --version
 
   - image: minimum2scp/ruby:latest
@@ -31,7 +31,7 @@ targets:
       - rbenv global 3.3.10
       - ruby --version
       - gem --version
-      - gem update --system 4.0.6 -N
+      - gem update --system 4.0.7 -N
       - gem --version
 
   - image: minimum2scp/ruby:latest
@@ -48,7 +48,7 @@ targets:
       - rbenv global 3.4.8
       - ruby --version
       - gem --version
-      - gem update --system 4.0.6 -N
+      - gem update --system 4.0.7 -N
       - gem --version
 
   - image: minimum2scp/ruby:latest
@@ -65,7 +65,7 @@ targets:
       - rbenv global 4.0.1
       - ruby --version
       - gem --version
-      - gem update --system 4.0.6 -N
+      - gem update --system 4.0.7 -N
       - gem --version
 
   - image: minimum2scp/ruby-trixie:latest
@@ -82,7 +82,7 @@ targets:
       - rbenv global 3.2.10
       - ruby --version
       - gem --version
-      - gem update --system 4.0.6 -N
+      - gem update --system 4.0.7 -N
       - gem --version
 
   - image: minimum2scp/ruby-trixie:latest
@@ -99,7 +99,7 @@ targets:
       - rbenv global 3.3.10
       - ruby --version
       - gem --version
-      - gem update --system 4.0.6 -N
+      - gem update --system 4.0.7 -N
       - gem --version
 
   - image: minimum2scp/ruby-trixie:latest
@@ -116,7 +116,7 @@ targets:
       - rbenv global 3.4.8
       - ruby --version
       - gem --version
-      - gem update --system 4.0.6 -N
+      - gem update --system 4.0.7 -N
       - gem --version
 
   - image: minimum2scp/ruby-trixie:latest
@@ -133,7 +133,7 @@ targets:
       - rbenv global 4.0.1
       - ruby --version
       - gem --version
-      - gem update --system 4.0.6 -N
+      - gem update --system 4.0.7 -N
       - gem --version
 
   - image: minimum2scp/ruby-bookworm:latest
@@ -152,7 +152,7 @@ targets:
       - rbenv global 3.2.10
       - ruby --version
       - gem --version
-      - gem update --system 4.0.6 -N
+      - gem update --system 4.0.7 -N
       - gem --version
 
   - image: minimum2scp/ruby-bookworm:latest
@@ -171,7 +171,7 @@ targets:
       - rbenv global 3.3.10
       - ruby --version
       - gem --version
-      - gem update --system 4.0.6 -N
+      - gem update --system 4.0.7 -N
       - gem --version
 
   - image: minimum2scp/ruby-bookworm:latest
@@ -190,7 +190,7 @@ targets:
       - rbenv global 3.4.8
       - ruby --version
       - gem --version
-      - gem update --system 4.0.6 -N
+      - gem update --system 4.0.7 -N
       - gem --version
 
   - image: minimum2scp/ruby-bookworm:latest
@@ -209,7 +209,7 @@ targets:
       - rbenv global 4.0.1
       - ruby --version
       - gem --version
-      - gem update --system 4.0.6 -N
+      - gem update --system 4.0.7 -N
       - gem --version
 
 
