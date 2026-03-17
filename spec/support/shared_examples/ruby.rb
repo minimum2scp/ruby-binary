@@ -1,34 +1,34 @@
-RSpec.shared_examples 'ruby 4.0.1' do
-  describe command("RBENV_VERSION=4.0.1 ruby -v") do
+RSpec.shared_examples 'ruby 4.0.2' do
+  describe command("RBENV_VERSION=4.0.2 ruby -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "ruby 4.0.1 (2026-01-13 revision e04267a14b) +PRISM [x86_64-linux]\n" }
+    its(:stdout){ should eq "ruby 4.0.2 (2026-03-17 revision d3da9fec82) +PRISM [x86_64-linux]\n" }
   end
 
-  describe command("RBENV_VERSION=4.0.1 gem -v") do
+  describe command("RBENV_VERSION=4.0.2 gem -v") do
     let(:login_shell){ true }
     its(:stdout){ should eq "4.0.8\n" }
   end
 
-  describe command("RBENV_VERSION=4.0.1 gem list --exact bundler") do
+  describe command("RBENV_VERSION=4.0.2 gem list --exact bundler") do
     let(:login_shell){ true }
     its(:stdout){ should eq "bundler (default: 4.0.8)\n" }
   end
 
-  describe command("RBENV_VERSION=4.0.1 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
+  describe command("RBENV_VERSION=4.0.2 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "yes\n" }
   end
 
-  describe file("/opt/rbenv/versions/4.0.1/openssl") do
+  describe file("/opt/rbenv/versions/4.0.2/openssl") do
     it { should_not exist }
   end
 
-  describe command("RBENV_VERSION=4.0.1 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
+  describe command("RBENV_VERSION=4.0.2 ruby -ropenssl -e 'puts OpenSSL::OPENSSL_VERSION'") do
     let(:login_shell){ true }
     its(:stdout){ should start_with("OpenSSL #{openssl_version}") }
   end
 
-  describe command("RBENV_VERSION=4.0.1 ruby --yjit -e 'p RubyVM::YJIT.enabled?'") do
+  describe command("RBENV_VERSION=4.0.2 ruby --yjit -e 'p RubyVM::YJIT.enabled?'") do
     let(:login_shell){ true }
     its(:stdout){ should eq "true\n" }
     its(:stderr){ should eq '' }
