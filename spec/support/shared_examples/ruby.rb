@@ -6,12 +6,12 @@ RSpec.shared_examples 'ruby 4.0.2' do
 
   describe command("RBENV_VERSION=4.0.2 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "4.0.9\n" }
+    its(:stdout){ should eq "4.0.10\n" }
   end
 
   describe command("RBENV_VERSION=4.0.2 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 4.0.9)\n" }
+    its(:stdout){ should eq "bundler (default: 4.0.10)\n" }
   end
 
   describe command("RBENV_VERSION=4.0.2 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
@@ -43,12 +43,12 @@ RSpec.shared_examples 'ruby 3.4.9' do
 
   describe command("RBENV_VERSION=3.4.9 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "4.0.9\n" }
+    its(:stdout){ should eq "4.0.10\n" }
   end
 
   describe command("RBENV_VERSION=3.4.9 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 4.0.9)\n" }
+    its(:stdout){ should eq "bundler (default: 4.0.10)\n" }
   end
 
   describe command("RBENV_VERSION=3.4.9 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
@@ -80,12 +80,12 @@ RSpec.shared_examples 'ruby 3.3.11' do
 
   describe command("RBENV_VERSION=3.3.11 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "4.0.9\n" }
+    its(:stdout){ should eq "4.0.10\n" }
   end
 
   describe command("RBENV_VERSION=3.3.11 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 4.0.9)\n" }
+    its(:stdout){ should eq "bundler (default: 4.0.10)\n" }
   end
 
   describe command("RBENV_VERSION=3.3.11 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
@@ -117,12 +117,12 @@ RSpec.shared_examples 'ruby 3.2.11' do
 
   describe command("RBENV_VERSION=3.2.11 gem -v") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "4.0.9\n" }
+    its(:stdout){ should eq "4.0.10\n" }
   end
 
   describe command("RBENV_VERSION=3.2.11 gem list --exact bundler") do
     let(:login_shell){ true }
-    its(:stdout){ should eq "bundler (default: 4.0.9)\n" }
+    its(:stdout){ should eq "bundler (default: 4.0.10)\n" }
   end
 
   describe command("RBENV_VERSION=3.2.11 ruby -rrbconfig -e 'puts RbConfig::CONFIG[\"LIBRUBY_RELATIVE\"]'") do
