@@ -7,6 +7,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      LANG: C.UTF-8
 
     before_build:
 
@@ -24,6 +25,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      LANG: C.UTF-8
 
     before_build:
 
@@ -41,6 +43,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      LANG: C.UTF-8
 
     before_build:
 
@@ -58,6 +61,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      LANG: C.UTF-8
 
     before_build:
 
@@ -75,6 +79,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      LANG: C.UTF-8
 
     before_build:
 
@@ -92,6 +97,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      LANG: C.UTF-8
 
     before_build:
 
@@ -109,6 +115,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      LANG: C.UTF-8
 
     before_build:
 
@@ -126,6 +133,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      LANG: C.UTF-8
 
     before_build:
 
@@ -143,6 +151,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      LANG: C.UTF-8
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
@@ -162,6 +171,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      LANG: C.UTF-8
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
@@ -181,6 +191,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      LANG: C.UTF-8
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
@@ -200,6 +211,7 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
+      LANG: C.UTF-8
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
