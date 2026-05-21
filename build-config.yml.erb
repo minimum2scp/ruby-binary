@@ -64,7 +64,6 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: <%= ruby_configure_opts.dump %>
-      LANG: C.UTF-8
 
     before_build:
       <%- if platform == 'bookworm-amd64' -%>
