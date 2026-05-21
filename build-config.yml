@@ -7,7 +7,6 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      LANG: C.UTF-8
 
     before_build:
 
@@ -25,7 +24,6 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      LANG: C.UTF-8
 
     before_build:
 
@@ -43,7 +41,6 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      LANG: C.UTF-8
 
     before_build:
 
@@ -56,17 +53,16 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 4.0.4
+    version: 4.0.5
     install_rust: true
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      LANG: C.UTF-8
 
     before_build:
 
     after_build:
-      - rbenv global 4.0.4
+      - rbenv global 4.0.5
       - ruby --version
       - gem --version
       - gem update --system 4.0.11 -N
@@ -79,7 +75,6 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      LANG: C.UTF-8
 
     before_build:
 
@@ -97,7 +92,6 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      LANG: C.UTF-8
 
     before_build:
 
@@ -115,7 +109,6 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      LANG: C.UTF-8
 
     before_build:
 
@@ -128,17 +121,16 @@ targets:
 
   - image: minimum2scp/ruby-trixie:latest
     platform: trixie-amd64
-    version: 4.0.4
+    version: 4.0.5
     install_rust: true
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      LANG: C.UTF-8
 
     before_build:
 
     after_build:
-      - rbenv global 4.0.4
+      - rbenv global 4.0.5
       - ruby --version
       - gem --version
       - gem update --system 4.0.11 -N
@@ -151,7 +143,6 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      LANG: C.UTF-8
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
@@ -171,7 +162,6 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      LANG: C.UTF-8
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
@@ -191,7 +181,6 @@ targets:
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      LANG: C.UTF-8
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
@@ -206,19 +195,18 @@ targets:
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
-    version: 4.0.4
+    version: 4.0.5
     install_rust: true
 
     envs:
       RUBY_CONFIGURE_OPTS: "--enable-load-relative"
-      LANG: C.UTF-8
 
     before_build:
       ## assert no-merged-usr (see https://github.com/minimum2scp/dockerfiles/pull/191)
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 4.0.4
+      - rbenv global 4.0.5
       - ruby --version
       - gem --version
       - gem update --system 4.0.11 -N
