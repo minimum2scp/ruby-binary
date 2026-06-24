@@ -1,7 +1,7 @@
 set :docker_image, "minimum2scp/ruby-binary:test_sid-amd64_4.0.5"
 
 describe "platform=sid-amd64 version=4.0.5" do
-  include_context 'openssl 3.6.2'
+  include_context 'openssl 3.6.3'
   it_behaves_like 'debian sid'
   it_behaves_like 'ruby 4.0.5'
 end
