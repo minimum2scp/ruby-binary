@@ -53,7 +53,7 @@ targets:
 
   - image: minimum2scp/ruby:latest
     platform: sid-amd64
-    version: 4.0.5
+    version: 4.0.6
     install_rust: true
 
     envs:
@@ -62,10 +62,8 @@ targets:
     before_build:
 
     after_build:
-      - rbenv global 4.0.5
+      - rbenv global 4.0.6
       - ruby --version
-      - gem --version
-      - gem update --system 4.0.16 -N
       - gem --version
 
   - image: minimum2scp/ruby-trixie:latest
@@ -121,7 +119,7 @@ targets:
 
   - image: minimum2scp/ruby-trixie:latest
     platform: trixie-amd64
-    version: 4.0.5
+    version: 4.0.6
     install_rust: true
 
     envs:
@@ -130,10 +128,8 @@ targets:
     before_build:
 
     after_build:
-      - rbenv global 4.0.5
+      - rbenv global 4.0.6
       - ruby --version
-      - gem --version
-      - gem update --system 4.0.16 -N
       - gem --version
 
   - image: minimum2scp/ruby-bookworm:latest
@@ -195,7 +191,7 @@ targets:
 
   - image: minimum2scp/ruby-bookworm:latest
     platform: bookworm-amd64
-    version: 4.0.5
+    version: 4.0.6
     install_rust: true
 
     envs:
@@ -206,10 +202,8 @@ targets:
       - if [ -L /bin -o -L /lib -o -L /sbin ]; then exit 1; fi
 
     after_build:
-      - rbenv global 4.0.5
+      - rbenv global 4.0.6
       - ruby --version
-      - gem --version
-      - gem update --system 4.0.16 -N
       - gem --version
 
 
