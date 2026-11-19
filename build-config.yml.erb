@@ -2,7 +2,7 @@
 targets:
 <%
   platforms = %w[sid-amd64 trixie-amd64 bookworm-amd64]
-  versions = %w[3.2.11 3.3.13 3.4.12 4.0.9]
+  versions = %w[3.2.11 3.3.14 3.4.13 4.0.10]
   matrix = platforms.product(versions)
 
   matrix.each do |platform, version|
@@ -16,17 +16,17 @@ targets:
     end
 
     case version
-    when '4.0.9'
+    when '4.0.10'
       update_rubygems = '4.1.0'
       install_bundler = false
       ruby_configure_opts = '--enable-load-relative'
       install_rust = true
-    when '3.4.12'
+    when '3.4.13'
       update_rubygems = '4.1.0'
       install_bundler = false
       ruby_configure_opts = '--enable-load-relative'
       install_rust = true
-    when '3.3.13'
+    when '3.3.14'
       update_rubygems = '4.1.0'
       install_bundler = false
       ruby_configure_opts = '--enable-load-relative'
